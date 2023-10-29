@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react'
 
 // import spinner from '@/assets/spinner.svg'
 import useRefugio from '../../hooks/useRefugio'
@@ -15,9 +14,11 @@ const Mapa = () => {
     <main className='h-screen bg-[#CCC4BB] flex'>
       <Sidebar />
       <div className='flex flex-col w-full h-full bg-[#CCC4BB]'>
-        <TopBar />
+        <div className=''>
+          <TopBar />
+        </div>
 
-        <div className='flex gap-5 justify-center '>
+        <div className='flex gap-6 justify-center h-5/6'>
           <div className='w-1/3 grid '>
             <div className='grid gap-5 pr-8 pl-4'>
               <h2 className='font-extrabold text-3xl pt-8 pl-7 mb-2 '>
@@ -28,11 +29,11 @@ const Mapa = () => {
                 transito, adoptar un animal o colaborar con un donativo{' '}
               </p>
             </div>
-            <div className='mx-3 overflow-auto'>
+            <div className='mx-3 overflow-auto gap-5'>
               {refugios.map((refugio) => (
                 <div
                   key={refugio._id}
-                  className=' gap-5 bg-white rounded-lg flex'>
+                  className=' gap-5 bg-white rounded-lg flex mb-3'>
                   <img src={refugio.img} width={200} height={200} alt='1' />
                   <div className='grid justify-items-center'>
                     <div className='grid '>
