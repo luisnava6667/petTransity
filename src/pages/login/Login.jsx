@@ -6,11 +6,10 @@ import { useState } from 'react'
 import SwitchUsuarioRefugio from '../../components/SwitchUsuarioRefugio'
 import can from '../../assets/perro-usuario.svg'
 import { Link, useNavigate } from 'react-router-dom'
-import useAuth from '../../hooks/useAuth'
 import clienteAxios from '../../config/clienteAxios'
 
 const Login = () => {
-  const { user, setUser } = useAuth()
+  const [user, setUser] = useState('refugio')
   const [error, setError] = useState(null)
   const navigate = useNavigate()
   const handleButtonClick = (button) => {
@@ -34,7 +33,9 @@ const Login = () => {
       console.log(values)
       try {
         const { data } = await clienteAxios.post(`${user}/login`, values)
+        console.log(data)
         localStorage.setItem('token', data.token)
+        localStorage.setItem('role', data.role)
         navigate('/dashboard')
       } catch (error) {
         setError(error.response.data.msg)

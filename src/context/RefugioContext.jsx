@@ -1,7 +1,8 @@
-'use client'
+/* eslint-disable react/prop-types */
+
 import { createContext, useState, useEffect } from 'react'
 import clienteAxios from '../config/clienteAxios'
-import { useRouter } from 'next/navigation'
+
 
 const RefugioContext = createContext()
 

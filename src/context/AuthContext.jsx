@@ -7,16 +7,16 @@ import clienteAxios from '../config/clienteAxios'
 
 const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState('refugio')
-  console.log(user);
+  const user = localStorage.getItem('role')
   const [auth, setAuth] = useState({})
   const [cargando, setCargando] = useState(false)
   const navigate = useNavigate()
+  const token = localStorage.getItem('token')
   useEffect(() => {
     const autenticarUsuario = async () => {
-      const token = localStorage.getItem('token')
       if (!token) {
         setCargando(false)
+        navigate('/login')
         return
       }
       const config = {
@@ -26,19 +26,18 @@ const AuthProvider = ({ children }) => {
         }
       }
       try {
-        const { data } = await clienteAxios.post(`/${user}/perfil`, config)
-        console.log(data)
+        const { data } = await clienteAxios.get(`/${user}/perfil`, config)
         setAuth(data)
         setCargando(false)
-        navigate('/dashboard')
       } catch (error) {
+        console.log(error)
         setAuth({})
       }
     }
     autenticarUsuario()
-  }, [data])
+  }, [token])
   return (
-    <AuthContext.Provider value={{ auth, setAuth, user, setUser }}>
+    <AuthContext.Provider value={{ auth, setAuth }}>
       {children}
     </AuthContext.Provider>
   )

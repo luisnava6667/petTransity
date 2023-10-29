@@ -1,27 +1,21 @@
-import useAuth from '../../hooks/useAuth'
-// import CardGrandeDashboard from '../components/CardGrandeDashboard'
-// import CardUsuarioDashboard from '../components/CardUsuarioDashboard'
-// import InformacionCasaDashboard from '../components/InformacionCasaDashboard'
-// import Sidebar from '../components/Sidebar'
-// import TopBar from '../components/TopBar'
-// import { useEffect, useState } from 'react'
+import CardGrandeDashboard from '../../components/CardGrandeDashboard'
+import CardUsuarioDashboard from '../../components/CardUsuarioDashboard'
+import InformacionCasaDashboard from '../../components/InformacionCasaDashboard'
+import Sidebar from '../../components/Sidebar'
+import TopBar from '../../components/TopBar'
 
 const Dashboard = () => {
-  const { auth } = useAuth()
-  console.log(auth)
   return (
-    <div className='flex'>
-      sdasd
-      {/* <Sidebar /> */}
-      <div className='flex flex-col w-full bg-[#CCC4BB]'>
-        {/* <TopBar /> */}
-        <div className='w-full flex flex-col items-center justify-center'>
-          <div className='flex w-[65.4rem] gap-4 '>
-            asdasd
-            {/* <CardUsuarioDashboard user={user} />
-            <InformacionCasaDashboard /> */}
+    <div className='h-screen bg-[#CCC4BB] flex'>
+      <Sidebar />
+      <div className='grid w-full gap-4 '>
+        <TopBar />
+        <div className='overflow-auto'>
+          <div className='flex gap-5 justify-center'>
+            <CardUsuarioDashboard />
+            <InformacionCasaDashboard />
           </div>
-          {/* <CardGrandeDashboard /> */}
+          <CardGrandeDashboard />
         </div>
       </div>
     </div>

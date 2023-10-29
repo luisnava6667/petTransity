@@ -1,14 +1,8 @@
-import Image from 'next/image'
-import donarUsuario from '../../assets/donarUsuario.svg'
-import notificacion from '../../assets/notificacion.svg'
-import mensaje from '../../assets/mensaje.svg'
-import usuarioFake from '../../assets/usuarioFake.svg'
-import Link from 'next/link'
-import { useSession } from 'next-auth/react'
-
+import { Link } from 'react-router-dom'
+import donarUsuario from '../assets/donarUsuario.svg'
+import useAuth from '../hooks/useAuth'
 const TopBar = () => {
-  const { data } = useSession()
-
+  const { auth } = useAuth()
   return (
     <div className='mx-auto w-full py-14 bg-[#6F4C48] flex h-20  items-center gap-8 px-4 sm:px-6 lg:px-8'>
       <div className='flex flex-1 items-center justify-end md:justify-between'>
@@ -19,29 +13,28 @@ const TopBar = () => {
           <div className='mx-12'>
             <div className='flex gap-4 px-auto'>
               <Link className='' href='/donar'>
-                <Image
+                <img
                   className=''
                   width={26}
                   height={24}
                   alt='donar usuario'
                   src={donarUsuario}
                 />
-              </Link>            
+              </Link>
             </div>
           </div>
           <div className='flex gap-4 px-auto'>
             <Link className='' href='/dashboard'>
-              <Image
+              <img
                 className=''
                 width={50}
                 height={50}
                 alt='usuarioFake'
-                src={data?.img}
+                src={auth?.img}
               />
             </Link>
             <div className='text-white'>
-              <p>{data?.nombre}</p>
-              <p>Estado</p>
+              <p>{auth?.nombre}</p>
             </div>
           </div>
 
