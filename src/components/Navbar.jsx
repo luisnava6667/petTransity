@@ -1,5 +1,3 @@
-'use client'
-import Image from 'next/image'
 import logoWhite from '../../assets/logoWhite.svg'
 import home from '@/assets/home.svg'
 import mapa from '@/assets/mapa.svg'
@@ -10,8 +8,9 @@ import perfilOrange from '@/assets/perfilOrange.svg'
 import huella from '@/assets/huella.svg'
 import perfil from '@/assets/perfil.svg'
 import homeText from '@/assets/homeTextoNav.svg'
-import Link from 'next/link'
+
 import { usePathname } from 'next/navigation'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   const pathname = usePathname()
@@ -20,8 +19,8 @@ const Navbar = () => {
     <header className='w-full bg-[#6F4C48]'>
       <div className='mx-auto py-14 bg-[#6F4C48] flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8'>
         <div className='flex flex-1 items-center justify-end md:justify-between'>
-          <Link className='block text-teal-600' href='/dashboard'>
-            <Image
+          <Link className='block text-teal-600' to='/dashboard'>
+            <img
               className=''
               width={215}
               height={46}
@@ -36,8 +35,8 @@ const Navbar = () => {
                   ? ' text-[#E59D1C]  border-b-2'
                   : 'text-white text-xl font-semibold'
               }`}
-              href='#'>
-              <Image
+              to='#'>
+              <img
                 className=''
                 width={20}
                 height={20}
@@ -54,8 +53,8 @@ const Navbar = () => {
                   ? ' text-[#E59D1C]  border-b-2'
                   : 'text-white text-xl font-semibold'
               }`}
-              href='#'>
-              <Image
+              to='#'>
+              <img
                 className=' '
                 width={20}
                 height={20}
@@ -72,8 +71,8 @@ const Navbar = () => {
                   ? ' text-[#E59D1C]  border-b-2'
                   : 'text-white text-xl font-semibold'
               }`}
-              href='/'>
-              <Image
+              to='/'>
+              <img
                 className=' '
                 width={20}
                 height={20}
@@ -92,8 +91,8 @@ const Navbar = () => {
                   ? ' text-[#E59D1C]  border-b-2'
                   : 'text-white text-xl font-semibold'
               }`}
-              href='/'>
-              <Image
+              to='/'>
+              <img
                 className=' '
                 width={20}
                 height={20}
@@ -106,8 +105,8 @@ const Navbar = () => {
           <div className='sm:flex sm:gap-4 px-auto'>
             <Link
               className='flex items-center rounded-md bg-[#E59D1C] px-5 py-2.5 text-xl justify-around font-semibold text-black transition w-36  h-10 shadow-md'
-              href='/'>
-              <Image
+              to='/'>
+              <img
                 className=' '
                 width={30}
                 height={30}

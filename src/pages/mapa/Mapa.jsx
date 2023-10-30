@@ -5,8 +5,7 @@ import useRefugio from '../../hooks/useRefugio'
 import TopBar from '../../components/TopBar'
 import Sidebar from '../../components/Sidebar'
 import { MapaContainer } from './components/MapaContainer'
-//   OverlayView,
-//   InfoWindow
+
 
 const Mapa = () => {
   const { refugios } = useRefugio()
@@ -34,38 +33,6 @@ const Mapa = () => {
                 <div
                   key={refugio._id}
                   className=' gap-5 bg-white rounded-lg flex mb-3'>
-                  <img src={refugio.img} width={200} height={200} alt='1' />
-                  <div className='grid justify-items-center'>
-                    <div className='grid '>
-                      <h3 className='text-center text-xl mb-3 font-bold capitalize'>
-                        {refugio.razon_social}
-                      </h3>
-                      <p className='mb-7'>
-                        Refugio de animales dirigido por veterinarios.
-                      </p>
-                      <div className='mb-5'>
-                        <p>
-                          Direccion:{' '}
-                          {`${refugio.direccion}, ${refugio.provincia}`}
-                        </p>
-                        <p>Telefono: {refugio.whatsApp}</p>
-                      </div>
-                    </div>
-                    <div className='flex gap-5'>
-                      <button className='border-black border-2 rounded-lg w-[6.7rem] h-6 text-xs'>
-                        Ver ubicación
-                      </button>
-                      <button className='bg-[#E59D1C] rounded-lg w-[6.7rem] h-6 text-xs'>
-                        Contactar
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              {refugios.map((refugio) => (
-                <div
-                  key={refugio._id}
-                  className=' gap-5 bg-white rounded-lg flex'>
                   <img src={refugio.img} width={200} height={200} alt='1' />
                   <div className='grid justify-items-center'>
                     <div className='grid '>

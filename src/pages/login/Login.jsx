@@ -30,7 +30,6 @@ const Login = () => {
         .min(3, 'La contraseña debe tener al menos 3 caracteres')
     }),
     onSubmit: async (values) => {
-      console.log(values)
       try {
         const { data } = await clienteAxios.post(`${user}/login`, values)
         console.log(data)
@@ -38,10 +37,11 @@ const Login = () => {
         localStorage.setItem('role', data.role)
         navigate('/dashboard')
       } catch (error) {
+        console.log(error.response.data.msg)
         setError(error.response.data.msg)
         setTimeout(() => {
           setError(null)
-        }, 3000)
+        }, 4000)
       }
     }
   })
@@ -77,10 +77,9 @@ const Login = () => {
             selectedButton={user}
             handleButtonClick={handleButtonClick}
           />
-
-          <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
+          <div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm grid'>
             {error && (
-              <div className='flex flex-row-reverse w-full bg-white sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm'>
+              <div className='grid w-full bg-white  mt-5 text-red-900 uppercase font-bold text-lg p-1 text-center'>
                 {error}
               </div>
             )}
