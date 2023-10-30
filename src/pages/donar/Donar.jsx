@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import logo from '../../assets/logo.svg'
 import mercado from '../../assets/mercadoPago.png'
 const Donar = () => {
+  const token = localStorage.getItem('token')
   return (
     <main className='bg-[#CCC4BB] h-screen'>
       <div className='h-full pt-10'>
@@ -50,9 +51,9 @@ const Donar = () => {
         {/* Volvemos al home */}
         <div className='flex justify-center'>
           <Link
-            // to={data?.user.token ? '/dashboard' : '/'}
+            to={token ? '/dashboard' : '/'}
             className='flex w-1/2 md:w-1/3 h-14 text-2xl items-center justify-center rounded-md bg-[#E59D1C] px-3 py-1.5 text-white font-semibold leading-6 shadow-sm '>
-            {/* {data?.user.token ? 'Dashboard' : 'Home'} */}
+            {token ? 'Dashboard' : 'Home'}
           </Link>
         </div>
       </div>

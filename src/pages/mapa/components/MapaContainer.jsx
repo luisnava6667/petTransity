@@ -1,12 +1,12 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { GoogleMap, MarkerF, LoadScript } from '@react-google-maps/api'
+import { GoogleMap, MarkerF } from '@react-google-maps/api'
 import useRefugio from '../../../hooks/useRefugio'
 
 export const MapaContainer = () => {
   const [locations, setLocations] = useState([])
   const [mapVisibility, setMapVisibility] = useState('hidden')
-  const [spinnerVisibility, setSpinnerVisibility] = useState('flex')
+  // eslint-disable-next-line no-unused-vars
   const { refugios } = useRefugio()
   const apiKey = `${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}`
   const direccion = refugios.map(
@@ -32,8 +32,7 @@ export const MapaContainer = () => {
             `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`
           )
           const location = response.data.results[0].geometry.location
-          setSpinnerVisibility('hidden')
-          setMapVisibility('flex')
+
           console.log(location)
           return location
         })
@@ -44,29 +43,27 @@ export const MapaContainer = () => {
       }
     }
     addresstoGeometry(direccion)
-  }, [refugios])
+  }, [])
   return (
-    <LoadScript googleMapsApiKey={`${apiKey}`}>
-      <GoogleMap
-        mapContainerStyle={mapStyles}
-        zoom={13}
-        center={{ lat: -34.595369, lng: -58.436764 }}
-        options={mapOptions}>
-        {locations.map((location, index) => (
-          <MarkerF key={index} position={location} />
-        ))}
+    <GoogleMap
+      mapContainerStyle={mapStyles}
+      zoom={13}
+      center={{ lat: -34.595369, lng: -58.436764 }}
+      options={mapOptions}>
+      {locations.map((location, index) => (
+        <MarkerF key={index} position={location} />
+      ))}
 
-        {/* {selectedMarker && (
-                  <OverlayView
-                  position={selectedMarker.position}
-                  mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
-                  <div className=''>
-                  <div>{selectedMarker.title}</div>
-                  <button onClick={handleCloseInfoWindow}>Cerrar</button>
-                  </div>
-                  </OverlayView>
-                )} */}
-      </GoogleMap>
-    </LoadScript>
+      {/* {selectedMarker && (
+        <OverlayView
+          position={selectedMarker.position}
+          mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}>
+          <div className=''>
+            <div>{selectedMarker.title}</div>
+            <button onClick={handleCloseInfoWindow}>Cerrar</button>
+          </div>
+        </OverlayView>
+      )} */}
+    </GoogleMap>
   )
 }

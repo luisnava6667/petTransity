@@ -1,44 +1,66 @@
+import NavBarLogin from '../../components/NavBarLogin'
+import donar from '../../assets/donar.svg'
+import { Link, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import clienteAxios from '../../config/clienteAxios'
+import Alerta from './components/Alerta'
 
-import clienteAxios from '@/app/config/clienteAxios'
-import Link from 'next/link'
-import { useContext, useEffect, useState } from 'react'
+const Confirmar = () => {
+  const [alerta, setAlerta] = useState({})
+  const [cuentaConfirmada, setCuentaConfirmada] = useState(false)
+  const { token } = useParams()
 
-export default function Page({ params }) {
-  const { token } = params
   useEffect(() => {
     const confirmarCuenta = async () => {
       try {
-        const url = `/confirm/${token}`
-        await clienteAxios(url)
+        const url = `confirm/${token}`
+        const { data } = await clienteAxios(url)
+        setAlerta({
+          msg: data.msg,
+          error: false
+        })
         setCuentaConfirmada(true)
+        return
       } catch (error) {
-        setCuentaConfirmada(false)
+        setAlerta({
+          msg: error.response.data,
+          error: true
+        })
       }
     }
     confirmarCuenta()
   }, [])
-
+  const { msg } = alerta
   return (
-    <main className='bg-[#CCC4BB] h-screen p-10'>
-      <div className='grid justify-center  justify-items-center gap-24'>
-        <div className='mt-20 md:mt-10 shadow-lg px-5 py-10 rounded-xl bg-white'>
-          {cuentaConfirmada && (
-            <div className='text-center'>
-              <h2>
-                Confirma tu cuenta y comienza a administrar tu{' '}
-                <span>Negocio</span>
-              </h2>
-              <p className='text-2xl font-bold'>Cuenta confirmada</p>
-              <p className='text-xl'>Ahora puedes iniciar sesión</p>
-              <button
-                className='bg-sky-400 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded mt-5'
-                onClick={() => push('/login')}>
-                Iniciar Sesión
-              </button>
-            </div>
+    <main className='h-screen bg-[#CCC4BB] grid'>
+      <NavBarLogin
+        imgButton={donar}
+        textButtonNav={'Donar'}
+        ruta={'/donar'}
+        styles={
+          'flex rounded-md bg-[#E59D1C] px-5 py-2.5 text-3xl justify-around font-medium text-black transition w-44 h-14 shadow-md'
+        }
+      />
+      <div className='flex flex-col items-center'>
+        {msg && <Alerta alerta={alerta} />}
+        <div className='grid text-white font-bold'>
+          {cuentaConfirmada ? (
+            <Link
+              className='text-center my-5 bg-[#6F4C48] uppercase text-sm p-4 rounded-xl'
+              to='/login'>
+              Inicia Sesión
+            </Link>
+          ) : (
+            <Link
+              className='text-center my-5 bg-[#6F4C48] uppercase text-sm p-4 rounded-xl'
+              to='/'>
+              Regresar
+            </Link>
           )}
         </div>
       </div>
     </main>
   )
 }
+
+export default Confirmar

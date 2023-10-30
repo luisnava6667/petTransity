@@ -1,14 +1,13 @@
-'use client'
+/* eslint-disable react/prop-types */
 import { createContext, useState, useEffect } from 'react'
 import clienteAxios from '../config/clienteAxios'
-import { useSession } from 'next-auth/react'
 
 const PetContext = createContext()
 
 const PetProvider = ({ children }) => {
-  const { data } = useSession()
-  console.log(data?.user.token)
+ 
   const [pet, setPet] = useState([])
+ 
   console.log(pet)
   useEffect(() => {
     const getPet = async () => {
@@ -16,7 +15,7 @@ const PetProvider = ({ children }) => {
         const config = {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${data?.user.token}`
+            'Authorization': `Bearer $`
           }
         }
         const { data: pets } = await clienteAxios.get('/animales', config)
@@ -26,7 +25,7 @@ const PetProvider = ({ children }) => {
       }
     }
     getPet()
-  }, [data])
+  }, [])
 
   return <PetContext.Provider value={{}}>{children}</PetContext.Provider>
 }

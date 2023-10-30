@@ -9,6 +9,7 @@ const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
   const user = localStorage.getItem('role')
   const [auth, setAuth] = useState({})
+
   const [cargando, setCargando] = useState(false)
   const navigate = useNavigate()
   const token = localStorage.getItem('token')
@@ -16,7 +17,7 @@ const AuthProvider = ({ children }) => {
     const autenticarUsuario = async () => {
       if (!token) {
         setCargando(false)
-        navigate('/login')
+        // navigate('/login')
         return
       }
       const config = {
@@ -35,9 +36,15 @@ const AuthProvider = ({ children }) => {
       }
     }
     autenticarUsuario()
-  }, [token])
+  }, [token, user])
+  const cerrarSesionAuth = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('role')
+    setAuth({})
+    navigate('/login')
+  }
   return (
-    <AuthContext.Provider value={{ auth, setAuth }}>
+    <AuthContext.Provider value={{ auth, setAuth, cerrarSesionAuth }}>
       {children}
     </AuthContext.Provider>
   )

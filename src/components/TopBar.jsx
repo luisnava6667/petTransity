@@ -6,13 +6,13 @@ const TopBar = () => {
   return (
     <div className='mx-auto w-full py-14 bg-[#6F4C48] flex h-20  items-center gap-8 px-4 sm:px-6 lg:px-8'>
       <div className='flex flex-1 items-center justify-end md:justify-between'>
-        <p className='block text-white text-3xl font-medium' href='/'>
+        <p className='block text-white text-3xl font-medium' to='/'>
           Usuario
         </p>
         <div className='flex  items-center gap-4'>
           <div className='mx-12'>
             <div className='flex gap-4 px-auto'>
-              <Link className='' href='/donar'>
+              <Link className='' to='/donar'>
                 <img
                   className=''
                   width={26}
@@ -24,7 +24,7 @@ const TopBar = () => {
             </div>
           </div>
           <div className='flex gap-4 px-auto'>
-            <Link className='' href='/dashboard'>
+            <Link className='' to='/dashboard'>
               <img
                 className=''
                 width={50}

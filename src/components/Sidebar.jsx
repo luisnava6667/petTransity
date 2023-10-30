@@ -9,10 +9,15 @@ import perfil from '../assets/perfil.svg'
 import homeText from '../assets/homeTextoNav.svg'
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import useAuth from '../hooks/useAuth'
 
 const Sidebar = () => {
   const { pathname } = useLocation()
-  // const handleCerrarSesion = () => {}
+  const { cerrarSesionAuth } = useAuth()
+  const handleCerrarSesion = () => {
+    cerrarSesionAuth()
+    
+  }
   return (
     <header className='w-80 h-screen bg-[#6F4C48]'>
       <div className='mx-auto  bg-[#6F4C48] h-full flex items-center gap-8 px-4 sm:px-6 lg:px-8 rounded-r-lg rounded-br-lg  shadow-[4px_0_6px_0] shadow-[#483938]'>
@@ -115,7 +120,7 @@ const Sidebar = () => {
 
           <div className='sm:flex sm:gap-4 px-auto'>
             <button
-              onClick={{}}
+              onClick={handleCerrarSesion}
               className='flex items-center rounded-md bg-[#E59D1C] px-5 py-2.5 text-xl justify-around font-semibold text-black transition w-64  h-16 shadow-md'>
               Cerrar sesión
             </button>
