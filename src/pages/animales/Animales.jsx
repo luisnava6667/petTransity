@@ -3,7 +3,6 @@
 import axios from 'axios'
 // import Link from 'next/link'
 import getPets from '../utils/get-pet'
-import Cookies from 'js-cookie'
 
 export default async function Animales() {
   console.log(Cookies.get())

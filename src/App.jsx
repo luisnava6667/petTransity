@@ -10,6 +10,7 @@ import Mapa from './pages/mapa/Mapa'
 import { RefugioProvider } from './context/RefugioContext'
 import Confirmar from './pages/confirmar/Confirmar'
 import OlvidePassword from './pages/olvide-password/OlvidePassword'
+import NuevoPassword from './pages/nuevo-password/NuevoPassword'
 
 function App() {
   return (
@@ -25,8 +26,8 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='*' element={<NotFound />} />
             <Route path='confirmar/:token' element={<Confirmar />} />
-            <Route path='recuperar/:token' element={<Confirmar />} />
             <Route path='/olvide-password' element={<OlvidePassword />} />
+            <Route path='olvide-password/:token' element={<NuevoPassword />} />
           </Routes>
         </RefugioProvider>
       </AuthProvider>

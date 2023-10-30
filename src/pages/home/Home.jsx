@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import logo from '../../assets/logo.svg'
 import donar from '../../assets/donar.svg'
+import perro from '../../assets/perro_feliz.jpeg'
+import gato from '../../assets/gato_feliz.jpg'
 
 const Home = () => {
   return (
@@ -31,14 +33,33 @@ const Home = () => {
       <div>
         <div className='flex flex-col items-center justify-center h-full'>
           <h1 className='text-4xl font-bold text-center text-gray-600'>
-            Welcome to PetTransity
+            Bienvenido a PetTransity
           </h1>
-          <p className='text-center text-gray-600'>
-            A pet transition app for pet owners
+          <p className='text-center text-xl text-gray-600 mb-8'>
+            una aplicación para los amantes de los animales
           </p>
-          <div>
-            <div>
-              <p></p>
+          <div className='grid gap-6 px-5 md:px-28'>
+            <div className='flex gap-5 text-2xl'>
+              <img src={perro} className='w-64 md:w-1/3 rounded-xl' alt='' />
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Placeat sunt debitis laborum. Aliquam molestiae corrupti quam
+                minus qui cum quas harum dolor nesciunt, excepturi dicta, saepe
+                quod mollitia nisi consectetur?
+              </p>
+            </div>
+            <div className='flex gap-5 text-2xl'>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Placeat sunt debitis laborum. Aliquam molestiae corrupti quam
+                minus qui cum quas harum dolor nesciunt, excepturi dicta, saepe
+                quod mollitia nisi consectetur?
+              </p>
+              <img
+                src={gato}
+                className='w-64 md:w-1/3 rounded-xl'
+                alt='gato_home'
+              />
             </div>
           </div>
         </div>
