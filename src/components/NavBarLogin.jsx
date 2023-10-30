@@ -1,21 +1,21 @@
-import logo from '../assets/logo.svg'
-import { Link } from 'react-router-dom'
+import logo from "../assets/logo.svg";
+import { Link } from "react-router-dom";
 
 const NavBarLogin = ({ textButtonNav, imgButton, styles, ruta }) => {
   return (
-    <header className='w-full'>
-      <div className='grid justify-center justify-items-center lg:flex lg:justify-around'>
-        <Link className='block text-teal-600' href='/'>
-          <img className='' alt='logo' src={logo} />
+    <header className="w-full">
+      <div className="grid justify-center justify-items-center lg:flex lg:justify-around  bg-[#ccc4bb]">
+        <Link className="block text-teal-600" href="/">
+          <img className="" alt="logo" src={logo} />
         </Link>
-        <div className='flex items-center gap-4'>
-          <div className='sm:flex sm:gap-4 px-auto'>
+        <div className="flex items-center gap-4">
+          <div className="sm:flex sm:gap-4 px-auto">
             <Link className={styles} href={`${ruta}`}>
               <img
-                className=''
+                className=""
                 width={50}
                 height={50}
-                alt='logo'
+                alt="logo"
                 src={imgButton}
               />
               {textButtonNav}
@@ -24,7 +24,7 @@ const NavBarLogin = ({ textButtonNav, imgButton, styles, ruta }) => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default NavBarLogin
+export default NavBarLogin;
