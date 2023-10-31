@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const NavBarLogin = ({ textButtonNav, imgButton, styles, ruta }) => {
   return (
     <header className="w-full">
-      <div className="grid justify-center justify-items-center lg:flex lg:justify-around">
+      <div className="grid justify-center justify-items-center lg:flex lg:justify-around bg-[#CCC4BB]">
         <Link className="block text-teal-600" to="/">
           <img className="" alt="logo" src={logo} />
         </Link>

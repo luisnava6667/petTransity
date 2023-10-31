@@ -11,6 +11,8 @@ import { RefugioProvider } from "./context/RefugioContext";
 import Confirmar from "./pages/confirmar/Confirmar";
 import OlvidePassword from "./pages/olvide-password/OlvidePassword";
 import NuevoPassword from "./pages/nuevo-password/NuevoPassword";
+import FormRegisterUser from "./pages/form-register-usuario/FormRegisterUser";
+import RegisterAnimal from "./pages/register-animal/RegisterAnimal";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <RefugioProvider>
           <Routes>
             <Route path="/register-refugio" element={<FormRegisterRefugio />} />
+            <Route path="/register-usuario" element={<FormRegisterUser />} />
+            <Route path="/register-animal" element={<RegisterAnimal />} />
             <Route path="/register" element={<Donar />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
