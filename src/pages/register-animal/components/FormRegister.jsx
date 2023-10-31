@@ -3,13 +3,10 @@ import * as Yup from "yup";
 import name from "../../../assets/name.svg";
 import mail from "../../../assets/mail.svg";
 import lock from "../../../assets/lock.svg";
-import axios from "axios";
-// import axios from "axios";
-// import clienteAxios from "../../../config/clienteAxios";
+import clienteAxios from "../../../config/clienteAxios";
 
 const FormRegister = () => {
   const token = localStorage.getItem("token");
-
   const formik = useFormik({
     initialValues: {
       especie: "",
@@ -45,23 +42,17 @@ const FormRegister = () => {
       ),
     }),
     onSubmit: async (values) => {
+      console.log(values);
       const config = {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Asegúrate de tener el token en la variable "data"
+          Authorization: `Bearer ${token}`,
         },
       };
       try {
-        console.log("empezo");
-        const res = await axios.post(
-          "https://api-pet-beak.onrender.com/animales",
-          values,
-          config
-        );
-        console.log("siguio");
-        console.log(res);
+        await clienteAxios.post("/animales", values, config);
       } catch (error) {
-        console.log(error.response.data);
+        console.log(error.response.data.msg);
       }
     },
   });
@@ -75,7 +66,7 @@ const FormRegister = () => {
   const { handleSubmit, handleChange, handleBlur, touched, errors } = formik;
 
   return (
-    <div className="flex flex-col items-center  max-h-screen  overflow-y-auto bg-[#CCC4BB]">
+    <div className="flex flex-col items-center   overflow-y-auto ">
       <p className="text-6xl font-bold text-[#6F4C48] mb-10 ">Animal</p>
       <form
         className="bg-[#C1A88D] px-20 pt-5 space-y-6 pb-10 mb-10 rounded-3xl "
