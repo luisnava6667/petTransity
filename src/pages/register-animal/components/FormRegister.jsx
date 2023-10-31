@@ -1,16 +1,13 @@
-'use client'
-import axios from 'axios'
+// import axios from 'axios'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import name from '@/assets/name.svg'
-import mail from '@/assets/mail.svg'
-import lock from '@/assets/lock.svg'
-import Image from 'next/image'
-import { SessionProvider, useSession } from 'next-auth/react'
+import name from '../../../assets/name.svg'
+import mail from '../../../assets/mail.svg'
+import lock from '../../../assets/lock.svg'
+import clienteAxios from '../../../config/clienteAxios'
 
 const FormRegister = () => {
-  const { data } = useSession()
-
+  const token = localStorage.getItem('token')
   const formik = useFormik({
     initialValues: {
       especie: '',
@@ -46,17 +43,17 @@ const FormRegister = () => {
       )
     }),
     onSubmit: async (values) => {
+      console.log(values)
       const config = {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${data?.user.token}` // Asegúrate de tener el token en la variable "data"
+          'Authorization': `Bearer ${token}`
         }
       }
       try {
-        const url = `${process.env.NEXT_PUBLIC_URL}/animales`
-        const resp = await axios.post(url, values, config)
+        await clienteAxios.post('/animales', values, config)
       } catch (error) {
-        console.log(error.response.data)
+        console.log(error.response.data.msg)
       }
     }
   })
@@ -70,7 +67,7 @@ const FormRegister = () => {
   const { handleSubmit, handleChange, handleBlur, touched, errors } = formik
 
   return (
-    <div className='flex flex-col items-center  max-h-screen  overflow-y-auto bg-[#CCC4BB]'>
+    <div className='flex flex-col items-center   overflow-y-auto '>
       <p className='text-6xl font-bold text-[#6F4C48] mb-10 '>Animal</p>
       <form
         className='bg-[#C1A88D] px-20 pt-5 space-y-6 pb-10 mb-10 rounded-3xl '
@@ -83,7 +80,7 @@ const FormRegister = () => {
 
         <div className=''>
           <div className='flex gap-1 my-1'>
-            <Image alt='icono de etiqueta nombre' src={name} />
+            <img alt='icono de etiqueta nombre' src={name} />
             <label
               htmlFor='nombre'
               className='block text-sm font-semibold leading-6 text-gray-900'>
@@ -114,7 +111,7 @@ const FormRegister = () => {
         </div>
         <div className=''>
           <div className='flex gap-1 my-1'>
-            <Image alt='icono de etiqueta especie' src={name} />
+            <img alt='icono de etiqueta especie' src={name} />
             <label
               htmlFor='especie'
               className='block text-sm font-semibold leading-6 text-gray-900'>
@@ -146,7 +143,7 @@ const FormRegister = () => {
 
         <div className=''>
           <div className='flex gap-1  my-3'>
-            <Image alt='icono de etiqueta razon social' src={name} />
+            <img alt='icono de etiqueta razon social' src={name} />
             <label
               htmlFor='raza'
               className='block text-sm font-semibold leading-6 text-gray-900'>
@@ -178,7 +175,7 @@ const FormRegister = () => {
         <div>
           <div className='flex items-center justify-between'>
             <div className='flex gap-1  my-3'>
-              <Image alt='icono de etiqueta peso' src={name} />
+              <img alt='icono de etiqueta peso' src={name} />
               <label
                 htmlFor='peso'
                 className='block text-sm font-semibold leading-6 text-gray-900'>
@@ -211,7 +208,7 @@ const FormRegister = () => {
         <div>
           <div className='flex items-center justify-between'>
             <div className='flex gap-1  my-3'>
-              <Image alt='icono de etiqueta edad' src={mail} />
+              <img alt='icono de etiqueta edad' src={mail} />
               <label
                 htmlFor='edad'
                 className='block text-sm font-semibold leading-6 text-gray-900'>
@@ -244,7 +241,7 @@ const FormRegister = () => {
         <div>
           <div className='flex items-center justify-between'>
             <div className='flex gap-1  my-3'>
-              <Image alt='icono de etiqueta ingrese contraseña' src={lock} />
+              <img alt='icono de etiqueta ingrese contraseña' src={lock} />
               <label
                 htmlFor='tamaño'
                 className='block text-sm font-semibold leading-6 text-gray-900'>
@@ -278,7 +275,7 @@ const FormRegister = () => {
         <div>
           <div className='flex items-center justify-between'>
             <div className='flex gap-1  my-3'>
-              <Image alt='icono de etiqueta personalidad' src={name} />
+              <img alt='icono de etiqueta personalidad' src={name} />
               <label
                 htmlFor='personalidad'
                 className='block text-sm font-semibold leading-6 text-gray-900'>
@@ -311,7 +308,7 @@ const FormRegister = () => {
         <div className='flex gap-6'>
           <div>
             <div className='flex gap-1  my-3'>
-              <Image alt='icono de etiqueta fecha_ingreso' src={name} />
+              <img alt='icono de etiqueta fecha_ingreso' src={name} />
               <label
                 htmlFor='fecha_ingreso'
                 className='block text-sm font-semibold leading-6 text-gray-900'>
@@ -343,7 +340,7 @@ const FormRegister = () => {
         </div>
         <div>
           <div className='flex gap-1  my-3'>
-            <Image alt='icono de etiqueta egreso' src={name} />
+            <img alt='icono de etiqueta egreso' src={name} />
             <label
               htmlFor='salud'
               className='block text-sm font-semibold leading-6 text-gray-900'>
@@ -374,7 +371,7 @@ const FormRegister = () => {
         </div>
         <div>
           <div className='flex gap-1  my-3'>
-            <Image alt='icono de etiqueta barrio' src={name} />
+            <img alt='icono de etiqueta barrio' src={name} />
             <label
               htmlFor='observaciones'
               className='block text-sm font-semibold leading-6 text-gray-900'>
@@ -405,7 +402,7 @@ const FormRegister = () => {
         </div>
         <div>
           <div className='flex gap-1  my-3'>
-            <Image alt='icono de etiqueta codigo postal' src={name} />
+            <img alt='icono de etiqueta codigo postal' src={name} />
             <label
               htmlFor='image'
               className='block text-sm font-semibold leading-6 text-gray-900'>
@@ -436,7 +433,7 @@ const FormRegister = () => {
         </div>
         <div>
           <div className='flex gap-1  my-3'>
-            <Image alt='' src={name} />
+            <img alt='' src={name} />
             <label
               htmlFor='estado'
               className='block text-sm font-semibold leading-6 text-gray-900'>

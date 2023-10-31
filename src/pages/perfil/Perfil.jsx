@@ -6,9 +6,7 @@ import axios from 'axios'
 const Perfil = () => {
   const [user, setUser] = useState([])
 
-  if (status === 'loading') {
-    return <div>Cargando...</div>
-  }
+  
   return (
     <div className='flex'>
       <Sidebar />

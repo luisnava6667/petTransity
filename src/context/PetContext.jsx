@@ -5,9 +5,9 @@ import clienteAxios from '../config/clienteAxios'
 const PetContext = createContext()
 
 const PetProvider = ({ children }) => {
- 
+  const token = localStorage.getItem('token')
   const [pet, setPet] = useState([])
- 
+
   console.log(pet)
   useEffect(() => {
     const getPet = async () => {
@@ -15,19 +15,20 @@ const PetProvider = ({ children }) => {
         const config = {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer $`
+            'Authorization': `Bearer ${token}`
           }
         }
-        const { data: pets } = await clienteAxios.get('/animales', config)
-        setPet(pets)
+        const { data } = await clienteAxios.get('/animales', config)
+        setPet(data)
+        console.log(data)
       } catch (error) {
         console.log(error)
       }
     }
     getPet()
-  }, [])
+  }, [ token])
 
-  return <PetContext.Provider value={{}}>{children}</PetContext.Provider>
+  return <PetContext.Provider value={{ pet }}>{children}</PetContext.Provider>
 }
 
 export { PetProvider }
