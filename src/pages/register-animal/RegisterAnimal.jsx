@@ -1,7 +1,9 @@
-import NavBarLogin from "../../components/NavBarLogin";
+// import NavBarLogin from "../../components/NavBarLogin";
 import FormRegister from "./components/FormRegister";
-import flecha from "../../assets/flechaNav.svg";
+// import flecha from "../../assets/flechaNav.svg";
 import { useEffect } from "react";
+import Sidebar from "../../components/Sidebar";
+import TopBar from "../../components/TopBar";
 
 const RegisterAnimal = () => {
   const role = localStorage.getItem("role");
@@ -11,16 +13,14 @@ const RegisterAnimal = () => {
     }
   }, []);
   return (
-    <main className="h-full bg-[#CCC4BB]">
-      <NavBarLogin
-        imgButton={flecha}
-        textButtonNav={"Volver"}
-        styles={
-          "flex rounded-md bg-[#E59D1C] px-5 py-2.5 text-3xl justify-around font-medium text-black transition  w-44 h-14 shadow-md"
-        }
-        ruta={"/dashboard"}
-      />
-      <FormRegister />
+    <main className="h-screen bg-[#CCC4BB] flex">
+      <Sidebar />
+      <div className="flex flex-col w-full h-full">
+        <div className="">
+          <TopBar />
+        </div>
+        <FormRegister />
+      </div>
     </main>
   );
 };

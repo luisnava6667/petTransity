@@ -67,15 +67,21 @@ const FormRegister = () => {
 
   return (
     <div className="flex flex-col items-center   overflow-y-auto ">
-      <p className="text-6xl font-bold text-[#6F4C48] mb-10 ">Animal</p>
+      <p className="text-xl hidden md:flex md:text-3xl lg:text-5xl font-bold text-[#6F4C48] md:my-5 lg:my-8 ">
+        Añadir animal
+      </p>
       <form
-        className="bg-[#C1A88D] px-20 pt-5 space-y-6 pb-10 mb-10 rounded-3xl "
+        className="bg-[#C1A88D] mt-4 md:mt-0 px-8 mb-4 md:px-8 lg:px-20 md:pt-3 lg:pt-5 space-y-6 md:pb-8 md:mb-8 lg:pb-10 lg:mb-10 rounded-3xl "
         onKeyDown={handleKeyDown}
         onSubmit={handleSubmit}
       >
-        <p className="pb-10 underline underline-offset-2 text-[#6F4C48] text-2xl font-medium">
+        <p className="hidden md:flex lg:pb-10 underline underline-offset-2 text-[#6F4C48] text-2xl font-medium">
           {" "}
           Información del animal
+        </p>
+        <p className="text-center md:hidden underline underline-offset-2 text-[#6F4C48] text-2xl font-medium">
+          {" "}
+          Añadir animal
         </p>
 
         <div className="">
@@ -97,7 +103,7 @@ const FormRegister = () => {
               type="name"
               required
               placeholder="Nombre"
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
+              className={`block md:w-[28rem] md:h-11 lg:w-[31.5rem] lg:h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
                 touched.nombre && errors.nombre
                   ? "ring-red-500  focus:ring-red-500"
                   : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
@@ -129,7 +135,7 @@ const FormRegister = () => {
               type="text"
               required
               placeholder="Perro"
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
+              className={`block md:w-[28rem] md:h-11 lg:w-[31.5rem] lg:h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
                 touched.especie && errors.especie
                   ? "ring-red-500  focus:ring-red-500"
                   : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
@@ -162,7 +168,7 @@ const FormRegister = () => {
               type="text"
               required
               placeholder="Mestizo"
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
+              className={`block md:w-[28rem] md:h-11 lg:w-[31.5rem] lg:h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
                 touched.raza && errors.raza
                   ? "ring-red-500  focus:ring-red-500"
                   : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
@@ -196,7 +202,7 @@ const FormRegister = () => {
               type="number"
               placeholder="Peso"
               required
-              className={`block w-60 h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
+              className={`block md:w-[28rem] md:h-11 lg:w-[31.5rem] lg:h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
                 touched.peso && errors.peso
                   ? "ring-red-500  focus:ring-red-500"
                   : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
@@ -230,7 +236,7 @@ const FormRegister = () => {
               type="edad"
               placeholder="Edad"
               required
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
+              className={`block md:w-[28rem] md:h-11 lg:w-[31.5rem] lg:h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
                 touched.edad && errors.edad
                   ? "ring-red-500  focus:ring-red-500"
                   : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
@@ -265,7 +271,7 @@ const FormRegister = () => {
               type="tamaño"
               placeholder="Grande"
               required
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
+              className={`block md:w-[28rem] md:h-11 lg:w-[31.5rem] lg:h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
                 touched.tamaño && errors.tamaño
                   ? "ring-red-500  focus:ring-red-500"
                   : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
@@ -299,7 +305,7 @@ const FormRegister = () => {
               type="text"
               placeholder="Personalidad"
               required
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
+              className={`block md:w-[28rem] md:h-11 lg:w-[31.5rem] lg:h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
                 touched.personalidad && errors.personalidad
                   ? "ring-red-500  focus:ring-red-500"
                   : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
@@ -320,7 +326,7 @@ const FormRegister = () => {
                 htmlFor="fecha_ingreso"
                 className="block text-sm font-semibold leading-6 text-gray-900"
               >
-                fecha_ingreso <span className="text-red-600">*</span>
+                Fecha de ingreso <span className="text-red-600">*</span>
               </label>
             </div>
             <div className="mt-2">
@@ -332,7 +338,7 @@ const FormRegister = () => {
                 type="date"
                 required
                 placeholder="Fecha de fecha_ingreso"
-                className={`block w-60 h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
+                className={`block md:w-[28rem] md:h-11 lg:w-[31.5rem] lg:h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
                   touched.fecha_ingreso && errors.fecha_ingreso
                     ? "ring-red-500  focus:ring-red-500"
                     : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
@@ -365,7 +371,7 @@ const FormRegister = () => {
               type="text"
               required
               placeholder="Estado de salud"
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
+              className={`block md:w-[28rem] md:h-11 lg:w-[31.5rem] lg:h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
                 touched.salud && errors.salud
                   ? "ring-red-500  focus:ring-red-500"
                   : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
@@ -397,7 +403,7 @@ const FormRegister = () => {
               type="text"
               required
               placeholder="Estado del animal"
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
+              className={`block md:w-[28rem] md:h-11 lg:w-[31.5rem] lg:h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
                 touched.observaciones && errors.observaciones
                   ? "ring-red-500  focus:ring-red-500"
                   : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
@@ -429,7 +435,7 @@ const FormRegister = () => {
               type="text"
               required
               placeholder="URL de la imagen"
-              className={`block w-44 h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
+              className={`block md:w-[28rem] md:h-11 lg:w-[31.5rem] lg:h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
                 touched.image && errors.image
                   ? "ring-red-500  focus:ring-red-500"
                   : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
@@ -476,10 +482,10 @@ const FormRegister = () => {
             )}
           </div>
         </div>
-        <div className="w-[31.5rem] flex justify-end items-center pt-10">
+        <div className="md:w-[28rem]  lg:w-[31.5rem]  flex justify-end items-center lg:pt-10">
           <button
             type="submit"
-            className="flex mt-4 w-56 h-14 text-center items-center  border-2 border-[#4F3300] justify-center rounded-2xl bg-[#E59D1C] px-3 py-1.5 text-sm lg:text-2xl font-semibold leading-6 text-[#4F3300]  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className="flex mb-4 mt-4 md:w-48 font-bold lg:w-56 md:h-12 lg:h-14 text-center items-center  border-2 border-[#4F3300] justify-center rounded-2xl bg-[#E59D1C] px-3 py-1.5 text-sm lg:text-2xl  leading-6 text-[#4F3300]  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 "
           >
             Registrar
           </button>

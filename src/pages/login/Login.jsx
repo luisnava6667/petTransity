@@ -1,5 +1,7 @@
 import NavBarLogin from "../../components/NavBarLogin";
 import donar from "../../assets/donar.svg";
+import spinner from "../../assets/spinner.svg";
+
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
@@ -11,6 +13,8 @@ import clienteAxios from "../../config/clienteAxios";
 const Login = () => {
   const [user, setUser] = useState("refugio");
   const [error, setError] = useState(null);
+  const [spinnerVisibility, setSpinnerVisibility] = useState("hidden");
+  const [textVisibility, setTextVisibility] = useState("flex");
   const navigate = useNavigate();
   const handleButtonClick = (button) => {
     setUser(button);
@@ -31,12 +35,16 @@ const Login = () => {
     }),
     onSubmit: async (values) => {
       try {
+        setTextVisibility("hidden");
+        setSpinnerVisibility("flex");
         const { data } = await clienteAxios.post(`${user}/login`, values);
         console.log(data);
         localStorage.setItem("token", data.token);
         localStorage.setItem("role", data.role);
         navigate("/dashboard");
       } catch (error) {
+        setTextVisibility("flex");
+        setSpinnerVisibility("hidden");
         console.log(error.response.data.msg);
         setError(error.response.data.msg);
         setTimeout(() => {
@@ -161,7 +169,8 @@ const Login = () => {
                   type="submit"
                   className="flex w-96 h-14 lg:text-2xl items-center justify-center rounded-md bg-[#E59D1C] px-3 py-1.5 text-sm font-semibold leading-6 text-[#4F3300]  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                  Ingresar
+                  <img className={`${spinnerVisibility}`} src={spinner} />
+                  <p className={`${textVisibility}`}>Ingresar</p>
                 </button>
                 <Link
                   to="/registro"

@@ -5,15 +5,19 @@ import useAuth from "../hooks/useAuth";
 
 const CardUsuarioDashboard = () => {
   const { auth } = useAuth();
+  console.log(auth);
   const {
     nombre,
+    apellido,
     img,
     direccion,
     piso,
     unidad,
     codigoPostal,
     localidad,
-    telefono,
+    whatsApp,
+    role,
+    pets,
   } = auth;
 
   return (
@@ -30,9 +34,11 @@ const CardUsuarioDashboard = () => {
         </div>
 
         <div className="flex flex-col w-72 h-60 bg-[#E6E2DD] rounded-bl-2xl rounded-br-2xl items-center justify-center">
-          <h2 className="w-48  mb-4 text-2xl font-medium">{nombre}</h2>
+          <h2 className="w-48  mb-2 text-2xl font-medium">
+            {nombre} {apellido}
+          </h2>
 
-          <div className="flex w-48 gap-1 my-1">
+          <div className="flex w-52 gap-1 my-1">
             <img
               className=" "
               alt="1"
@@ -41,19 +47,29 @@ const CardUsuarioDashboard = () => {
               height={20}
             />
             <p className="text-base font-medium">
-              {direccion},{piso}, {unidad}, {codigoPostal}, {localidad}
+              Direccion: {direccion}, Piso: {piso}, Dpto: {unidad}, CP:{" "}
+              {codigoPostal}, Barrio: {localidad}
             </p>
           </div>
-          <div className="flex w-48 gap-1 my-1">
+          <div className="flex w-52 gap-1 my-1">
             <img className=" " alt="1" src={telCard} width={20} height={20} />
-            <p className="text-base font-medium">{telefono}</p>
+            <p className="text-base font-medium">{whatsApp}</p>
           </div>
-          <div className="flex w-48 gap-1 my-1">
-            <img className=" " alt="" src={huellaCard} width={20} height={20} />
-            <p className="text-base font-medium">
-              {/* {pets?.length === 0 ? 'No posee mascotas' : 'Posee mascotas'} */}
-            </p>
-          </div>
+
+          {role === "usuario" && (
+            <div className="flex w-48 gap-1 my-1">
+              <img
+                className=" "
+                alt=""
+                src={huellaCard}
+                width={20}
+                height={20}
+              />
+              <p className="text-base font-medium">
+                {pets?.length === 0 ? "No posee mascotas" : "Posee mascotas"}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </>

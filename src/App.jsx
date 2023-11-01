@@ -1,9 +1,10 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import NotFound from "./pages/404/NotFound";
 import Home from "./pages/home/Home";
 import Donar from "./pages/donar/Donar";
 import Login from "./pages/login/Login";
 import FormRegisterRefugio from "./pages/form-register-refugio/FormRegisterRefugio";
+import FormRegisterUser from "./pages/form-register-usuario/FormRegisterUser";
 import { AuthProvider } from "./context/AuthContext";
 import Dashboard from "./pages/dashboard/Dashboar";
 import Mapa from "./pages/mapa/Mapa";
@@ -15,10 +16,11 @@ import RegisterAnimal from "./pages/register-animal/RegisterAnimal";
 import Animales from "./pages/animales/Animales";
 import { PetProvider } from "./context/PetContext";
 import AnimalesId from "./pages/animalesId/AnimalesId";
+import PrivateMap from "./context/PrivateMap";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AuthProvider>
         <RefugioProvider>
           <PetProvider>
@@ -28,13 +30,19 @@ function App() {
                 path="/register-refugio"
                 element={<FormRegisterRefugio />}
               />
+              <Route path="/register-usuario" element={<FormRegisterUser />} />
               <Route path="/register-animales" element={<RegisterAnimal />} />
-              <Route path="/register" element={<Donar />} />
+              <Route path="/donar" element={<Donar />} />
               {/* registros */}
               {/* logeado */}
               <Route path="/login" element={<Login />} />
               <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/mapa" element={<Mapa />} />
+              <Route
+                path="/mapa"
+                element={
+                  <PrivateMap allowedRoles={["usuario"]} element={<Mapa />} />
+                }
+              />
               <Route path="/animales" element={<Animales />} />
               <Route path="/animales/:id" element={<AnimalesId />} />
               <Route path="/donar" element={<Donar />} />
@@ -51,7 +59,7 @@ function App() {
           </PetProvider>
         </RefugioProvider>
       </AuthProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
