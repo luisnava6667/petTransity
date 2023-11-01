@@ -8,7 +8,6 @@ const PetProvider = ({ children }) => {
   const token = localStorage.getItem('token')
   const [pet, setPet] = useState([])
 
-  console.log(pet)
   useEffect(() => {
     const getPet = async () => {
       try {

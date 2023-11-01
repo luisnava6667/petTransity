@@ -8,7 +8,6 @@ import { MapaContainer } from "./components/MapaContainer";
 
 const Mapa = () => {
   const { refugios } = useRefugio();
-  console.log(refugios);
   return (
     <main className="h-screen bg-[#CCC4BB] flex">
       <Sidebar />
