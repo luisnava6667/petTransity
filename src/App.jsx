@@ -14,7 +14,6 @@ import OlvidePassword from "./pages/olvide-password/OlvidePassword";
 import NuevoPassword from "./pages/nuevo-password/NuevoPassword";
 import RegisterAnimal from "./pages/register-animal/RegisterAnimal";
 import Animales from "./pages/animales/Animales";
-import { PetProvider } from "./context/PetContext";
 import AnimalesId from "./pages/animalesId/AnimalesId";
 import PrivateMap from "./context/PrivateMap";
 import Perfil from "./pages/perfil/Perfil";
@@ -25,7 +24,6 @@ function App() {
     <HashRouter>
       <AuthProvider>
         <RefugioProvider>
-          <PetProvider>
             <Routes>
               {/* registros */}
               <Route
@@ -60,7 +58,6 @@ function App() {
                 element={<NuevoPassword />}
               />
             </Routes>
-          </PetProvider>
         </RefugioProvider>
       </AuthProvider>
     </HashRouter>

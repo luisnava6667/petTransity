@@ -26,8 +26,12 @@ const AnimalesId = () => {
           )
           setPet(data)
         } else {
-          const { data } = await clienteAxios.get(`/animales/${id}`, config)
-          setPet(data)
+          const {
+            data: { pet, refugio }
+          } = await clienteAxios.get(`/animales/view/${id}`, config)
+          console.log(refugio)
+          setPet(pet)
+          setRefugio(refugio)
         }
       } catch (error) {
         console.log(error)
@@ -35,17 +39,7 @@ const AnimalesId = () => {
     }
     getPet()
   }, [id, token, role])
-  useEffect(() => {
-    const getRefugio = async () => {
-      try {
-        const { data } = await clienteAxios.get(`/refugio/${pet.refugio}`)
-        setRefugio(data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getRefugio()
-  }, [])
+
   return (
     <main className='h-screen bg-[#CCC4BB] flex'>
       <Sidebar />
@@ -88,60 +82,78 @@ const AnimalesId = () => {
                 Salud: <b className='capitalize'>{pet.salud}</b>
               </p>
               <div className='grid justify-items-center mt-4'>
-                {pet.estado ? (
-                  <Link
-                    to={`https://wa.me/+5491131496472?text=Hola%20me%20gustaría%20saber%20más%20sobre%20${pet.nombre}`}
-                    className='w-1/2 bg-[#FFB800] rounded-lg mx-5 text-white font-bold text-xl p-2 text-center '>
-                    Transitar
-                  </Link>
+                {role === 'usuarios' ? (
+                  pet.estado ? (
+                    <Link
+                      to={`https://wa.me/+5491131496472?text=Hola%20me%20gustaría%20saber%20más%20sobre%20${pet.nombre}`}
+                      className='w-1/2 bg-[#FFB800] rounded-lg mx-5 text-white font-bold text-xl p-2 text-center '>
+                      Transitar
+                    </Link>
+                  ) : (
+                    <Link
+                      className='w-1/2  bg-[#af8f3e] rounded-lg mx-5 text-white font-bold text-xl p-2 text-center cursor-not-allowed'
+                      style={{ pointerEvents: 'none' }}>
+                      No disponible
+                    </Link>
+                  )
                 ) : (
-                  <Link
-                    className='w-1/2  bg-[#af8f3e] rounded-lg mx-5 text-white font-bold text-xl p-2 text-center cursor-not-allowed'
-                    style={{ pointerEvents: 'none' }}>
-                    No disponible
-                  </Link>
+                  <div className='w-full'>
+                    <Link
+                      to={`/animales/edit/${pet._id}`}
+                      className='w-1/2 bg-[#FFB800] rounded-lg mx-5 text-white font-bold text-xl p-2 text-center '>
+                      Editar
+                    </Link>
+                    <Link
+                      to={`/animales/delete/${pet._id}`}
+                      className='w-1/2  bg-red-500 rounded-lg mx-5 text-white font-bold text-xl p-2 text-center '>
+                      Eliminar
+                    </Link>
+                  </div>
                 )}
               </div>
             </div>
           </div>
           <div className='gap-5 md:w-3/4 w-full xl:px-28 my-5'>
-            <div className='bg-white rounded-lg p-5 mx-5 grid justify-items-center '>
-              <h3 className='text-center text-2xl md:text-5xl p-5 font-bold text-[#503734]'>
-                Refugio
-              </h3>
-              <div className='md:flex justify-evenly w-full grid items-center'>
-                <img
-                  className='rounded-lg h-44'
-                  src={refugio.img}
-                  alt='refugio'
-                />
-                <div>
-                  <p>
-                    Razon social:
-                    <b className='capitalize'> {refugio.razon_social}</b>
-                  </p>
-                  <p>
-                    Direccion:
-                    <b className='capitalize'>
-                      {`${refugio.direccion}, ${refugio.provincia}`}
-                    </b>
-                  </p>
-                  <p>
-                    Telefono: <b className='capitalize'> {refugio.whatsApp}</b>
-                  </p>
-                  <p>
-                    Email: <b className='capitalize'> {refugio.email}</b>
-                  </p>
-                  <div className='grid justify-items-center mt-4'>
-                    <Link
-                      to={`https://wa.me/+5491131496472?text=Hola%20me%20gustaría%20saber%20más%20sobre%20${pet.nombre}`}
-                      className='w-1/2 bg-[#FFB800] rounded-lg mx-5 text-white font-bold text-xl p-2 text-center '>
-                      Contactar
-                    </Link>
+            {role === 'usuarios' && (
+              <div className='bg-white rounded-lg p-5 mx-5 grid justify-items-center '>
+                <h3 className='text-center text-2xl md:text-5xl p-5 font-bold text-[#503734]'>
+                  Refugio
+                </h3>
+                <div className='md:flex justify-evenly w-full grid items-center'>
+                  <img
+                    className='rounded-lg h-44'
+                    src={refugio.img}
+                    alt='refugio'
+                  />
+                  <div>
+                    <p>
+                      Razon social:
+                      <b className='capitalize'> {refugio.razon_social}</b>
+                    </p>
+                    <p>
+                      Direccion:
+                      <b className='capitalize'>
+                        {`${refugio.direccion}, ${refugio.provincia}`}
+                      </b>
+                    </p>
+                    <p>
+                      Telefono:{' '}
+                      <b className='capitalize'> {refugio.whatsApp}</b>
+                    </p>
+                    <p>
+                      Email: <b className='capitalize'> {refugio.email}</b>
+                    </p>
+                    <div className='grid justify-items-center mt-4'>
+                      <Link
+                        to={`https://wa.me/+5491131496472?text=Hola%20me%20gustaría%20saber%20más%20sobre%20${pet.nombre}`}
+                        className='w-1/2 bg-[#FFB800] rounded-lg mx-5 text-white font-bold text-xl p-2 text-center '>
+                        Contactar
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
