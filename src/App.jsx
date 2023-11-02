@@ -17,6 +17,8 @@ import Animales from "./pages/animales/Animales";
 import { PetProvider } from "./context/PetContext";
 import AnimalesId from "./pages/animalesId/AnimalesId";
 import PrivateMap from "./context/PrivateMap";
+import Perfil from "./pages/perfil/Perfil";
+import { UserId } from "./pages/userId/UserId";
 
 function App() {
   return (
@@ -51,6 +53,8 @@ function App() {
               <Route path="*" element={<NotFound />} />
               <Route path="confirmar/:token" element={<Confirmar />} />
               <Route path="/olvide-password" element={<OlvidePassword />} />
+              <Route path="perfil" element={<Perfil/>}/>
+              <Route path="editar/:id" element={<UserId/>}/>
               <Route
                 path="olvide-password/:token"
                 element={<NuevoPassword />}

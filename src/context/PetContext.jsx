@@ -19,7 +19,6 @@ const PetProvider = ({ children }) => {
         }
         const { data } = await clienteAxios.get('/animales', config)
         setPet(data)
-        console.log(data)
       } catch (error) {
         console.log(error)
       }
