@@ -7,7 +7,7 @@ const TopBar = () => {
 
   return (
     <div className="mx-auto w-full py-14 bg-[#503734] flex h-20  items-center  px-4 lg:px-8">
-      <img src={huellaLogo} alt="" />
+      <img className="md:hidden" src={huellaLogo} alt="" />
       <div className="flex flex-1 items-center justify-end md:justify-between">
         <div className="flex gap-4  md:gap-2 lg:gap-4 px-auto">
           <Link className="" to="/dashboard">
