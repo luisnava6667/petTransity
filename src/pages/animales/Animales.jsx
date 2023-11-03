@@ -29,7 +29,7 @@ const Animales = () => {
       }
     }
     getPet()
-  }, [token])
+  }, [role, token])
   return (
     <main className='h-screen bg-[#CCC4BB] flex'>
       <Sidebar />
@@ -37,7 +37,7 @@ const Animales = () => {
         <div className=''>
           <TopBar />
         </div>
-        <div className=' w-full '>
+        <div className=' w-full overflow-auto'>
           <div className='mb-10'>
             <div className='flex justify-between'>
               <h2 className='font-extrabold text-2xl pt-8 pl-7 mb-2 '>
@@ -57,7 +57,7 @@ const Animales = () => {
                 : 'Encuentra un refugio cerca de tu zona, puedes solicitar hacer transito, adoptar un animal o colaborar con un donativo'}
             </p>
           </div>
-          <div className='grid grid-cols-5 gap-5 pr-8 pl-4'>
+          <div className='grid sm:grid-cols-2 mx-10 sm:mx-5 mb-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 pr-8 pl-4'>
             {pet?.map((pet) => (
               <div
                 key={pet._id}

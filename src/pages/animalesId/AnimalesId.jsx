@@ -3,8 +3,10 @@ import { Link, useParams } from 'react-router-dom'
 import clienteAxios from '../../config/clienteAxios'
 import Sidebar from '../../components/Sidebar'
 import TopBar from '../../components/TopBar'
+import useRefugio from '../../hooks/useRefugio'
 
 const AnimalesId = () => {
+  const { eliminarAnimal } = useRefugio()
   const [pet, setPet] = useState([])
   const [refugio, setRefugio] = useState([])
   const token = localStorage.getItem('token')
@@ -81,7 +83,7 @@ const AnimalesId = () => {
               <p>
                 Salud: <b className='capitalize'>{pet.salud}</b>
               </p>
-              <div className='grid justify-items-center mt-4'>
+              <div className='grid justify-items-center mt-4 w-full'>
                 {role === 'usuarios' ? (
                   pet.estado ? (
                     <Link
@@ -97,17 +99,17 @@ const AnimalesId = () => {
                     </Link>
                   )
                 ) : (
-                  <div className='w-full'>
+                  <div className='w-full flex'>
                     <Link
-                      to={`/animales/edit/${pet._id}`}
+                      to={`/editar-animales/${pet._id}`}
                       className='w-1/2 bg-[#FFB800] rounded-lg mx-5 text-white font-bold text-xl p-2 text-center '>
                       Editar
                     </Link>
-                    <Link
-                      to={`/animales/delete/${pet._id}`}
+                    <button
+                      onClick={() => eliminarAnimal(pet._id)}
                       className='w-1/2  bg-red-500 rounded-lg mx-5 text-white font-bold text-xl p-2 text-center '>
                       Eliminar
-                    </Link>
+                    </button>
                   </div>
                 )}
               </div>

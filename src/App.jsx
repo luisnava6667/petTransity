@@ -18,6 +18,7 @@ import AnimalesId from "./pages/animalesId/AnimalesId";
 import PrivateMap from "./context/PrivateMap";
 import Perfil from "./pages/perfil/Perfil";
 import { UserId } from "./pages/userId/UserId";
+import EditarAnimal from "./pages/editarAnimal/EditarAnimal";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
               />
               <Route path="/animales" element={<Animales />} />
               <Route path="/animales/:id" element={<AnimalesId />} />
+              <Route path="/editar-animales/:id" element={<EditarAnimal />} />
               <Route path="/donar" element={<Donar />} />
               {/* logeado */}
               <Route path="/" element={<Home />} />
