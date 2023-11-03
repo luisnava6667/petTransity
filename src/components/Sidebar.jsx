@@ -55,7 +55,7 @@ const Sidebar = () => {
                 Home
               </Link>
             </div>
-            {auth.role === "usuario" && (
+            {auth.role === "usuarios" && (
               <div
                 className={`${
                   pathname === "/mapa" && "bg-[#5E413D] rounded-xl"

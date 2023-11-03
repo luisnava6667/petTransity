@@ -9,7 +9,6 @@ const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
   const user = localStorage.getItem('role')
   const [auth, setAuth] = useState({})
-
   const [cargando, setCargando] = useState(false)
   const navigate = useNavigate()
   const token = localStorage.getItem('token')

@@ -14,16 +14,17 @@ import OlvidePassword from "./pages/olvide-password/OlvidePassword";
 import NuevoPassword from "./pages/nuevo-password/NuevoPassword";
 import RegisterAnimal from "./pages/register-animal/RegisterAnimal";
 import Animales from "./pages/animales/Animales";
-import { PetProvider } from "./context/PetContext";
 import AnimalesId from "./pages/animalesId/AnimalesId";
 import PrivateMap from "./context/PrivateMap";
+import Perfil from "./pages/perfil/Perfil";
+import { UserId } from "./pages/userId/UserId";
+import EditarAnimal from "./pages/editarAnimal/EditarAnimal";
 
 function App() {
   return (
     <HashRouter>
       <AuthProvider>
         <RefugioProvider>
-          <PetProvider>
             <Routes>
               {/* registros */}
               <Route
@@ -45,18 +46,20 @@ function App() {
               />
               <Route path="/animales" element={<Animales />} />
               <Route path="/animales/:id" element={<AnimalesId />} />
+              <Route path="/editar-animales/:id" element={<EditarAnimal />} />
               <Route path="/donar" element={<Donar />} />
               {/* logeado */}
               <Route path="/" element={<Home />} />
               <Route path="*" element={<NotFound />} />
               <Route path="confirmar/:token" element={<Confirmar />} />
               <Route path="/olvide-password" element={<OlvidePassword />} />
+              <Route path="perfil" element={<Perfil/>}/>
+              <Route path="editar/:id" element={<UserId/>}/>
               <Route
                 path="olvide-password/:token"
                 element={<NuevoPassword />}
               />
             </Routes>
-          </PetProvider>
         </RefugioProvider>
       </AuthProvider>
     </HashRouter>

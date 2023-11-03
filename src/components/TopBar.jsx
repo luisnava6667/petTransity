@@ -25,7 +25,7 @@ const TopBar = () => {
             </p>
           </div>
         </div>
-        <div className="hidden md:flex text-center text-white">
+        <div className="hidden md:grid text-center text-white">
           <h1 className="md:text-xl lg:text-2xl text-[#FFA402]">
             Bienvenido a Pet Transity
           </h1>
@@ -34,7 +34,7 @@ const TopBar = () => {
           </p>
         </div>
         <div className="flex  items-center gap-4">
-          {auth.role === "usuario" && (
+          {auth.role === "usuarios" && (
             <div className="sm:flex ">
               <Link
                 className="flex rounded-md bg-[#FFA402] lg:m-2  justify-around items-center font-medium text-black transition md:w-[7rem] lg:w-36 h-11 shadow-md"
