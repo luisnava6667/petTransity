@@ -1,36 +1,21 @@
-import Sidebar from "../../components/Sidebar";
-import TopBar from "../../components/TopBar";
-import Form from "./components/Form";
+import Sidebar from '../../components/Sidebar'
+import TopBar from '../../components/TopBar'
+import Form from './components/Form'
 
 const Perfil = () => {
   return (
-    <main className="h-screen bg-[#CCC4BB] flex">
+    <main className='h-screen bg-[#CCC4BB] flex'>
       <Sidebar />
-      <div className="flex flex-col w-full h-full">
-        <div className="">
+      <div className='flex flex-col w-full h-full'>
+        <div className=''>
           <TopBar />
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-6 justify-center ">
-          <div className=" ">
-            {/* <Form /> */}
-            <Form
-              nombre={nombre}
-              apellido={apellido}
-              email={email}
-              img={img}
-              localidad={localidad}
-              direccion={direccion}
-              piso={piso}
-              unidad={unidad}
-              hogar={hogar}
-              codigoPostal={codigoPostal}
-              patio_jardin={patio_jardin}
-              ambientes={ambientes}
-              estado_domicilio={estado_domicilio}
-            />
+        <div className='flex flex-col lg:flex-row gap-6 justify-center '>
+          <div className=' '>{/* <Form /> */}</div>
+          <div className=' w-2/3 h-full'>
+            <Form />
           </div>
-          <div className=" w-2/3 h-full"></div>
         </div>
       </div>
       {/* <div
@@ -38,7 +23,7 @@ const Perfil = () => {
               <img src={spinner} />
             </div> */}
     </main>
-  );
-};
+  )
+}
 
-export default Perfil;
+export default Perfil

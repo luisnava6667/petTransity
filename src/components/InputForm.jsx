@@ -10,7 +10,8 @@ const InputForm = ({
   value,
   placeholder,
   touched,
-  errors
+  errors,
+  disabled = false
 }) => {
   return (
     <div>
@@ -30,6 +31,7 @@ const InputForm = ({
           onBlur={handleBlur}
           value={value}
           type={type || 'text'}
+          disabled={disabled}
           //   si el type es number se agrega el min y max
           min={type === 'number' ? 0 : null}
           required
