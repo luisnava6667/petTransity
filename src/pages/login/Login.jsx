@@ -39,7 +39,6 @@ const Login = () => {
         setTextVisibility('hidden')
         setSpinnerVisibility('flex')
         const { data } = await clienteAxios.post(`${user}/login`, values)
-        console.log(data)
         localStorage.setItem('token', data.token)
         localStorage.setItem('role', data.role)
         Swal.fire({

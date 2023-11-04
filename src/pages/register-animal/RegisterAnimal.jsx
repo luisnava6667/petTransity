@@ -1,28 +1,31 @@
-// import NavBarLogin from "../../components/NavBarLogin";
-import FormRegister from "./components/FormRegister";
-// import flecha from "../../assets/flechaNav.svg";
-import { useEffect } from "react";
-import Sidebar from "../../components/Sidebar";
-import TopBar from "../../components/TopBar";
+import { useEffect } from 'react'
+import Sidebar from '../../components/Sidebar'
+import TopBar from '../../components/TopBar'
+import FormAnimales from '../../components/FormAnimales'
 
 const RegisterAnimal = () => {
-  const role = localStorage.getItem("role");
+  const role = localStorage.getItem('role')
   useEffect(() => {
-    if (role === "usuario") {
-      window.location.href = "/dashboard";
+    if (role === 'usuario') {
+      window.location.href = '/dashboard'
     }
-  }, []);
+  }, [])
   return (
-    <main className="h-screen bg-[#CCC4BB] flex">
+    <main className='h-screen bg-[#CCC4BB] flex'>
       <Sidebar />
-      <div className="flex flex-col w-full h-full">
-        <div className="">
+      <div className='flex flex-col w-full h-full'>
+        <div className=''>
           <TopBar />
         </div>
-        <FormRegister />
+        <h3 className='text-center text-2xl md:text-5xl p-5 font-bold text-[#503734]'>
+          Agregar Animal
+        </h3>
+        <div className='grid justify-items-center overflow-auto'>
+          <FormAnimales />
+        </div>
       </div>
     </main>
-  );
-};
+  )
+}
 
-export default RegisterAnimal;
+export default RegisterAnimal
