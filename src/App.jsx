@@ -17,7 +17,7 @@ import Animales from "./pages/animales/Animales";
 import AnimalesId from "./pages/animalesId/AnimalesId";
 import PrivateMap from "./context/PrivateMap";
 import Perfil from "./pages/perfil/Perfil";
-import { UserId } from "./pages/userId/UserId";
+// import { UserId } from "./pages/userId/UserId";
 import EditarAnimal from "./pages/editarAnimal/EditarAnimal";
 
 function App() {
@@ -25,41 +25,35 @@ function App() {
     <HashRouter>
       <AuthProvider>
         <RefugioProvider>
-            <Routes>
-              {/* registros */}
-              <Route
-                path="/register-refugio"
-                element={<FormRegisterRefugio />}
-              />
-              <Route path="/register-usuario" element={<FormRegisterUser />} />
-              <Route path="/register-animales" element={<RegisterAnimal />} />
-              <Route path="/donar" element={<Donar />} />
-              {/* registros */}
-              {/* logeado */}
-              <Route path="/login" element={<Login />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route
-                path="/mapa"
-                element={
-                  <PrivateMap allowedRoles={["usuario"]} element={<Mapa />} />
-                }
-              />
-              <Route path="/animales" element={<Animales />} />
-              <Route path="/animales/:id" element={<AnimalesId />} />
-              <Route path="/editar-animales/:id" element={<EditarAnimal />} />
-              <Route path="/donar" element={<Donar />} />
-              {/* logeado */}
-              <Route path="/" element={<Home />} />
-              <Route path="*" element={<NotFound />} />
-              <Route path="confirmar/:token" element={<Confirmar />} />
-              <Route path="/olvide-password" element={<OlvidePassword />} />
-              <Route path="perfil" element={<Perfil/>}/>
-              <Route path="editar/:id" element={<UserId/>}/>
-              <Route
-                path="olvide-password/:token"
-                element={<NuevoPassword />}
-              />
-            </Routes>
+          <Routes>
+            {/* registros */}
+            <Route path="/register-refugio" element={<FormRegisterRefugio />} />
+            <Route path="/register-usuario" element={<FormRegisterUser />} />
+            <Route path="/register-animales" element={<RegisterAnimal />} />
+            <Route path="/donar" element={<Donar />} />
+            {/* registros */}
+            {/* logeado */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route
+              path="/mapa"
+              element={
+                <PrivateMap allowedRoles={["usuarios"]} element={<Mapa />} />
+              }
+            />
+            <Route path="/animales" element={<Animales />} />
+            <Route path="/animales/:id" element={<AnimalesId />} />
+            <Route path="/editar-animales/:id" element={<EditarAnimal />} />
+            <Route path="/donar" element={<Donar />} />
+            {/* logeado */}
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="confirmar/:token" element={<Confirmar />} />
+            <Route path="/olvide-password" element={<OlvidePassword />} />
+            <Route path="perfil" element={<Perfil />} />
+            {/* <Route path="editar/:id" element={<UserId />} /> */}
+            <Route path="olvide-password/:token" element={<NuevoPassword />} />
+          </Routes>
         </RefugioProvider>
       </AuthProvider>
     </HashRouter>

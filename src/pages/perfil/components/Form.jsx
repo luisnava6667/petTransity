@@ -107,7 +107,7 @@ const Form = ({
         </div>
       )}
       <form
-        className="bg-[#E6E2DD] mx-5 pt-5 space-y-6 pb-10 rounded-3xl "
+        className="bg-[#E6E2DD] w-full flex flex-col items-center lg:mx-5 pt-5 space-y-6 pb-10 rounded-3xl "
         onKeyDown={handleKeyDown}
         onSubmit={handleSubmit}
         ref={formRef}

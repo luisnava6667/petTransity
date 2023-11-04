@@ -86,8 +86,8 @@ const Perfil = () => {
           <TopBar />
         </div>
 
-        <div className="flex gap-6 justify-center ">
-          <div className="w-4/5 grid ">
+        <div className="flex flex-col lg:flex-row gap-6 justify-center ">
+          <div className=" ">
             {/* <Form /> */}
             <Form
               nombre={nombre}

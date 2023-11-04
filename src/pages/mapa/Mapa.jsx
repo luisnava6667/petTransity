@@ -11,13 +11,13 @@ const Mapa = () => {
   return (
     <main className="h-screen bg-[#CCC4BB] flex">
       <Sidebar />
-      <div className="flex flex-col w-full h-full bg-[#CCC4BB]">
+      <div className="flex flex-col  w-full h-full bg-[#CCC4BB]">
         <div className="">
           <TopBar />
         </div>
 
-        <div className="flex gap-6 justify-center h-5/6">
-          <div className="w-2/4 grid ">
+        <div className="flex flex-col md:flex-row gap-6 justify-center md:h-5/6">
+          <div className="md:w-2/4 grid ">
             <div className="grid gap-1 pr-8 pl-4">
               <h2 className="font-extrabold text-3xl pt-8 pl-7 mb-2 ">
                 Refugios
@@ -27,7 +27,7 @@ const Mapa = () => {
                 transito, adoptar un animal o colaborar con un donativo{" "}
               </p>
             </div>
-            <div className="mx-3 overflow-auto gap-5">
+            <div className="hidden md:flex mx-3 overflow-auto gap-5">
               {refugios.map((refugio) => (
                 <div
                   key={refugio._id}
@@ -69,8 +69,49 @@ const Mapa = () => {
               ))}
             </div>
           </div>
-          <div className=" w-2/3 h-full">
+          <div className=" md:w-2/3 h-24 md:h-full">
             <MapaContainer />
+          </div>
+          <div className="md:hidden mx-3 overflow-auto gap-5">
+            {refugios.map((refugio) => (
+              <div
+                key={refugio._id}
+                className=" w-[26rem] h-44 gap-3 bg-white rounded-lg flex mb-3"
+              >
+                <img
+                  className="rounded-bl-lg rounded-tl-lg"
+                  src={refugio.img}
+                  width={144}
+                  height={144}
+                  alt="1"
+                />
+                <div className="grid justify-items-center">
+                  <div className="grid ">
+                    <h3 className="text-center text-xl mb-3 font-bold capitalize">
+                      {refugio.razon_social}
+                    </h3>
+                    <p className="">
+                      Refugio de animales dirigido por veterinarios.
+                    </p>
+                    <div className="">
+                      <p>
+                        Direccion:{" "}
+                        {`${refugio.direccion}, ${refugio.provincia}`}
+                      </p>
+                      <p>Telefono: {refugio.whatsApp}</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-5">
+                    <button className="border-black border-2 rounded-lg w-[6.7rem] h-6 text-xs">
+                      Ver ubicación
+                    </button>
+                    <button className="bg-[#E59D1C] rounded-lg w-[6.7rem] h-6 text-xs">
+                      Contactar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -6,7 +6,14 @@ import useRefugio from "../../../hooks/useRefugio";
 export const MapaContainer = () => {
   const [locations, setLocations] = useState([]);
   const [mapVisibility, setMapVisibility] = useState("hidden");
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [mapHeight, setMapHeight] = useState("57rem");
+  console.log(screenWidth);
   // eslint-disable-next-line no-unused-vars
+
+  useEffect(() => {
+    screenWidth <= 768 && setMapHeight("20rem");
+  }, []);
   const { refugios } = useRefugio();
   const apiKey = `${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}`;
   const direccion = refugios.map(
@@ -14,7 +21,7 @@ export const MapaContainer = () => {
   );
   console.log(direccion);
   const mapStyles = {
-    height: "57rem",
+    height: mapHeight,
     width: "100%",
     display: mapVisibility,
   };

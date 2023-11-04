@@ -21,8 +21,8 @@ const Sidebar = () => {
     cerrarSesionAuth();
   };
   return (
-    <header className="md:w-52 lg:w-80 min-h-screen bg-[#503734]">
-      <div className=" hidden bg-[#503734] h-full md:flex items-center lg:gap-8  lg:px-8 rounded-r-lg rounded-br-lg  shadow-[4px_0_6px_0] shadow-[#483938]">
+    <header className=" min-h-screen bg-[#503734]">
+      <div className=" hidden bg-[#503734] h-full md:flex items-center lg:gap-8 lg:px-3  xl:px-8 rounded-r-lg rounded-br-lg  shadow-[4px_0_6px_0] shadow-[#483938]">
         <div className="flex flex-1 flex-col items-center  md:justify-between ">
           <Link className="block text-teal-600" to="/dashboard">
             <img
@@ -31,11 +31,11 @@ const Sidebar = () => {
               src={logoYellow}
             />
           </Link>
-          <div className="h-[41rem] md:w-52 lg:w-80 flex flex-col justify-evenly lg:mb-28">
+          <div className="h-[41rem]   flex flex-col justify-evenly lg:mb-28">
             <div
               className={`${
                 pathname === "/dashboard" && "bg-[#442F2C] rounded-xl"
-              } sm:flex  pl-3  sm:h-20 sm:w-64`}
+              } md:flex  pl-3  md:h-20 md:w-44 lg:w-64`}
             >
               <Link
                 className={`flex items-center md:gap-4 lg:gap-6 ${
@@ -59,7 +59,7 @@ const Sidebar = () => {
               <div
                 className={`${
                   pathname === "/mapa" && "bg-[#442F2C] rounded-xl"
-                } sm:flex  pl-3  sm:h-20 sm:w-64`}
+                } md:flex  pl-3  md:h-20 md:w-44 lg:w-64`}
               >
                 <Link
                   className={`flex items-center md:gap-4 lg:gap-6 ${
@@ -83,7 +83,7 @@ const Sidebar = () => {
             <div
               className={`${
                 pathname === "/animales" && "bg-[#442F2C] rounded-xl"
-              } sm:flex  pl-3  sm:h-20 sm:w-64`}
+              } md:flex  pl-3  md:h-20 md:w-44 lg:w-64`}
             >
               <Link
                 className={`flex items-center md:gap-4 lg:gap-6 ${
@@ -111,7 +111,7 @@ const Sidebar = () => {
             <div
               className={`${
                 pathname === "/perfil" && "bg-[#442F2C] rounded-xl"
-              } sm:flex  pl-3  sm:h-20 sm:w-64`}
+              } md:flex  pl-3  md:h-20 md:w-44 lg:w-64`}
             >
               <Link
                 className={`flex items-center md:gap-4 lg:gap-6 ${
