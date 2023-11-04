@@ -21,7 +21,7 @@ const Sidebar = () => {
     cerrarSesionAuth();
   };
   return (
-    <header className="md:w-52 lg:w-80 h-screen bg-[#503734]">
+    <header className="md:w-52 lg:w-80 min-h-screen bg-[#503734]">
       <div className=" hidden bg-[#503734] h-full md:flex items-center lg:gap-8  lg:px-8 rounded-r-lg rounded-br-lg  shadow-[4px_0_6px_0] shadow-[#483938]">
         <div className="flex flex-1 flex-col items-center  md:justify-between ">
           <Link className="block text-teal-600" to="/dashboard">
@@ -34,8 +34,8 @@ const Sidebar = () => {
           <div className="h-[41rem] md:w-52 lg:w-80 flex flex-col justify-evenly lg:mb-28">
             <div
               className={`${
-                pathname === "/dashboard" && "bg-[#5E413D]  rounded-xl"
-              } sm:flex  pl-3  sm:h-[5.38rem]`}
+                pathname === "/dashboard" && "bg-[#442F2C] rounded-xl"
+              } sm:flex  pl-3  sm:h-20 sm:w-64`}
             >
               <Link
                 className={`flex items-center md:gap-4 lg:gap-6 ${
@@ -58,8 +58,8 @@ const Sidebar = () => {
             {auth.role === "usuarios" && (
               <div
                 className={`${
-                  pathname === "/mapa" && "bg-[#5E413D] rounded-xl"
-                } sm:flex  pl-3  sm:h-[5.38rem]`}
+                  pathname === "/mapa" && "bg-[#442F2C] rounded-xl"
+                } sm:flex  pl-3  sm:h-20 sm:w-64`}
               >
                 <Link
                   className={`flex items-center md:gap-4 lg:gap-6 ${
@@ -82,8 +82,8 @@ const Sidebar = () => {
             )}
             <div
               className={`${
-                pathname === "/animales" && "bg-[#5E413D] rounded-xl"
-              } sm:flex  pl-3  sm:h-[5.38rem]`}
+                pathname === "/animales" && "bg-[#442F2C] rounded-xl"
+              } sm:flex  pl-3  sm:h-20 sm:w-64`}
             >
               <Link
                 className={`flex items-center md:gap-4 lg:gap-6 ${
@@ -110,8 +110,8 @@ const Sidebar = () => {
             </div>
             <div
               className={`${
-                pathname === "/perfil" && "bg-[#5E413D] rounded-xl"
-              } sm:flex  pl-3  sm:h-[5.38rem]`}
+                pathname === "/perfil" && "bg-[#442F2C] rounded-xl"
+              } sm:flex  pl-3  sm:h-20 sm:w-64`}
             >
               <Link
                 className={`flex items-center md:gap-4 lg:gap-6 ${
@@ -138,7 +138,7 @@ const Sidebar = () => {
               onClick={handleCerrarSesion}
               className="flex items-center rounded-md  text-xl justify-around font-semibold text-white transition md:w-44  md:h-11 lg:w-64  lg:h-16 "
             >
-              <p className="h-full ">Cerrar sesión</p>
+              <p className="h-full flex items-center">Cerrar sesión</p>
               <img src={salir} alt="" />
             </button>
           </div>
