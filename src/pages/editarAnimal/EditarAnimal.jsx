@@ -1,38 +1,8 @@
-import { useParams } from 'react-router-dom'
 import Sidebar from '../../components/Sidebar'
 import TopBar from '../../components/TopBar'
-import { useEffect, useState } from 'react'
-import { useFormik } from 'formik'
+import FormAnimales from '../../components/FormAnimales'
 
 const EditarAnimal = () => {
-  const { id } = useParams()
-  const [animal, setAnimal] = useState([])
-  useEffect(() => {}, [])
-  const formik = useFormik({
-    initialValues: {
-      email: ''
-    },
-    onSubmit: async (values) => {
-      console.log(values)
-      try {
-        // const { data } = await clienteAxios.post(
-        //   values
-        // )
-        // setTimeout(() => {
-        // }, 4000)
-      } catch (error) {
-        console.log(error.response.data)
-        setTimeout(() => {}, 4000)
-      }
-    }
-  })
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault()
-      handleSubmit()
-    }
-  }
-  const { handleSubmit, handleBlur, errors } = formik
   return (
     <main className='h-screen bg-[#CCC4BB] flex'>
       <Sidebar />
@@ -44,10 +14,7 @@ const EditarAnimal = () => {
           Editar Animal
         </h3>
         <div className='grid justify-items-center overflow-auto'>
-          <form
-            onKeyDown={handleKeyDown}
-            onBlur={handleBlur}
-            onSubmit={handleSubmit}></form>
+          <FormAnimales />
         </div>
       </div>
     </main>

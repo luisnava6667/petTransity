@@ -11,6 +11,12 @@ const RefugioProvider = ({ children }) => {
   const role = localStorage.getItem('role')
   const token = localStorage.getItem('token')
   const navigate = useNavigate()
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  }
   useEffect(() => {
     const getRefugios = async () => {
       if (role === 'usuarios') {
@@ -26,12 +32,6 @@ const RefugioProvider = ({ children }) => {
   }, [role])
   const eliminarAnimal = async (id) => {
     try {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
-      }
       await clienteAxios.delete(`animales/myPet/${id}`, config)
       Swal.fire({
         icon: 'success',
@@ -40,10 +40,9 @@ const RefugioProvider = ({ children }) => {
         onBeforeOpen: () => {
           Swal.showLoading()
         }
-        //auto close the modal
       })
       setTimeout(() => {
-        navigate('/dashboard')
+        navigate('/animales')
       }, 3000)
       setTimeout(() => {
         Swal.close()
@@ -52,8 +51,66 @@ const RefugioProvider = ({ children }) => {
       console.log(error)
     }
   }
+  const nuevoAnimal = async (values) => {
+    if (!token) return
+    try {
+      await clienteAxios.post('/animales', values, config)
+      Swal.fire({
+        icon: 'success',
+        title: 'Animal Registrado Correctamente',
+        showConfirmButton: false,
+        onBeforeOpen: () => {
+          Swal.showLoading()
+        }
+      })
+      setTimeout(() => {
+        navigate('/animales')
+      }, 3000)
+      setTimeout(() => {
+        Swal.close()
+      }, 4000)
+    } catch (error) {
+      console.log(error.response.data.msg)
+    }
+  }
+  const editarAnimal = async (values) => {
+    if (!token) return
+    try {
+      await clienteAxios.put(`animales/myPet/${values._id}`, values, config)
+      Swal.fire({
+        icon: 'success',
+        title: 'Animal Editado Correctamente',
+        showConfirmButton: false,
+        onBeforeOpen: () => {
+          Swal.showLoading()
+        }
+      })
+      setTimeout(() => {
+        navigate('/animales')
+      }, 3000)
+      setTimeout(() => {
+        Swal.close()
+      }, 4000)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const submitAnimal = async (animal) => {
+    if (animal._id) {
+      await editarAnimal(animal)
+    } else {
+      await nuevoAnimal(animal)
+    }
+  }
   return (
-    <RefugioContext.Provider value={{ refugios, eliminarAnimal }}>
+    <RefugioContext.Provider
+      value={{
+        refugios,
+        submitAnimal,
+        eliminarAnimal,
+        editarAnimal,
+        nuevoAnimal
+      }}>
       {children}
     </RefugioContext.Provider>
   )
