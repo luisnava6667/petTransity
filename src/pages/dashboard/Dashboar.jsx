@@ -1,4 +1,5 @@
 import CardGrandeDashboard from "../../components/CardGrandeDashboard";
+import CardInfoAnimales from "../../components/CardInfoAnimales";
 import CardUsuarioDashboard from "../../components/CardUsuarioDashboard";
 import InformacionCasaDashboard from "../../components/InformacionCasaDashboard";
 import Sidebar from "../../components/Sidebar";
@@ -13,7 +14,8 @@ const Dashboard = () => {
         <div className="overflow-auto mx-5">
           <div className="flex flex-col sm:flex-row items-center sm:items-end sm:gap-5 justify-center ">
             <CardUsuarioDashboard />
-            <InformacionCasaDashboard />
+            {/* <InformacionCasaDashboard /> */}
+            <CardInfoAnimales />
           </div>
           <CardGrandeDashboard />
         </div>

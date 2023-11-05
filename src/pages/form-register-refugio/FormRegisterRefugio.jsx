@@ -12,7 +12,7 @@ const FormRegisterRefugio = () => {
         styles={
           "flex rounded-md bg-[#E59D1C] px-5 py-2.5 text-3xl justify-around font-medium text-black transition  w-44 h-14 shadow-md"
         }
-        ruta={"/login"}
+        ruta={"/"}
       />
       <FormRegister />
     </>
