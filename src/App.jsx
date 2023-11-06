@@ -19,6 +19,8 @@ import PrivateMap from "./context/PrivateMap";
 import Perfil from "./pages/perfil/Perfil";
 // import { UserId } from "./pages/userId/UserId";
 import EditarAnimal from "./pages/editarAnimal/EditarAnimal";
+import TyC from "./pages/TyC/TyC";
+import PoliticasDePrivacidad from "./pages/PoliticasDePrivacidad/PoliticasDePrivacidad";
 
 function App() {
   return (
@@ -47,6 +49,11 @@ function App() {
             <Route path="/donar" element={<Donar />} />
             {/* logeado */}
             <Route path="/" element={<Home />} />
+            <Route path="/terms-and-conditions" element={<TyC />} />
+            <Route
+              path="//privacy-policy"
+              element={<PoliticasDePrivacidad />}
+            />
             <Route path="*" element={<NotFound />} />
             <Route path="confirmar/:token" element={<Confirmar />} />
             <Route path="/olvide-password" element={<OlvidePassword />} />
