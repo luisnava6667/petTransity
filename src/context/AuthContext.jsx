@@ -42,6 +42,7 @@ const AuthProvider = ({ children }) => {
     setAuth({})
     navigate('/login')
   }
+  
   const actualizarPerfil = async (values) => {}
   return (
     <AuthContext.Provider

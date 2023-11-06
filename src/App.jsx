@@ -18,9 +18,9 @@ import AnimalesId from './pages/animalesId/AnimalesId'
 import PrivateMap from './context/PrivateMap'
 import Perfil from './pages/perfil/Perfil'
 // import { UserId } from "./pages/userId/UserId";
-import EditarAnimal from "./pages/editarAnimal/EditarAnimal";
-import TyC from "./pages/TyC/TyC";
-import PoliticasDePrivacidad from "./pages/PoliticasDePrivacidad/PoliticasDePrivacidad";
+import EditarAnimal from './pages/editarAnimal/EditarAnimal'
+import TyC from './pages/TyC/TyC'
+import PoliticasDePrivacidad from './pages/PoliticasDePrivacidad/PoliticasDePrivacidad'
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
             <Route path='/register-refugio' element={<FormRegisterRefugio />} />
             <Route path='/register-usuario' element={<FormRegisterUser />} />
             <Route path='/register-animales' element={<RegisterAnimal />} />
-            <Route path='/register' element={<Register />} />
+            {/* <Route path='/register' element={<Register />} /> */}
             <Route path='/donar' element={<Donar />} />
             {/* registros */}
             {/* logeado */}
@@ -49,24 +49,16 @@ function App() {
             <Route path='/editar-animales/:id' element={<EditarAnimal />} />
             <Route path='/donar' element={<Donar />} />
             {/* logeado */}
-<<<<<<< HEAD
-            <Route path='/' element={<Home />} />
+            <Route path='/terms-and-conditions' element={<TyC />} />
+            <Route
+              path='//privacy-policy'
+              element={<PoliticasDePrivacidad />}
+            />
             <Route path='*' element={<NotFound />} />
             <Route path='confirmar/:token' element={<Confirmar />} />
             <Route path='/olvide-password' element={<OlvidePassword />} />
             <Route path='perfil' element={<Perfil />} />
-=======
-            <Route path="/" element={<Home />} />
-            <Route path="/terms-and-conditions" element={<TyC />} />
-            <Route
-              path="//privacy-policy"
-              element={<PoliticasDePrivacidad />}
-            />
-            <Route path="*" element={<NotFound />} />
-            <Route path="confirmar/:token" element={<Confirmar />} />
-            <Route path="/olvide-password" element={<OlvidePassword />} />
-            <Route path="perfil" element={<Perfil />} />
->>>>>>> 009e46d17403aafd17453abcc6cc08c0588cf2d2
+            <Route path='/' element={<Home />} />
             {/* <Route path="editar/:id" element={<UserId />} /> */}
             <Route path='olvide-password/:token' element={<NuevoPassword />} />
           </Routes>

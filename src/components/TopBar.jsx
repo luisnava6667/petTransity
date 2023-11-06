@@ -16,7 +16,7 @@ const TopBar = () => {
               width={50}
               height={50}
               alt="usuarioFake"
-              src={auth?.img}
+              src={auth?.avatar}
             />
           </Link>
           <div className="text-white ">

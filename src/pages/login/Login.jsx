@@ -20,8 +20,6 @@ const Login = () => {
   const handleButtonClick = (button) => {
     setUser(button);
   };
-
-  console.log(clienteAxios);
   const formik = useFormik({
     initialValues: {
       email: "",
