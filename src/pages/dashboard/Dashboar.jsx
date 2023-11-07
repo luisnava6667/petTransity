@@ -1,7 +1,7 @@
-import CardGrandeDashboard from "../../components/CardGrandeDashboard";
+// import CardGrandeDashboard from "../../components/CardGrandeDashboard";
 import CardInfoAnimales from "../../components/CardInfoAnimales";
 import CardUsuarioDashboard from "../../components/CardUsuarioDashboard";
-import InformacionCasaDashboard from "../../components/InformacionCasaDashboard";
+// import InformacionCasaDashboard from "../../components/InformacionCasaDashboard";
 import Sidebar from "../../components/Sidebar";
 import TopBar from "../../components/TopBar";
 
@@ -17,7 +17,7 @@ const Dashboard = () => {
             {/* <InformacionCasaDashboard /> */}
             <CardInfoAnimales />
           </div>
-          <CardGrandeDashboard />
+          {/* <CardGrandeDashboard /> */}
         </div>
       </div>
     </div>

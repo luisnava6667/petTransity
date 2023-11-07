@@ -9,19 +9,19 @@ const Footer = () => {
           <h2 className="font-bold text-base mb-6 uppercase">Menu</h2>
           <nav className="flex flex-col gap-4">
             <a
-              href="#"
+              href="/"
               className="hover:underline hover:text-[#E59D1C] font-medium"
             >
               Inicio
             </a>
             <a
-              href="#nosotros"
+              href="/nosotros"
               className="hover:underline hover:text-[#E59D1C] font-medium"
             >
               Nosotros
             </a>
             <a
-              href="#"
+              href="/"
               className="hover:underline hover:text-[#E59D1C] font-medium"
             >
               Contacto

@@ -17,6 +17,7 @@ const RegisterAnimal = () => {
         <div className=''>
           <TopBar />
         </div>
+        
         <h3 className='text-center text-2xl md:text-5xl p-5 font-bold text-[#503734]'>
           Agregar Animal
         </h3>

@@ -1,4 +1,4 @@
-import { HashRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import NotFound from './pages/404/NotFound'
 import Home from './pages/home/Home'
 import Donar from './pages/donar/Donar'
@@ -21,10 +21,11 @@ import Perfil from './pages/perfil/Perfil'
 import EditarAnimal from './pages/editarAnimal/EditarAnimal'
 import TyC from './pages/TyC/TyC'
 import PoliticasDePrivacidad from './pages/PoliticasDePrivacidad/PoliticasDePrivacidad'
+import Register from './pages/register/Register'
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <AuthProvider>
         <RefugioProvider>
           <Routes>
@@ -44,27 +45,27 @@ function App() {
                 <PrivateMap allowedRoles={['usuarios']} element={<Mapa />} />
               }
             />
+            <Route path='/confirmar/:token' element={<Confirmar />} />
             <Route path='/animales' element={<Animales />} />
             <Route path='/animales/:id' element={<AnimalesId />} />
             <Route path='/editar-animales/:id' element={<EditarAnimal />} />
             <Route path='/donar' element={<Donar />} />
+            <Route path='/registro' element={<Register />} />
             {/* logeado */}
             <Route path='/terms-and-conditions' element={<TyC />} />
-            <Route
-              path='//privacy-policy'
-              element={<PoliticasDePrivacidad />}
-            />
-            <Route path='*' element={<NotFound />} />
-            <Route path='confirmar/:token' element={<Confirmar />} />
+            <Route path='/privacy-policy' element={<PoliticasDePrivacidad />} />
             <Route path='/olvide-password' element={<OlvidePassword />} />
             <Route path='perfil' element={<Perfil />} />
-            <Route path='/' element={<Home />} />
             {/* <Route path="editar/:id" element={<UserId />} /> */}
             <Route path='olvide-password/:token' element={<NuevoPassword />} />
+        <Route path='*' element={<NotFound />} />
+        <Route path='/' element={<Home />} />
           </Routes>
         </RefugioProvider>
       </AuthProvider>
-    </HashRouter>
+      <Routes>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

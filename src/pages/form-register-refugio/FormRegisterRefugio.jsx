@@ -1,4 +1,3 @@
-"use client";
 import NavBarLogin from "../../components/NavBarLogin";
 import FormRegister from "./components/FormRegister";
 import flecha from "../../assets/flechaNav.svg";

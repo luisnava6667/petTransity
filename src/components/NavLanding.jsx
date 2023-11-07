@@ -19,13 +19,13 @@ const NavLanding = () => {
       </Link>
       <div className="flex justify-between w-72  gap-2 items-center">
         <Link
-          to="#nosotros"
+          to="/nosotros"
           className="flex  text-center items-center text-xl font-bold text-white   h-14"
         >
           Nosotros
         </Link>
         <Link
-          to="#requisitos"
+          to="/requisitos"
           className="flex  text-center items-center text-xl font-bold text-white   h-14 "
         >
           Adoptar

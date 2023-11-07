@@ -9,12 +9,12 @@ import clienteAxios from '../../../config/clienteAxios'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
 import { CloudinaryContext, Image } from 'cloudinary-react'
+import InputForm from '../../../components/InputForm'
 
 const Form = () => {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState(null)
-  
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
@@ -32,6 +32,8 @@ const Form = () => {
       piso: '',
       unidad: '',
       codigoPostal: '',
+      provincia: '',
+      departamento: '',
       localidad: '',
       hogar: '',
       ambientes: '',
@@ -74,7 +76,7 @@ const Form = () => {
     }),
 
     onSubmit: async (values) => {
-      
+      console.log(values);
       try {
         const { data } = await clienteAxios.post('usuarios', values)
         Swal.fire({
@@ -92,7 +94,7 @@ const Form = () => {
           Swal.close()
         }, 4000)
       } catch (error) {
-        console.log(error.response.data.msg);
+        console.log(error.response.data.msg)
         Swal.fire({
           icon: 'error',
           title: `${error.response.data.msg}`,
@@ -125,10 +127,21 @@ const Form = () => {
     })
 
     const data = await response.json()
-    formik.setFieldValue('avatar', data.secure_url) 
+    formik.setFieldValue('avatar', data.secure_url)
   }
   const { handleSubmit, handleChange, handleBlur, touched, errors } = formik
-
+  console.log(formik.values)
+  //   <InputForm
+  //   label='Nombre'
+  //   name='nombre'
+  //   handleChange={handleChange}
+  //   handleBlur={handleBlur}
+  //   value={formik.values.apellido}
+  //   placeholder='Nombre'
+  //   touched={touched}
+  //   errors={errors}
+  //   nameSrc={name}
+  // />
   return (
     <div className='flex flex-col items-center max-h-screen  overflow-y-auto bg-[#CCC4BB] pb-5'>
       <p className='text-6xl font-bold text-[#6F4C48] mb-10'>Usuario</p>
@@ -145,109 +158,58 @@ const Form = () => {
           {' '}
           Cree su cuenta de PetTransity
         </p>
-        <input type='file' id='avatar' name='avatar' onChange={handleUpload} />
-        <CloudinaryContext
-          cloudName={`${import.meta.env.VITE_CLOUDINARY_NAME}`}>
-          {formik.values?.avatar && (
-            <Image publicId={formik.values.avatar} width='150' />
-          )}
-        </CloudinaryContext>
-        <div className=''>
-          <div className='flex gap-1 my-1'>
-            <img alt='icono de etiqueta nombre' src={name} />
-            <label
-              htmlFor='nombre'
-              className='block text-sm font-semibold leading-6 text-gray-900'>
-              Nombre <span className='text-red-600'>*</span>
-            </label>
-          </div>
-          <div className='mt-2 w-full'>
-            <input
-              id='nombre'
-              name='nombre'
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type='name'
-              // required
-              placeholder='Nombre'
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.nombre && errors.nombre
-                  ? 'ring-red-500  focus:ring-red-500'
-                  : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.nombre && errors.nombre && (
-              <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm'>
-                {errors.nombre}
-              </div>
+        <div className='flex h-10 justify-evenly'>
+          <input
+            type='file'
+            id='avatar'
+            name='avatar'
+            onChange={handleUpload}
+            className='border-[#4F3300] justify-center rounded-2xl file:bg-[#E59D1C] truncate block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xl file:font-semibold file:text-white file:cursor-pointer'
+          />
+          <CloudinaryContext
+            cloudName={`${import.meta.env.VITE_CLOUDINARY_NAME}`}>
+            {formik.values?.avatar && (
+              <Image publicId={formik.values.avatar} width='80' />
             )}
-          </div>
+          </CloudinaryContext>
         </div>
-        <div className=''>
-          <div className='flex gap-1 my-1'>
-            <img alt='icono de etiqueta apellido' src={name} />
-            <label
-              htmlFor='apellido'
-              className='block text-sm font-semibold leading-6 text-gray-900'>
-              Apellido <span className='text-red-600'>*</span>
-            </label>
-          </div>
-          <div className='mt-2 w-full'>
-            <input
-              id='apellido'
-              name='apellido'
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type='text'
-              // required
-              placeholder='Apellido'
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.apellido && errors.apellido
-                  ? 'ring-red-500  focus:ring-red-500'
-                  : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.apellido && errors.apellido && (
-              <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm'>
-                {errors.apellido}
-              </div>
-            )}
-          </div>
-        </div>
+        <InputForm
+          label='Nombre'
+          name='nombre'
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.nombre}
+          placeholder='Nombre'
+          touched={touched}
+          errors={errors}
+          nameSrc={name}
+          disabled={false}
+        />
+        <InputForm
+          label='Apellido'
+          name='apellido'
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.apellido}
+          placeholder='Apellido'
+          touched={touched}
+          errors={errors}
+          nameSrc={name}
+          disabled={false}
+        />
 
-        <div>
-          <div className='flex items-center justify-between'>
-            <div className='flex gap-1  my-3'>
-              <img alt='icono de etiqueta email' src={mail} />
-              <label
-                htmlFor='email'
-                className='block text-sm font-semibold leading-6 text-gray-900'>
-                Correo <span className='text-red-600'>*</span>
-              </label>
-            </div>
-          </div>
-          <div className='mt-2'>
-            <input
-              id='email'
-              name='email'
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type='email'
-              placeholder='Correo'
-              // required
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.email && errors.email
-                  ? 'ring-red-500  focus:ring-red-500'
-                  : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.email && errors.email && (
-              <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm'>
-                {errors.email}
-              </div>
-            )}
-          </div>
-        </div>
+        <InputForm
+          label='Correo'
+          name='email'
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.email}
+          placeholder='Correo'
+          touched={touched}
+          errors={errors}
+          nameSrc={mail}
+          disabled={false}
+        />
         <div>
           <div className='flex items-center justify-between'>
             <div className='flex flex-col'>
@@ -326,227 +288,257 @@ const Form = () => {
             )}
           </div>
         </div>
-        <div>
-          <div className='flex items-center justify-between'>
-            <div className='flex gap-1  my-3'>
-              <img alt='icono de etiqueta direccion del refugio' src={name} />
-              <label
-                htmlFor='direccion'
-                className='block text-sm font-semibold leading-6 text-gray-900'>
-                Dirección <span className='text-red-600'>*</span>
-              </label>
-            </div>
-          </div>
-          <div className='mt-2'>
-            <input
-              id='direccion'
-              name='direccion'
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type='text'
-              placeholder='Dirección'
-              // required
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.direccion && errors.direccion
-                  ? 'ring-red-500  focus:ring-red-500'
-                  : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.direccion && errors.direccion && (
-              <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm'>
-                {errors.direccion}
-              </div>
-            )}
-          </div>
+        <InputForm
+          label='Dirección'
+          name='direccion'
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.direccion}
+          placeholder='Dirección'
+          touched={touched}
+          errors={errors}
+          nameSrc={name}
+          disabled={false}
+        />
+        <div className='flex gap-5'>
+          <InputForm
+            label='Piso'
+            name='piso'
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            value={formik.values.piso}
+            placeholder='Piso'
+            touched={touched}
+            errors={errors}
+            type={'number'}
+            nameSrc={name}
+            disabled={false}
+          />
+          <InputForm
+            label='Unidad'
+            name='unidad'
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            value={formik.values.unidad}
+            placeholder='Unidad'
+            touched={touched}
+            errors={errors}
+            type={'number'}
+            nameSrc={name}
+            disabled={false}
+          />
         </div>
-        <div className='flex gap-6'>
-          <div>
-            <div className='flex gap-1  my-3'>
-              <img alt='icono de etiqueta piso' src={name} />
+
+        <div className='flex gap-5 place-items-center'>
+          <div className='w-full'>
+            <div className='flex gap-1  my-2'>
+              <img alt='icono de etiqueta provincia' src={name} />
               <label
-                htmlFor='piso'
+                htmlFor='provincia'
                 className='block text-sm font-semibold leading-6 text-gray-900'>
-                Piso <span className='text-red-600'>*</span>
+                Provincia <span className='text-red-600'>*</span>
               </label>
             </div>
-            <div className='mt-2'>
-              <input
-                id='piso'
-                name='piso'
+            <div className=''>
+              <select
+                id='provincia'
+                name='provincia'
                 onChange={handleChange}
                 onBlur={handleBlur}
-                type='text'
-                // required
-                placeholder='Piso'
-                className={`block w-60 h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                  touched.piso && errors.piso
+                className={`block w-full h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
+                  touched.provincia && errors.provincia
                     ? 'ring-red-500  focus:ring-red-500'
                     : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
-                } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-              />
-              {touched.piso && errors.piso && (
-                <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm'>
-                  {errors.piso}
+                } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}>
+                <option value=''>Seleccione una provincia</option>
+                <option value='CABA'>CABA</option>
+                {/* Agrega más opciones según tus necesidades */}
+              </select>
+              {touched.provincia && errors.provincia && (
+                <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end'>
+                  {errors.provincia}
                 </div>
               )}
             </div>
           </div>
-          <div>
+          <InputForm
+            label='Código Postal'
+            name='codigoPostal'
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            value={formik.values.codigoPostal}
+            placeholder='Código Postal'
+            touched={touched}
+            errors={errors}
+            nameSrc={name}
+            disabled={false}
+          />
+        </div>
+        <div className='flex w-full gap-5'>
+          <div className='w-1/2'>
             <div className='flex gap-1  my-3'>
-              <img alt='icono de etiqueta unidad' src={name} />
+              <img alt='icono de etiqueta comuna' src={name} />
               <label
-                htmlFor='unidad'
+                htmlFor='departamento'
                 className='block text-sm font-semibold leading-6 text-gray-900'>
-                Unidad <span className='text-red-600'>*</span>
+                Comuna <span className='text-red-600'>*</span>
               </label>
             </div>
             <div className='mt-2'>
-              <input
-                id='unidad'
-                name='unidad'
+              <select
+                id='departamento'
+                name='departamento'
                 onChange={handleChange}
                 onBlur={handleBlur}
                 type='text'
-                // required
-                placeholder='Unidad'
-                className={`block w-60 h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                  touched.unidad && errors.unidad
+                placeholder='Comuna'
+                className={`block w-full h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
+                  touched.comuna && errors.comuna
                     ? 'ring-red-500  focus:ring-red-500'
                     : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
-                } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-              />
-              {touched.unidad && errors.unidad && (
-                <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm'>
-                  {errors.unidad}
+                } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}>
+                <option value=''>Selecciona una comuna</option>
+                <option value='Comuna 1'>Comuna 1</option>
+                <option value='Comuna 2'>Comuna 2</option>
+                <option value='Comuna 3'>Comuna 3</option>
+                <option value='Comuna 4'>Comuna 4</option>
+                <option value='Comuna 5'>Comuna 5</option>
+                <option value='Comuna 6'>Comuna 6</option>
+                <option value='Comuna 7'>Comuna 7</option>
+                <option value='Comuna 8'>Comuna 8</option>
+                <option value='Comuna 9'>Comuna 9</option>
+                <option value='Comuna 10'>Comuna 10</option>
+                <option value='Comuna 11'>Comuna 11</option>
+                <option value='Comuna 12'>Comuna 12</option>
+                <option value='Comuna 13'>Comuna 13</option>
+                <option value='Comuna 14'>Comuna 14</option>
+                <option value='Comuna 15'>Comuna 15</option>
+              </select>
+              {touched.departamento && errors.departamento && (
+                <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end'>
+                  {errors.departamento}
+                </div>
+              )}
+            </div>
+          </div>
+          <div className='w-1/2'>
+            <div className='flex gap-1  my-3'>
+              <img alt='icono de etiqueta barrio' src={name} />
+              <label
+                htmlFor='localidad'
+                className='block text-sm font-semibold leading-6 text-gray-900'>
+                Barrio <span className='text-red-600'>*</span>
+              </label>
+            </div>
+            <div className='mt-2'>
+              <select
+                id='localidad'
+                name='localidad'
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={`block w-full h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
+                  touched.barrio && errors.barrio
+                    ? 'ring-red-500  focus:ring-red-500'
+                    : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
+                } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}>
+                <option value=''>Selecciona un barrio</option>
+                <option value='Agronomía'>Agronomía</option>
+                <option value='Almagro'>Almagro</option>
+                <option value='Balvanera'>Balvanera</option>
+                <option value='Barracas'>Barracas</option>
+                <option value='Belgrano'>Belgrano</option>
+                <option value='Boedo'>Boedo</option>
+                <option value='Caballito'>Caballito</option>
+                <option value='Chacarita'>Chacarita</option>
+                <option value='Coghlan'>Coghlan</option>
+                <option value='Colegiales'>Colegiales</option>
+                <option value='Constitución'>Constitución</option>
+                <option value='Flores'>Flores</option>
+                <option value='Floresta'>Floresta</option>
+                <option value='La Boca'>La Boca</option>
+                <option value='La Paternal'>La Paternal</option>
+                <option value='Liniers'>Liniers</option>
+                <option value='Mataderos'>Mataderos</option>
+                <option value='Montserrat'>Montserrat</option>
+                <option value='Monte Castro'>Monte Castro</option>
+                <option value='Nueva Pompeya'>Nueva Pompeya</option>
+                <option value='Núñez'>Núñez</option>
+                <option value='Palermo'>Palermo</option>
+                <option value='Parque Avellaneda'>Parque Avellaneda</option>
+                <option value='Parque Chacabuco'>Parque Chacabuco</option>
+                <option value='Parque Chas'>Parque Chas</option>
+                <option value='Parque Patricios'>Parque Patricios</option>
+                <option value='Puerto Madero'>Puerto Madero</option>
+                <option value='Recoleta'>Recoleta</option>
+                <option value='Retiro'>Retiro</option>
+                <option value='Saavedra'>Saavedra</option>
+                <option value='San Cristóbal'>San Cristóbal</option>
+                <option value='San Nicolás'>San Nicolás</option>
+                <option value='San Telmo'>San Telmo</option>
+                <option value='Vélez Sarsfield'>Vélez Sarsfield</option>
+                <option value='Versalles'>Versalles</option>
+                <option value='Villa Crespo'>Villa Crespo</option>
+                <option value='Villa del Parque'>Villa del Parque</option>
+                <option value='Villa Devoto'>Villa Devoto</option>
+                <option value='Villa Gral. Mitre'>Villa Gral. Mitre</option>
+                <option value='Villa Lugano'>Villa Lugano</option>
+                <option value='Villa Luro'>Villa Luro</option>
+                <option value='Villa Ortúzar'>Villa Ortúzar</option>
+                <option value='Villa Pueyrredón'>Villa Pueyrredón</option>
+                <option value='Villa Real'>Villa Real</option>
+                <option value='Villa Riachuelo'>Villa Riachuelo</option>
+                <option value='Villa Santa Rita'>Villa Santa Rita</option>
+                <option value='Villa Soldati'>Villa Soldati</option>
+                <option value='Villa Urquiza'>Villa Urquiza</option>
+              </select>
+              {touched.localidad && errors.localidad && (
+                <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end'>
+                  {errors.localidad}
                 </div>
               )}
             </div>
           </div>
         </div>
-        <div>
-          <div className='flex gap-1  my-3'>
-            <img alt='icono de etiqueta barrio' src={name} />
-            <label
-              htmlFor='localidad'
-              className='block text-sm font-semibold leading-6 text-gray-900'>
-              Barrio <span className='text-red-600'>*</span>
-            </label>
-          </div>
-          <div className='mt-2'>
-            <input
-              id='localidad'
-              name='localidad'
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type='text'
-              // required
-              placeholder='Barrio'
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.localidad && errors.localidad
-                  ? 'ring-red-500  focus:ring-red-500'
-                  : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.localidad && errors.localidad && (
-              <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm'>
-                {errors.localidad}
-              </div>
-            )}
-          </div>
+        <div className='flex gap-5'>
+          <InputForm
+            label='Tipo de hogar'
+            name='hogar'
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            value={formik.values.hogar}
+            placeholder='Depto, Casa, etc'
+            touched={touched}
+            errors={errors}
+            nameSrc={name}
+            disabled={false}
+          />
+          <InputForm
+            label='Cantidad de ambientes'
+            name='ambientes'
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            value={formik.values.ambientes}
+            placeholder='Cantidad de ambientes'
+            touched={touched}
+            errors={errors}
+            nameSrc={name}
+            type={'number'}
+            disabled={false}
+          />
         </div>
-        <div>
-          <div className='flex gap-1  my-3'>
-            <img alt='icono de etiqueta codigo postal' src={name} />
-            <label
-              htmlFor='codigoPostal'
-              className='block text-sm font-semibold leading-6 text-gray-900'>
-              Código Postal <span className='text-red-600'>*</span>
-            </label>
-          </div>
-          <div className='mt-2'>
-            <input
-              id='codigoPostal'
-              name='codigoPostal'
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type='text'
-              // required
-              placeholder='Código Postal'
-              className={`block w-44 h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.codigoPostal && errors.codigoPostal
-                  ? 'ring-red-500  focus:ring-red-500'
-                  : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.codigoPostal && errors.codigoPostal && (
-              <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm'>
-                {errors.codigoPostal}
-              </div>
-            )}
-          </div>
-        </div>
-        <div>
-          <div className='flex gap-1  my-3'>
-            <img alt='icono de etiqueta codigo postal' src={name} />
-            <label
-              htmlFor='hogar'
-              className='block text-sm font-semibold leading-6 text-gray-900'>
-              Tipo de hogar <span className='text-red-600'>*</span>
-            </label>
-          </div>
-          <div className='mt-2'>
-            <input
-              id='hogar'
-              name='hogar'
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type='text'
-              // required
-              placeholder='Código Postal'
-              className={`block w-44 h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.hogar && errors.hogar
-                  ? 'ring-red-500  focus:ring-red-500'
-                  : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.hogar && errors.hogar && (
-              <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm'>
-                {errors.hogar}
-              </div>
-            )}
-          </div>
-        </div>
-        <div>
-          <div className='flex gap-1  my-3'>
-            <img alt='icono de etiqueta codigo postal' src={name} />
-            <label
-              htmlFor='ambientes'
-              className='block text-sm font-semibold leading-6 text-gray-900'>
-              Cantidad de ambientes <span className='text-red-600'>*</span>
-            </label>
-          </div>
-          <div className='mt-2'>
-            <input
-              id='ambientes'
-              name='ambientes'
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type='number'
-              // required
-              placeholder='Cantidad de ambientes'
-              className={`block w-44 h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.ambientes && errors.ambientes
-                  ? 'ring-red-500  focus:ring-red-500'
-                  : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.ambientes && errors.ambientes && (
-              <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm'>
-                {errors.ambientes}
-              </div>
-            )}
-          </div>
-        </div>
+        <InputForm
+          label='Estado del domicilio'
+          name='estado_domicilio'
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.estado_domicilio}
+          placeholder='Ejemplo: Bueno'
+          touched={touched}
+          errors={errors}
+          nameSrc={name}
+          disabled={false}
+        />
+
         <div>
           <div className='flex gap-1  my-3'>
             <img alt='' src={name} />
@@ -637,37 +629,6 @@ const Form = () => {
             {touched.desc_mascotas && errors.desc_mascotas && (
               <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm'>
                 {errors.desc_mascotas}
-              </div>
-            )}
-          </div>
-        </div>
-        <div>
-          <div className='flex gap-1  my-3'>
-            <img alt='' src={name} />
-            <label
-              htmlFor='estado_domicilio'
-              className='block text-sm font-semibold leading-6 text-gray-900'>
-              Estado del domicilio <span className='text-red-600'>*</span>
-            </label>
-          </div>
-          <div className='mt-2'>
-            <input
-              id='estado_domicilio'
-              name='estado_domicilio'
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type='text'
-              // required
-              placeholder='Ejemplo: Bueno'
-              className={`block w-44 h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.estado_domicilio && errors.estado_domicilio
-                  ? 'ring-red-500  focus:ring-red-500'
-                  : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.estado_domicilio && errors.estado_domicilio && (
-              <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm'>
-                {errors.estado_domicilio}
               </div>
             )}
           </div>

@@ -5,10 +5,11 @@ import useAuth from '../hooks/useAuth'
 
 const CardUsuarioDashboard = () => {
   const { auth } = useAuth()
+  console.log(auth);
   const {
     nombre,
     apellido,
-    img,
+    avatar,
     direccion,
     piso,
     unidad,
@@ -26,7 +27,7 @@ const CardUsuarioDashboard = () => {
           <img
             className='absolute mt-6  rounded-full'
             alt='1'
-            src={img}
+            src={avatar}
             width={91}
             height={91}
           />
@@ -67,6 +68,7 @@ const CardUsuarioDashboard = () => {
               <p className='text-base font-medium'>
                 {pets?.length === 0 ? 'No posee mascotas' : 'Posee mascotas'}
               </p>
+                
             </div>
           )}
         </div>

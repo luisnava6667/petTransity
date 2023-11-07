@@ -9,6 +9,7 @@ import name from '../assets/name.svg'
 import useRefugio from '../hooks/useRefugio'
 import Spinner from './Spinner'
 import InputForm from './InputForm'
+import { CloudinaryContext, Image } from 'cloudinary-react'
 
 const FormAnimales = () => {
   const [id, setId] = useState(null)
@@ -23,7 +24,7 @@ const FormAnimales = () => {
     peso: '',
     tamaño: '',
     estado: '',
-    image: '',
+    avatar: '',
     personalidad: '',
     observaciones: '',
     salud: '',
@@ -73,6 +74,20 @@ const FormAnimales = () => {
     }
     getAnimal()
   }, [params, token])
+    const handleUpload = async (event) => {
+      const file = event.target.files[0]
+      const formData = new FormData()
+      formData.append('file', file)
+      formData.append('upload_preset', `${import.meta.env.VITE_UPLOAD_PRESET}`)
+
+      const response = await fetch(`${import.meta.env.VITE_CLOUDINARY_URL}`, {
+        method: 'POST',
+        body: formData
+      })
+
+      const data = await response.json()
+      formik.setFieldValue('avatar', data.secure_url)
+    }
   const { handleSubmit, handleChange, handleBlur, touched, errors } = formik
 
   return cargando && params.id ? (
@@ -82,7 +97,23 @@ const FormAnimales = () => {
       <form
         onSubmit={formik.handleSubmit}
         className='bg-[#C1A88D] mt-4 md:mt-0 px-8 mb-4 md:px-8 lg:px-20 md:pt-3 lg:pt-5 space-y-6 md:pb-8 md:mb-8 lg:pb-10 lg:mb-10 rounded-3xl '>
+        <div className='flex h-10 justify-evenly'>
+          <input
+            type='file'
+            id='avatar'
+            name='avatar'
+            onChange={handleUpload}
+            className='border-[#4F3300] justify-center rounded-2xl file:bg-[#E59D1C] truncate block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xl file:font-semibold file:text-white file:cursor-pointer'
+          />
+          <CloudinaryContext
+            cloudName={`${import.meta.env.VITE_CLOUDINARY_NAME}`}>
+            {formik.values?.avatar && (
+              <Image publicId={formik.values.avatar} width='80' />
+            )}
+          </CloudinaryContext>
+        </div>
         <InputForm
+          disabled={false}
           label='Nombre'
           name='nombre'
           handleChange={handleChange}
@@ -94,6 +125,7 @@ const FormAnimales = () => {
           nameSrc={name}
         />
         <InputForm
+          disabled={false}
           label='Especie'
           name='especie'
           handleChange={handleChange}
@@ -105,6 +137,7 @@ const FormAnimales = () => {
           nameSrc={name}
         />
         <InputForm
+          disabled={false}
           label='Raza'
           name='raza'
           handleChange={handleChange}
@@ -116,6 +149,7 @@ const FormAnimales = () => {
           nameSrc={name}
         />
         <InputForm
+          disabled={false}
           label='Peso'
           name='peso'
           handleChange={handleChange}
@@ -128,6 +162,7 @@ const FormAnimales = () => {
           nameSrc={name}
         />
         <InputForm
+          disabled={false}
           label='Edad'
           name='edad'
           type='number'
@@ -140,6 +175,7 @@ const FormAnimales = () => {
           nameSrc={name}
         />
         <InputForm
+          disabled={false}
           label='Tamaño'
           name='tamaño'
           handleChange={handleChange}
@@ -151,6 +187,7 @@ const FormAnimales = () => {
           nameSrc={name}
         />
         <InputForm
+          disabled={false}
           label='Personalidad'
           name='personalidad'
           handleChange={handleChange}
@@ -162,17 +199,7 @@ const FormAnimales = () => {
           nameSrc={name}
         />
         <InputForm
-          label='Personalidad'
-          name='personalidad'
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-          value={formik.values.personalidad}
-          placeholder='Personalidad'
-          touched={touched}
-          errors={errors}
-          nameSrc={name}
-        />
-        <InputForm
+          disabled={false}
           label='Fecha de ingreso'
           name='fecha_ingreso'
           handleChange={handleChange}
@@ -184,6 +211,7 @@ const FormAnimales = () => {
           nameSrc={name}
         />
         <InputForm
+          disabled={false}
           label='Estado de salud'
           name='salud'
           handleChange={handleChange}
@@ -195,23 +223,13 @@ const FormAnimales = () => {
           nameSrc={name}
         />
         <InputForm
+          disabled={false}
           label='Observaciones'
           name='observaciones'
           handleChange={handleChange}
           handleBlur={handleBlur}
           value={formik.values.observaciones}
           placeholder='Observaciones'
-          touched={touched}
-          errors={errors}
-          nameSrc={name}
-        />
-        <InputForm
-          label='Imagen'
-          name='image'
-          handleChange={handleChange}
-          handleBlur={handleBlur}
-          value={formik.values.image}
-          placeholder='Imagen'
           touched={touched}
           errors={errors}
           nameSrc={name}
