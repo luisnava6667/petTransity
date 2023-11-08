@@ -68,9 +68,9 @@ const Animales = () => {
               {pet?.map((pet) => (
                 <div
                   key={pet._id}
-                  className='bg-white rounded-lg flex items-center justify-evenly'>
+                  className='bg-white rounded-lg flex items-center justify-evenly w-56'>
                   <div>
-                    <img src={pet.image} width={100} height={100} />
+                    <img src={pet.avatar} width={100} height={100} />
                   </div>
                   <div className='grid justify-items-center my-3'>
                     <div className='grid'>

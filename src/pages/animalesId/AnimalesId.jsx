@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import clienteAxios from '../../config/clienteAxios'
 import Sidebar from '../../components/Sidebar'
 import TopBar from '../../components/TopBar'
 import useRefugio from '../../hooks/useRefugio'
 import Spinner from '../../components/Spinner'
+import Swal from 'sweetalert2'
 
 const AnimalesId = () => {
-  const { eliminarAnimal } = useRefugio()
+  const { eliminarAnimal, changeState } = useRefugio()
   const [pet, setPet] = useState([])
+  const navigate = useNavigate()
+  console.log(pet)
   const [refugio, setRefugio] = useState([])
   const [cargando, setCargando] = useState(true)
 
@@ -41,11 +44,21 @@ const AnimalesId = () => {
           setCargando(false)
         }
       } catch (error) {
-        console.log(error)
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `${error.response.data.msg}`,
+          confirmButtonColor: '#503734',
+          confirmButtonText: 'Ir a Home'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            navigate('/dashboard')
+          }
+        })
       }
     }
     getPet()
-  }, [id, token, role])
+  }, [id, token, role, pet])
 
   return (
     <main className='h-screen bg-[#CCC4BB] flex'>
@@ -64,7 +77,7 @@ const AnimalesId = () => {
             <div className='grid gap-5 lg:flex lg:w-full xl:px-28 '>
               <div className='bg-white rounded-lg p-5 mx-5 grid justify-items-center lg:w-1/3'>
                 <img
-                  src={pet.image}
+                  src={pet.avatar}
                   alt={pet.nombre}
                   className='rounded-lg lg:h-full'
                 />
@@ -107,17 +120,28 @@ const AnimalesId = () => {
                       </Link>
                     )
                   ) : (
-                    <div className='w-full flex'>
-                      <Link
-                        to={`/editar-animales/${pet._id}`}
-                        className='w-1/2 bg-[#FFB800] rounded-lg mx-5 text-white font-bold text-xl p-2 text-center '>
-                        Editar
-                      </Link>
-                      <button
-                        onClick={() => eliminarAnimal(pet._id)}
-                        className='w-1/2  bg-red-500 rounded-lg mx-5 text-white font-bold text-xl p-2 text-center '>
-                        Eliminar
-                      </button>
+                    <div className='w-full grid gap-4'>
+                      <div className='items-center'>
+                        <button
+                          onClick={() => changeState(pet._id)}
+                          className='
+                        w-1/2 bg-[#503734] rounded-lg mx-5 text-white font-bold text-xl p-2 text-center 
+                        '>
+                          {pet.estado ? 'Desactivar' : 'Activar'}
+                        </button>
+                      </div>
+                      <div className='w-full flex'>
+                        <Link
+                          to={`/editar-animales/${pet._id}`}
+                          className='w-1/2 bg-[#FFB800] rounded-lg mx-5 text-white font-bold text-xl p-2 text-center '>
+                          Editar
+                        </Link>
+                        <button
+                          onClick={() => eliminarAnimal(pet._id)}
+                          className='w-1/2  bg-red-500 rounded-lg mx-5 text-white font-bold text-xl p-2 text-center '>
+                          Eliminar
+                        </button>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -132,7 +156,7 @@ const AnimalesId = () => {
                   <div className='md:flex justify-evenly w-full grid items-center'>
                     <img
                       className='rounded-lg h-44'
-                      src={refugio.img}
+                      src={refugio.avatar}
                       alt='refugio'
                     />
                     <div>

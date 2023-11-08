@@ -46,7 +46,14 @@ const AuthProvider = ({ children }) => {
   const actualizarPerfil = async (values) => {}
   return (
     <AuthContext.Provider
-      value={{ auth, setAuth, actualizarPerfil, cerrarSesionAuth }}>
+      value={{
+        auth,
+        setAuth,
+        actualizarPerfil,
+        cerrarSesionAuth,
+        cargando,
+        setCargando
+      }}>
       {children}
     </AuthContext.Provider>
   )

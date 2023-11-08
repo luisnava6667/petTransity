@@ -4,11 +4,8 @@ import TopBar from '../../components/TopBar'
 import FormAnimales from '../../components/FormAnimales'
 
 const RegisterAnimal = () => {
-  const role = localStorage.getItem('role')
   useEffect(() => {
-    if (role === 'usuario') {
-      window.location.href = '/dashboard'
-    }
+    document.title = 'Agregar Animal'
   }, [])
   return (
     <main className='h-screen bg-[#CCC4BB] flex'>

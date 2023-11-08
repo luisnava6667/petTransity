@@ -32,21 +32,31 @@ const RefugioProvider = ({ children }) => {
   }, [role])
   const eliminarAnimal = async (id) => {
     try {
-      await clienteAxios.delete(`animales/myPet/${id}`, config)
       Swal.fire({
-        icon: 'success',
-        title: 'Animal Eliminado Correctamente',
-        showConfirmButton: false,
-        onBeforeOpen: () => {
-          Swal.showLoading()
+        icon: 'warning',
+        title: 'Estas seguro que deseas eliminar el registo',
+        text: 'No podras revertir esta accion',
+        showConfirmButton: true,
+        showDenyButton: true,
+        confirmButtonText: 'Si',
+        denyButtonText: 'No'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Estado cambiado Correctamente',
+            showConfirmButton: false,
+            onBeforeOpen: () => {
+              Swal.showLoading()
+            }
+          })
+          await clienteAxios.delete(`animales/myPet/${id}`, config)
+          setTimeout(() => {
+            Swal.close()
+            navigate('/animales')
+          }, 2000)
         }
       })
-      setTimeout(() => {
-        navigate('/animales')
-      }, 3000)
-      setTimeout(() => {
-        Swal.close()
-      }, 4000)
     } catch (error) {
       console.log(error)
     }
@@ -54,7 +64,11 @@ const RefugioProvider = ({ children }) => {
   const nuevoAnimal = async (values) => {
     if (!token) return
     try {
-      await clienteAxios.post('/animales', values, config)
+      if (role === 'refugio') {
+        await clienteAxios.post('/animales', values, config)
+      } else {
+        await clienteAxios.post('/animales/user', values, config)
+      }
       Swal.fire({
         icon: 'success',
         title: 'Animal Registrado Correctamente',
@@ -64,7 +78,11 @@ const RefugioProvider = ({ children }) => {
         }
       })
       setTimeout(() => {
-        navigate('/animales')
+        if (role === 'refugio') {
+          navigate('/animales')
+        } else {
+          navigate('/dashboard')
+        }
       }, 3000)
       setTimeout(() => {
         Swal.close()
@@ -102,6 +120,36 @@ const RefugioProvider = ({ children }) => {
       await nuevoAnimal(animal)
     }
   }
+  const changeState = async (id) => {
+    // if (!id) return
+    try {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Estas Seguro de cambiar el estado del animal?',
+        showConfirmButton: true,
+        showDenyButton: true,
+        confirmButtonText: 'Si',
+        denyButtonText: 'No'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Estado cambiado Correctamente',
+            showConfirmButton: false,
+            onBeforeOpen: () => {
+              Swal.showLoading()
+            }
+          })
+          await clienteAxios.put(`animales/state/${id}`, config)
+          setTimeout(() => {
+            Swal.close()
+          }, 4000)
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <RefugioContext.Provider
       value={{
@@ -109,7 +157,8 @@ const RefugioProvider = ({ children }) => {
         submitAnimal,
         eliminarAnimal,
         editarAnimal,
-        nuevoAnimal
+        nuevoAnimal,
+        changeState
       }}>
       {children}
     </RefugioContext.Provider>

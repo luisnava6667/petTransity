@@ -16,6 +16,8 @@ const FormAnimales = () => {
   const { submitAnimal } = useRefugio()
   const token = localStorage.getItem('token')
   const [cargando, setCargando] = useState(true)
+  const { id: idAnimal } = useParams()
+
   const [animalValues, setAnimalValues] = useState({
     especie: '',
     raza: '',
@@ -46,7 +48,6 @@ const FormAnimales = () => {
       salud: Yup.string()
         .max(100, 'El campo no debe tener más de 100 caracteres')
         .required(required),
-      image: Yup.string().required(required),
       fecha_ingreso: Yup.date().required(required),
       estado: Yup.boolean().required(required),
       observaciones: Yup.string().max(
@@ -55,6 +56,7 @@ const FormAnimales = () => {
       )
     }),
     onSubmit: async (values) => {
+      console.log(values)
       submitAnimal(values)
     }
   })
@@ -74,20 +76,20 @@ const FormAnimales = () => {
     }
     getAnimal()
   }, [params, token])
-    const handleUpload = async (event) => {
-      const file = event.target.files[0]
-      const formData = new FormData()
-      formData.append('file', file)
-      formData.append('upload_preset', `${import.meta.env.VITE_UPLOAD_PRESET}`)
+  const handleUpload = async (event) => {
+    const file = event.target.files[0]
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('upload_preset', `${import.meta.env.VITE_UPLOAD_PRESET}`)
 
-      const response = await fetch(`${import.meta.env.VITE_CLOUDINARY_URL}`, {
-        method: 'POST',
-        body: formData
-      })
+    const response = await fetch(`${import.meta.env.VITE_CLOUDINARY_URL}`, {
+      method: 'POST',
+      body: formData
+    })
 
-      const data = await response.json()
-      formik.setFieldValue('avatar', data.secure_url)
-    }
+    const data = await response.json()
+    formik.setFieldValue('avatar', data.secure_url)
+  }
   const { handleSubmit, handleChange, handleBlur, touched, errors } = formik
 
   return cargando && params.id ? (
@@ -97,21 +99,23 @@ const FormAnimales = () => {
       <form
         onSubmit={formik.handleSubmit}
         className='bg-[#C1A88D] mt-4 md:mt-0 px-8 mb-4 md:px-8 lg:px-20 md:pt-3 lg:pt-5 space-y-6 md:pb-8 md:mb-8 lg:pb-10 lg:mb-10 rounded-3xl '>
-        <div className='flex h-10 justify-evenly'>
-          <input
-            type='file'
-            id='avatar'
-            name='avatar'
-            onChange={handleUpload}
-            className='border-[#4F3300] justify-center rounded-2xl file:bg-[#E59D1C] truncate block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xl file:font-semibold file:text-white file:cursor-pointer'
-          />
-          <CloudinaryContext
-            cloudName={`${import.meta.env.VITE_CLOUDINARY_NAME}`}>
-            {formik.values?.avatar && (
-              <Image publicId={formik.values.avatar} width='80' />
-            )}
-          </CloudinaryContext>
-        </div>
+        {!idAnimal && (
+          <div className='flex h-10 justify-evenly'>
+            <input
+              type='file'
+              id='avatar'
+              name='avatar'
+              onChange={handleUpload}
+              className='border-[#4F3300] justify-center rounded-2xl file:bg-[#E59D1C] truncate block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xl file:font-semibold file:text-white file:cursor-pointer'
+            />
+            <CloudinaryContext
+              cloudName={`${import.meta.env.VITE_CLOUDINARY_NAME}`}>
+              {formik.values?.avatar && (
+                <Image publicId={formik.values.avatar} width='80' />
+              )}
+            </CloudinaryContext>
+          </div>
+        )}
         <InputForm
           disabled={false}
           label='Nombre'
