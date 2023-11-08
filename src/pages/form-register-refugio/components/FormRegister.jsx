@@ -439,7 +439,7 @@ const FormRegister = () => {
               <label
                 htmlFor='piso'
                 className='block text-sm font-semibold leading-6 text-gray-900'>
-                Piso <span className='text-red-600'>*</span>
+                Piso <span className='text-red-600'></span>
               </label>
             </div>
             <div className='mt-2'>
@@ -456,11 +456,6 @@ const FormRegister = () => {
                     : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
                 } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
               />
-              {touched.piso && errors.piso && (
-                <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end'>
-                  {errors.piso}
-                </div>
-              )}
             </div>
           </div>
           <div>
@@ -469,7 +464,7 @@ const FormRegister = () => {
               <label
                 htmlFor='unidad'
                 className='block text-sm font-semibold leading-6 text-gray-900'>
-                Unidad <span className='text-red-600'>*</span>
+                Unidad <span className='text-red-600'></span>
               </label>
             </div>
             <div className='mt-2'>
@@ -486,11 +481,6 @@ const FormRegister = () => {
                     : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
                 } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
               />
-              {touched.unidad && errors.unidad && (
-                <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end'>
-                  {errors.unidad}
-                </div>
-              )}
             </div>
           </div>
         </div>

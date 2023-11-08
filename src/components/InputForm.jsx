@@ -12,7 +12,8 @@ const InputForm = ({
   touched,
   errors,
   disabled = true,
-  width='full'
+  width='full',
+  required = true
 }) => {
   return (
     <div className={`w-${width}`}>
@@ -21,7 +22,7 @@ const InputForm = ({
         <label
           htmlFor={name}
           className='block text-sm font-semibold leading-6 text-gray-900'>
-          {label} <span className='text-red-600'>*</span>
+          {label} <span className='text-red-600'>{required && '*'}</span>
         </label>
       </div>
       <div className='mt-2 w-full'>
@@ -34,7 +35,6 @@ const InputForm = ({
           type={type || 'text'}
           disabled={disabled}
           min={type === 'number' ? 0 : null}
-          required
           placeholder={placeholder}
           className={`block w-${width} md:h-11  lg:h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
             touched[name] && errors[name]

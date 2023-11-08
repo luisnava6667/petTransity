@@ -1,4 +1,4 @@
-import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import NotFound from './pages/404/NotFound'
 import Home from './pages/home/Home'
 import Donar from './pages/donar/Donar'
@@ -58,13 +58,12 @@ function App() {
             <Route path='perfil' element={<Perfil />} />
             {/* <Route path="editar/:id" element={<UserId />} /> */}
             <Route path='olvide-password/:token' element={<NuevoPassword />} />
-        <Route path='*' element={<NotFound />} />
-        <Route path='/' element={<Home />} />
+            <Route path='*' element={<NotFound />} />
+            <Route path='/' element={<Home />} />
           </Routes>
         </RefugioProvider>
       </AuthProvider>
-      <Routes>
-      </Routes>
+      <Routes></Routes>
     </BrowserRouter>
   )
 }

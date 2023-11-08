@@ -4,7 +4,8 @@ import flecha from "../../assets/flechaNav.svg";
 
 const FormRegisterRefugio = () => {
   return (
-    <>
+    
+    <main className='h-screen grid' >
       <NavBarLogin
         imgButton={flecha}
         textButtonNav={"Volver"}
@@ -14,7 +15,7 @@ const FormRegisterRefugio = () => {
         ruta={"/"}
       />
       <FormRegister />
-    </>
+    </main>
   );
 };
 

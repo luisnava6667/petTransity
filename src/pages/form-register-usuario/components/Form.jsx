@@ -19,7 +19,7 @@ const Form = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
   }
-
+  const required = 'Este campo es requerido'
   const formik = useFormik({
     initialValues: {
       avatar: '',
@@ -43,11 +43,9 @@ const Form = () => {
       estado_domicilio: ''
     },
     validationSchema: Yup.object({
-      email: Yup.string()
-        .email('Formato de email invalido')
-        .required('email requerido'),
+      email: Yup.string().email('Formato de email invalido').required(required),
       password: Yup.string()
-        .required('contraseña requerida')
+        .required(required)
         .min(8, 'ingresa 8 caracteres como mínimo')
         .matches(
           /[A-Z]/,
@@ -62,21 +60,21 @@ const Form = () => {
           [Yup.ref('password'), undefined],
           'Las contraseñas deben coincidir'
         )
-        .required('contraseña requerida'),
-      nombre: Yup.string().required('nombre requerido'),
-      apellido: Yup.string().required('apellido requerido'),
-      localidad: Yup.string().required('Campo requerido'),
-      direccion: Yup.string().required('direccion requerida'),
-      hogar: Yup.string().required('unidad requerida'),
-      ambientes: Yup.number().required('unidad requerida'),
-      patio_jardin: Yup.boolean().required('unidad requerida'),
-      mascotas: Yup.boolean().required('unidad requerida'),
-      // desc_mascotas: Yup.string().required('unidad requerida'),
-      estado_domicilio: Yup.string().required('unidad requerida')
+        .required(required),
+      nombre: Yup.string().required(required),
+      apellido: Yup.string().required(required),
+      localidad: Yup.string().required(required),
+      direccion: Yup.string().required(required),
+      hogar: Yup.string().required(required),
+      ambientes: Yup.number().required(required),
+      patio_jardin: Yup.boolean().required(required),
+      mascotas: Yup.boolean().required(required),
+      // desc_mascotas: Yup.string().required(required),
+      estado_domicilio: Yup.string().required(required)
     }),
 
     onSubmit: async (values) => {
-      console.log(values);
+      console.log(values)
       try {
         const { data } = await clienteAxios.post('usuarios', values)
         Swal.fire({
@@ -130,18 +128,6 @@ const Form = () => {
     formik.setFieldValue('avatar', data.secure_url)
   }
   const { handleSubmit, handleChange, handleBlur, touched, errors } = formik
-  console.log(formik.values)
-  //   <InputForm
-  //   label='Nombre'
-  //   name='nombre'
-  //   handleChange={handleChange}
-  //   handleBlur={handleBlur}
-  //   value={formik.values.apellido}
-  //   placeholder='Nombre'
-  //   touched={touched}
-  //   errors={errors}
-  //   nameSrc={name}
-  // />
   return (
     <div className='flex flex-col items-center max-h-screen  overflow-y-auto bg-[#CCC4BB] pb-5'>
       <p className='text-6xl font-bold text-[#6F4C48] mb-10'>Usuario</p>
@@ -313,6 +299,7 @@ const Form = () => {
             type={'number'}
             nameSrc={name}
             disabled={false}
+            required={false}
           />
           <InputForm
             label='Unidad'
@@ -326,6 +313,7 @@ const Form = () => {
             type={'number'}
             nameSrc={name}
             disabled={false}
+            required={false}
           />
         </div>
 
