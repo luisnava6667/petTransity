@@ -5,19 +5,19 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import name from "../../../assets/name.svg";
 import mail from "../../../assets/mail.svg";
-import spinner from "../../../assets/spinner.svg";
 import editarFoto from "../../../assets/editarFoto.svg";
 import editar from "../../../assets/editar.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 import { useParams } from "react-router-dom";
 import InputForm from "../../../components/InputForm";
 import { CloudinaryContext, Image } from "cloudinary-react";
 import Spinner from "../../../components/Spinner";
 import clienteAxios from "../../../config/clienteAxios";
+import spinner from "../../../assets/spinner.svg";
 import Swal from "sweetalert2";
 
-const Form = () => {
+const FormRefugio = () => {
   const { auth } = useAuth();
   const { id } = useParams();
   const [error, setError] = useState(null);
@@ -26,15 +26,15 @@ const Form = () => {
   const [estadoBoton, setEstadoBoton] = useState("hidden");
   const [textVisibility, setTextVisibility] = useState("flex");
   const [spinnerVisibility, setSpinnerVisibility] = useState("hidden");
-  const token = localStorage.getItem("token");
 
-  console.log(token);
+  const token = localStorage.getItem("token");
 
   const editarFormulario = () => {
     estadoInput === true ? setEstadoInput(false) : setEstadoInput(true);
     estadoBoton === "hidden"
       ? setEstadoBoton("flex")
       : setEstadoBoton("hidden");
+    estadoInput === false && formik.setValues(auth);
   };
 
   const handleReset = () => {
@@ -42,6 +42,7 @@ const Form = () => {
     setEstadoInput(true);
     setEstadoBoton("hidden");
   };
+
   // agregar ambienter
   const required = "Este campo es requerido";
 
@@ -49,36 +50,33 @@ const Form = () => {
     initialValues: {
       nombre: auth.nombre,
       apellido: auth.apellido,
+      razon_social: auth.razon_social,
+      avatar: auth.avatar,
+      cuit: auth.cuit,
       email: auth.email,
       direccion: auth.direccion,
       piso: auth.piso,
       unidad: auth.unidad,
-      codigoPostal: auth.codigoPostal,
       provincia: auth.provincia,
-      comuna: auth.comuna,
       localidad: auth.localidad,
+      comuna: auth.comuna,
       barrio: auth.barrio,
+      codigoPostal: auth.codigoPostal,
+      estado_refugio: auth.estado_refugio,
+      web: auth.web,
       whatsApp: auth.whatsApp,
-      hogar: auth.hogar,
-      ambientes: auth.ambientes,
-      patio_jardin: auth.patio_jardin,
-      mascotas: auth.mascotas,
-      desc_mascotas: auth.desc_mascotas,
-      estado_domicilio: auth.estado_domicilio,
-      avatar: auth.avatar,
+      facebook: auth.facebook,
+      youtube: auth.youtube,
+      instagram: auth.instagram,
     },
     validationSchema: Yup.object({
+      comuna: Yup.string().required(required),
       localidad: Yup.string().required(required),
       whatsApp: Yup.string().required(required),
+      estado_refugio: Yup.string().required(required),
       direccion: Yup.string()
         .matches(/\d/, "Debe contener al menos un número")
         .required(required),
-      hogar: Yup.string().required(required),
-      barrio: Yup.string().required(required),
-      ambientes: Yup.number().required(required),
-      patio_jardin: Yup.boolean().required(required),
-      mascotas: Yup.boolean().required(required),
-      estado_domicilio: Yup.string().required(required),
     }),
 
     onSubmit: async (values) => {
@@ -86,13 +84,14 @@ const Form = () => {
       try {
         setTextVisibility("hidden");
         setSpinnerVisibility("flex");
+
         const config = {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
         };
-        const res = await clienteAxios.post(
+        const res = await clienteAxios.put(
           `${auth.role}/update-info`,
           values,
           config
@@ -253,8 +252,8 @@ const Form = () => {
             name="localidad"
             handleChange={handleChange}
             handleBlur={handleBlur}
-            value={formik.values.localidad}
-            placeholder="Localidad"
+            value="CABA"
+            placeholder="CABA"
             touched={touched}
             errors={errors}
             nameSrc={name}
@@ -345,6 +344,7 @@ const Form = () => {
               )}
             </div>
           </div>
+
           <div className="w-full">
             <div className="flex gap-1  my-3">
               <img alt="icono de etiqueta barrio" src={name} />
@@ -428,25 +428,50 @@ const Form = () => {
               )}
             </div>
           </div>
+
           <InputForm
-            label="Hogar"
-            name="hogar"
+            label="Web"
+            name="web"
             handleChange={handleChange}
             handleBlur={handleBlur}
-            value={formik.values.hogar}
-            placeholder="Hogar"
+            value={formik.values.web}
+            placeholder="Web"
             touched={touched}
             errors={errors}
             nameSrc={name}
             disabled={estadoInput}
           />
           <InputForm
-            label="Estado Domicilio"
-            name="estado_domicilio"
+            label="Facebook"
+            name="facebook"
             handleChange={handleChange}
             handleBlur={handleBlur}
-            value={formik.values.estado_domicilio}
-            placeholder="Estado Domicilio"
+            value={formik.values.facebook}
+            placeholder="Facebook"
+            touched={touched}
+            errors={errors}
+            nameSrc={name}
+            disabled={estadoInput}
+          />
+          <InputForm
+            label="YouTube"
+            name="youtube"
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            value={formik.values.youtube}
+            placeholder="YouTube"
+            touched={touched}
+            errors={errors}
+            nameSrc={name}
+            disabled={estadoInput}
+          />
+          <InputForm
+            label="Instagram"
+            name="instagram"
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            value={formik.values.instagram}
+            placeholder="Instagram"
             touched={touched}
             errors={errors}
             nameSrc={name}
@@ -475,4 +500,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default FormRefugio;

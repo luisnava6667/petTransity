@@ -9,15 +9,15 @@ import { MapaContainer } from "./components/MapaContainer";
 const Mapa = () => {
   const { refugios } = useRefugio();
   return (
-    <main className="h-screen bg-[#CCC4BB] flex">
+    <main className="min-h-screen bg-[#CCC4BB] flex">
       <Sidebar />
-      <div className="flex flex-col  w-full h-full bg-[#CCC4BB]">
+      <div className="flex flex-col w-full h-full bg-[#CCC4BB]">
         <div className="">
           <TopBar />
         </div>
 
-        <div className="flex flex-col md:flex-row gap-6 justify-center md:h-5/6">
-          <div className="md:w-2/4 grid ">
+        <div className="flex flex-col items-center lg:flex-row gap-6 justify-center min-h-screen lg:h-5/6">
+          <div className="md:w-8/12 grid ">
             <div className="grid gap-1 pr-8 pl-4">
               <h2 className="font-extrabold text-3xl pt-8 pl-7 mb-2 ">
                 Refugios
@@ -27,11 +27,11 @@ const Mapa = () => {
                 transito, adoptar un animal o colaborar con un donativo{" "}
               </p>
             </div>
-            <div className="hidden md:flex mx-3 overflow-auto gap-5">
+            <div className="hidden lg:flex md:flex-col mx-3 overflow-auto gap-5">
               {refugios.map((refugio) => (
                 <div
                   key={refugio._id}
-                  className=" w-[26rem] h-44 gap-3 bg-white rounded-lg flex mb-3"
+                  className=" w-[26rem]  gap-3 pb-4 h-max bg-white rounded-lg flex mb-3"
                 >
                   <img
                     className="rounded-bl-lg rounded-tl-lg"
@@ -72,11 +72,11 @@ const Mapa = () => {
           <div className=" md:w-2/3 h-24 md:h-full">
             <MapaContainer />
           </div>
-          <div className="md:hidden mx-3 overflow-auto gap-5">
+          <div className="lg:hidden mx-3 overflow-auto gap-5">
             {refugios.map((refugio) => (
               <div
                 key={refugio._id}
-                className=" w-[26rem] h-44 gap-3 bg-white rounded-lg flex mb-3"
+                className=" w-[26rem] h-48 gap-3 bg-white rounded-lg flex mb-3"
               >
                 <img
                   className="rounded-bl-lg rounded-tl-lg"

@@ -2,13 +2,13 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import name from "../../../assets/name.svg";
-import mail from "../../../assets/mail.svg";
 import lock from "../../../assets/lock.svg";
 import { useState } from "react";
 import clienteAxios from "../../../config/clienteAxios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 import { CloudinaryContext, Image } from "cloudinary-react";
+import InputForm from "../../../components/InputForm";
 
 const FormRegister = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,10 +20,10 @@ const FormRegister = () => {
   const required = "Este campo es requerido";
   const formik = useFormik({
     initialValues: {
-      avatar: "",
       nombre: "",
       apellido: "",
       razon_social: "",
+      avatar: "",
       cuit: "",
       email: "",
       password: "",
@@ -31,10 +31,11 @@ const FormRegister = () => {
       direccion: "",
       piso: "",
       unidad: "",
-      codigoPostal: "",
       provincia: "",
-      comuna: "",
       localidad: "",
+      comuna: "",
+      barrio: "",
+      codigoPostal: "",
       estado_refugio: "",
       web: "",
       whatsApp: "",
@@ -48,13 +49,6 @@ const FormRegister = () => {
         .required("Email requerido"),
       password: Yup.string()
         .required(required)
-        // .test(
-        //   "is-uppercase",
-        //   "Tienes las mayusculas activas",
-        //   function (value) {
-        //     return /^[A-Z]+$/.test(value);
-        //   }
-        // )
         .min(8, "Ingresa 8 caracteres como mínimo")
         .matches(
           /[A-Z]/,
@@ -79,6 +73,7 @@ const FormRegister = () => {
       razon_social: Yup.string().required(required),
       estado_refugio: Yup.string().required(required),
       direccion: Yup.string().required(required),
+      barrio: Yup.string().required(required),
     }),
 
     onSubmit: async (values) => {
@@ -171,167 +166,66 @@ const FormRegister = () => {
             )}
           </CloudinaryContext>
         </div>
-        <div className="">
-          <div className="flex gap-1 my-1">
-            <img alt="icono de etiqueta nombre" src={name} />
-            <label
-              htmlFor="nombre"
-              className="block text-sm font-semibold leading-6 text-gray-900"
-            >
-              Nombre <span className="text-red-600">*</span>
-            </label>
-          </div>
-          <div className="mt-2 w-full">
-            <input
-              id="nombre"
-              name="nombre"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type="name"
-              placeholder="Nombre"
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.nombre && errors.nombre
-                  ? "ring-red-500  focus:ring-red-500"
-                  : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.nombre && errors.nombre && (
-              <div className="flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end">
-                {errors.nombre}
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="">
-          <div className="flex gap-1 my-1">
-            <img alt="icono de etiqueta apellido" src={name} />
-            <label
-              htmlFor="apellido"
-              className="block text-sm font-semibold leading-6 text-gray-900"
-            >
-              Apellido <span className="text-red-600">*</span>
-            </label>
-          </div>
-          <div className="mt-2 w-full">
-            <input
-              id="apellido"
-              name="apellido"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type="text"
-              placeholder="Apellido"
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.apellido && errors.apellido
-                  ? "ring-red-500  focus:ring-red-500"
-                  : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.apellido && errors.apellido && (
-              <div className="flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end">
-                {errors.apellido}
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="">
-          <div className="flex gap-1  my-3">
-            <img alt="icono de etiqueta razon social" src={name} />
-            <label
-              htmlFor="razon_social"
-              className="block text-sm font-semibold leading-6 text-gray-900"
-            >
-              Razón Social <span className="text-red-600">*</span>
-            </label>
-          </div>
-          <div className="mt-2 w-full">
-            <input
-              id="razon_social"
-              name="razon_social"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type="text"
-              placeholder="Razón Social"
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.razon_social && errors.razon_social
-                  ? "ring-red-500  focus:ring-red-500"
-                  : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.razon_social && errors.razon_social && (
-              <div className="flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end">
-                {errors.razon_social}
-              </div>
-            )}
-          </div>
-        </div>
-        <div>
-          <div className="flex items-center justify-between">
-            <div className="flex gap-1  my-3">
-              <img alt="icono de etiqueta cuit" src={name} />
-              <label
-                htmlFor="cuit"
-                className="block text-sm font-semibold leading-6 text-gray-900"
-              >
-                Cuit <span className="text-red-600">*</span>
-              </label>
-            </div>
-          </div>
-          <div className="mt-2">
-            <input
-              id="cuit"
-              name="cuit"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type="text"
-              placeholder="Cuit"
-              className={`block w-60 h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.cuit && errors.cuit
-                  ? "ring-red-500  focus:ring-red-500"
-                  : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.cuit && errors.cuit && (
-              <div className="flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end">
-                {errors.cuit}
-              </div>
-            )}
-          </div>
-        </div>
-        <div>
-          <div className="flex items-center justify-between">
-            <div className="flex gap-1  my-3">
-              <img alt="icono de etiqueta email" src={mail} />
-              <label
-                htmlFor="email"
-                className="block text-sm font-semibold leading-6 text-gray-900"
-              >
-                Correo <span className="text-red-600">*</span>
-              </label>
-            </div>
-          </div>
-          <div className="mt-2">
-            <input
-              id="email"
-              name="email"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type="email"
-              autoComplete="email"
-              placeholder="Correo"
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.email && errors.email
-                  ? "ring-red-500  focus:ring-red-500"
-                  : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.email && errors.email && (
-              <div className="flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end">
-                {errors.email}
-              </div>
-            )}
-          </div>
-        </div>
+        <InputForm
+          label="Nombre"
+          name="nombre"
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.nombre}
+          placeholder="Nombre"
+          touched={touched}
+          errors={errors.nombre}
+          nameSrc={name}
+          disabled={false}
+        />
+        <InputForm
+          label="Apellido"
+          name="apellido"
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.apellido}
+          placeholder="Apellido"
+          touched={touched}
+          errors={errors}
+          nameSrc={name}
+          disabled={false}
+        />
+        <InputForm
+          label="Razón Social"
+          name="razon_social"
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.razon_social}
+          placeholder="Razón Social"
+          touched={touched}
+          errors={errors}
+          nameSrc={name}
+          disabled={false}
+        />
+        <InputForm
+          label="Cuit"
+          name="cuit"
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.cuit}
+          placeholder="Cuit"
+          touched={touched}
+          errors={errors}
+          nameSrc={name}
+          disabled={false}
+        />
+        <InputForm
+          label="Correo"
+          name="email"
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.email}
+          placeholder="Correo"
+          touched={touched}
+          errors={errors}
+          nameSrc={name}
+          disabled={false}
+        />
         <div>
           <div className="flex items-center justify-between">
             <div className="flex gap-1  my-3">
@@ -410,92 +304,43 @@ const FormRegister = () => {
             )}
           </div>
         </div>
-        <div>
-          <div className="flex items-center justify-between">
-            <div className="flex gap-1  my-3">
-              <img alt="icono de etiqueta direccion del refugio" src={name} />
-              <label
-                htmlFor="direccion"
-                className="block text-sm font-semibold leading-6 text-gray-900"
-              >
-                Dirección del Refugio <span className="text-red-600">*</span>
-              </label>
-            </div>
-          </div>
-          <div className="mt-2">
-            <input
-              id="direccion"
-              name="direccion"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type="text"
-              placeholder="Dirección del Refugio"
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.direccion && errors.direccion
-                  ? "ring-red-500  focus:ring-red-500"
-                  : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.direccion && errors.direccion && (
-              <div className="flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end">
-                {errors.direccion}
-              </div>
-            )}
-          </div>
-        </div>
+        <InputForm
+          label="Direccion"
+          name="direccion"
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.direccion}
+          placeholder="Jeronimo Salguero 1253"
+          touched={touched}
+          errors={errors}
+          nameSrc={name}
+          disabled={false}
+        />
         <div className="flex gap-6">
-          <div>
-            <div className="flex gap-1  my-3">
-              <img alt="icono de etiqueta piso" src={name} />
-              <label
-                htmlFor="piso"
-                className="block text-sm font-semibold leading-6 text-gray-900"
-              >
-                Piso <span className="text-red-600"></span>
-              </label>
-            </div>
-            <div className="mt-2">
-              <input
-                id="piso"
-                name="piso"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                type="text"
-                placeholder="Piso"
-                className={`block w-60 h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                  touched.piso && errors.piso
-                    ? "ring-red-500  focus:ring-red-500"
-                    : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
-                } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-              />
-            </div>
-          </div>
-          <div>
-            <div className="flex gap-1  my-3">
-              <img alt="icono de etiqueta unidad" src={name} />
-              <label
-                htmlFor="unidad"
-                className="block text-sm font-semibold leading-6 text-gray-900"
-              >
-                Unidad <span className="text-red-600"></span>
-              </label>
-            </div>
-            <div className="mt-2">
-              <input
-                id="unidad"
-                name="unidad"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                type="text"
-                placeholder="Unidad"
-                className={`block w-60 h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                  touched.unidad && errors.unidad
-                    ? "ring-red-500  focus:ring-red-500"
-                    : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
-                } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-              />
-            </div>
-          </div>
+          <InputForm
+            label="Piso"
+            name="piso"
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            value={formik.values.piso}
+            placeholder="Piso"
+            touched={touched}
+            errors={errors.piso}
+            nameSrc={name}
+            disabled={false}
+          />
+          <InputForm
+            label="Unidad"
+            name="unidad"
+            handleChange={handleChange}
+            handleBlur={handleBlur}
+            value={formik.values.unidad}
+            placeholder="Unidad"
+            touched={touched}
+            errors={errors}
+            nameSrc={name}
+            disabled={false}
+          />
         </div>
         <div>
           <div className="flex gap-1  my-3">
@@ -513,16 +358,15 @@ const FormRegister = () => {
               name="provincia"
               onChange={handleChange}
               onBlur={handleBlur}
-              value="CABA"
+              value="Buenos Aires"
               className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
                 touched.provincia && errors.provincia
                   ? "ring-red-500  focus:ring-red-500"
                   : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
               } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
             >
-              <option value="CABA">CABA</option>
+              <option value="Buenos Aires">Buenos Aires</option>
               <option value="Otra Provincia">Otra Provincia</option>
-              {/* Agrega más opciones según tus necesidades */}
             </select>
             {touched.provincia && errors.provincia && (
               <div className="flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end">
@@ -531,6 +375,18 @@ const FormRegister = () => {
             )}
           </div>
         </div>
+        <InputForm
+          label="Localidad"
+          name="localidad"
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.localidad}
+          placeholder="Localidad"
+          touched={touched}
+          errors={errors}
+          nameSrc={name}
+          disabled={false}
+        />
         <div>
           <div className="flex gap-1  my-3">
             <img alt="icono de etiqueta comuna" src={name} />
@@ -585,7 +441,7 @@ const FormRegister = () => {
           <div className="flex gap-1  my-3">
             <img alt="icono de etiqueta barrio" src={name} />
             <label
-              htmlFor="localidad"
+              htmlFor="barrio"
               className="block text-sm font-semibold leading-6 text-gray-900"
             >
               Barrio <span className="text-red-600">*</span>
@@ -593,8 +449,8 @@ const FormRegister = () => {
           </div>
           <div className="mt-2">
             <select
-              id="localidad"
-              name="localidad"
+              id="barrio"
+              name="barrio"
               onChange={handleChange}
               onBlur={handleBlur}
               className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
@@ -655,233 +511,97 @@ const FormRegister = () => {
               <option value="Villa Soldati">Villa Soldati</option>
               <option value="Villa Urquiza">Villa Urquiza</option>
             </select>
-            {touched.localidad && errors.localidad && (
+            {touched.barrio && errors.barrio && (
               <div className="flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end">
-                {errors.localidad}
+                {errors.barrio}
               </div>
             )}
           </div>
         </div>
-        <div>
-          <div className="flex gap-1  my-3">
-            <img alt="icono de etiqueta codigo postal" src={name} />
-            <label
-              htmlFor="codigoPostal"
-              className="block text-sm font-semibold leading-6 text-gray-900"
-            >
-              Código Postal <span className="text-red-600">*</span>
-            </label>
-          </div>
-          <div className="mt-2">
-            <input
-              id="codigoPostal"
-              name="codigoPostal"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type="text"
-              placeholder="Código Postal"
-              className={`block w-44 h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.codigoPostal && errors.codigoPostal
-                  ? "ring-red-500  focus:ring-red-500"
-                  : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.codigoPostal && errors.codigoPostal && (
-              <div className="flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end">
-                {errors.codigoPostal}
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div>
-          <div className="flex gap-1  my-3">
-            <img alt="icono de etiqueta estado del refugio" src={name} />
-            <label
-              htmlFor="estado_refugio"
-              className="block text-sm font-semibold leading-6 text-gray-900"
-            >
-              Estado del refugio <span className="text-red-600">*</span>
-            </label>
-          </div>
-          <div className="mt-2">
-            <input
-              id="estado_refugio"
-              name="estado_refugio"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type="text"
-              placeholder="Ejemplo: Bueno"
-              className={`block w-44 h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.estado_refugio && errors.estado_refugio
-                  ? "ring-red-500  focus:ring-red-500"
-                  : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.estado_refugio && errors.estado_refugio && (
-              <div className="flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end">
-                {errors.estado_refugio}
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div>
-          <div className="flex gap-1  my-3">
-            <img alt="icono de etiqueta telefono" src={name} />
-            <label
-              htmlFor="whatsApp"
-              className="block text-sm font-semibold leading-6 text-gray-900"
-            >
-              Télefono <span className="text-red-600">*</span>
-            </label>
-          </div>
-          <div className="mt-2">
-            <input
-              id="whatsApp"
-              name="whatsApp"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type="text" // Cambiado de "number" a "text"
-              placeholder="Teléfono"
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.whatsApp && errors.whatsApp
-                  ? "ring-red-500  focus:ring-red-500"
-                  : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 appearance-none`}
-            />
-            {touched.whatsApp && errors.whatsApp && (
-              <div className="flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end">
-                {errors.whatsApp}
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div>
-          <div className="flex gap-1  my-3">
-            <img alt="icono de etiqueta web" src={name} />
-            <label
-              htmlFor="web"
-              className="block text-sm font-semibold leading-6 text-gray-900"
-            >
-              Web
-            </label>
-          </div>
-          <div className="mt-2">
-            <input
-              id="web"
-              name="web"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type="text"
-              placeholder="Web"
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.web && errors.web
-                  ? "ring-red-500  focus:ring-red-500"
-                  : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.web && errors.web && (
-              <div className="flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end">
-                {errors.web}
-              </div>
-            )}
-          </div>
-        </div>
-        <div>
-          <div className="flex gap-1  my-3">
-            <img alt="icono de etiqueta facebook" src={name} />
-            <label
-              htmlFor="facebook"
-              className="block text-sm font-semibold leading-6 text-gray-900"
-            >
-              Facebook
-            </label>
-          </div>
-          <div className="mt-2">
-            <input
-              id="facebook"
-              name="facebook"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type="text"
-              placeholder="Facebook"
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.facebook && errors.facebook
-                  ? "ring-red-500  focus:ring-red-500"
-                  : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.facebook && errors.facebook && (
-              <div className="flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end">
-                {errors.facebook}
-              </div>
-            )}
-          </div>
-        </div>
-        <div>
-          <div className="flex gap-1  my-3">
-            <img alt="icono de etiqueta youtube" src={name} />
-            <label
-              htmlFor="youtube"
-              className="block text-sm font-semibold leading-6 text-gray-900"
-            >
-              YouTube
-            </label>
-          </div>
-          <div className="mt-2">
-            <input
-              id="youtube"
-              name="youtube"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type="text"
-              placeholder="YouTube"
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.youtube && errors.youtube
-                  ? "ring-red-500  focus:ring-red-500"
-                  : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.youtube && errors.youtube && (
-              <div className="flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end">
-                {errors.youtube}
-              </div>
-            )}
-          </div>
-        </div>
-        <div>
-          <div className="flex gap-1  my-3">
-            <img alt="icono de etiqueta instragram" src={name} />
-            <label
-              htmlFor="instagram"
-              className="block text-sm font-semibold leading-6 text-gray-900"
-            >
-              Instagram
-            </label>
-          </div>
-          <div className="mt-2">
-            <input
-              id="instagram"
-              name="instagram"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              type="text"
-              placeholder="Instagram"
-              className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
-                touched.instagram && errors.instagram
-                  ? "ring-red-500  focus:ring-red-500"
-                  : "ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600"
-              } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
-            />
-            {touched.instagram && errors.instagram && (
-              <div className="flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end">
-                {errors.instagram}
-              </div>
-            )}
-          </div>
-        </div>
+        <InputForm
+          label="Código Postal"
+          name="codigoPostal"
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.codigoPostal}
+          placeholder="Código Postal"
+          touched={touched}
+          errors={errors}
+          nameSrc={name}
+          disabled={false}
+        />
+        <InputForm
+          label="Estado del refugio"
+          name="estado_refugio"
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.estado_refugio}
+          placeholder="Estado del refugio"
+          touched={touched}
+          errors={errors}
+          nameSrc={name}
+          disabled={false}
+        />
+        <InputForm
+          label="Télefono"
+          name="whatsApp"
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.whatsApp}
+          placeholder="Télefono"
+          touched={touched}
+          errors={errors}
+          nameSrc={name}
+          disabled={false}
+        />
+        <InputForm
+          label="Web"
+          name="web"
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.web}
+          placeholder="Web"
+          touched={touched}
+          errors={errors}
+          nameSrc={name}
+          disabled={false}
+        />
+        <InputForm
+          label="Facebook"
+          name="facebook"
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.facebook}
+          placeholder="Facebook"
+          touched={touched}
+          errors={errors}
+          nameSrc={name}
+          disabled={false}
+        />
+        <InputForm
+          label="YouTube"
+          name="youtube"
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.youtube}
+          placeholder="YouTube"
+          touched={touched}
+          errors={errors}
+          nameSrc={name}
+          disabled={false}
+        />
+        <InputForm
+          label="Instagram"
+          name="instagram"
+          handleChange={handleChange}
+          handleBlur={handleBlur}
+          value={formik.values.instagram}
+          placeholder="Instagram"
+          touched={touched}
+          errors={errors}
+          nameSrc={name}
+          disabled={false}
+        />
 
         <div className="w-[31.5rem] flex justify-end items-center pt-10">
           <button

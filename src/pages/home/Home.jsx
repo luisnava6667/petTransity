@@ -11,11 +11,8 @@ const Home = () => {
     <main className="bg-[#CCC4BB] h-screen">
       <NavLanding />
       <Carousel />
-      <div className="bg-[#CCC4BB]">
-        <div
-          id="nosotros"
-          className="flex flex-col items-center justify-center h-full "
-        >
+      <div id="nosotros" className="bg-[#CCC4BB]">
+        <div className="flex flex-col items-center justify-center h-full ">
           <div className="grid gap-6 px-5 md:px-28">
             <div className="flex gap-5 text-2xl">
               <img src={nosotros} className="w-64 md:w-1/3 rounded-xl" alt="" />
@@ -64,11 +61,8 @@ const Home = () => {
 
       {/* requisitos de adopcion */}
 
-      <div className="bg-[#E3DBD3]">
-        <div
-          id="requisitos"
-          className="flex flex-col items-center justify-center h-full pb-4"
-        >
+      <div id="requisitos" className="bg-[#E3DBD3]">
+        <div className="flex flex-col items-center justify-center h-full pb-4 scroll-smooth">
           <h1 className="text-4xl font-bold text-center text-gray-600 py-12">
             Requisitos para adoptar
           </h1>
