@@ -45,7 +45,7 @@ function App() {
                 <PrivateMap allowedRoles={['usuarios']} element={<Mapa />} />
               }
             /> */}
-            <Route path='confirmar/:token' element={<Confirmar />} />
+            <Route path='/confirmar/:token' element={<Confirmar />} />
             <Route path='/animales' element={<Animales />} />
             <Route path='/animales/:id' element={<AnimalesId />} />
             <Route path='/editar-animales/:id' element={<EditarAnimal />} />
@@ -57,7 +57,7 @@ function App() {
             <Route path='/olvide-password' element={<OlvidePassword />} />
             <Route path='perfil' element={<Perfil />} />
             {/* <Route path="editar/:id" element={<UserId />} /> */}
-            <Route path='olvide-password/:token' element={<NuevoPassword />} />
+            <Route path='/olvide-password/:token' element={<NuevoPassword />} />
             <Route path='*' element={<NotFound />} />
             <Route path='/' element={<Home />} />
           </Routes>
