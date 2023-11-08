@@ -7,7 +7,7 @@ import FormRegisterRefugio from './pages/form-register-refugio/FormRegisterRefug
 import FormRegisterUser from './pages/form-register-usuario/FormRegisterUser'
 import { AuthProvider } from './context/AuthContext'
 import Dashboard from './pages/dashboard/Dashboar'
-import Mapa from './pages/mapa/Mapa'
+// import Mapa from './pages/mapa/Mapa'
 import { RefugioProvider } from './context/RefugioContext'
 import Confirmar from './pages/confirmar/Confirmar'
 import OlvidePassword from './pages/olvide-password/OlvidePassword'
@@ -15,7 +15,7 @@ import NuevoPassword from './pages/nuevo-password/NuevoPassword'
 import RegisterAnimal from './pages/register-animal/RegisterAnimal'
 import Animales from './pages/animales/Animales'
 import AnimalesId from './pages/animalesId/AnimalesId'
-import PrivateMap from './context/PrivateMap'
+// import PrivateMap from './context/PrivateMap'
 import Perfil from './pages/perfil/Perfil'
 // import { UserId } from "./pages/userId/UserId";
 import EditarAnimal from './pages/editarAnimal/EditarAnimal'
@@ -39,12 +39,12 @@ function App() {
             {/* logeado */}
             <Route path='/login' element={<Login />} />
             <Route path='/dashboard' element={<Dashboard />} />
-            <Route
+            {/* <Route
               path='/mapa'
               element={
                 <PrivateMap allowedRoles={['usuarios']} element={<Mapa />} />
               }
-            />
+            /> */}
             <Route path='confirmar/:token' element={<Confirmar />} />
             <Route path='/animales' element={<Animales />} />
             <Route path='/animales/:id' element={<AnimalesId />} />

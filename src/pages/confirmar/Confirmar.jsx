@@ -29,7 +29,7 @@ const Confirmar = () => {
       }
     }
     confirmarCuenta()
-  }, [token])
+  }, [])
   const { msg } = alerta
   return (
     <main className='h-screen bg-[#CCC4BB] grid'>
