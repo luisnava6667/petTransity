@@ -45,7 +45,7 @@ function App() {
                 <PrivateMap allowedRoles={['usuarios']} element={<Mapa />} />
               }
             />
-            <Route path='/confirmar/:token' element={<Confirmar />} />
+            <Route path='confirmar/:token' element={<Confirmar />} />
             <Route path='/animales' element={<Animales />} />
             <Route path='/animales/:id' element={<AnimalesId />} />
             <Route path='/editar-animales/:id' element={<EditarAnimal />} />
