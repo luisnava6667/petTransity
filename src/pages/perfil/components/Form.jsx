@@ -92,7 +92,7 @@ const Form = () => {
             Authorization: `Bearer ${token}`,
           },
         };
-        const res = await clienteAxios.post(
+        const res = await clienteAxios.put(
           `${auth.role}/update-info`,
           values,
           config
