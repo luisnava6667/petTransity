@@ -1,6 +1,6 @@
 import NavBarLogin from '../../components/NavBarLogin'
 import donar from '../../assets/donar.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFormik } from 'formik'
 import clienteAxios from '../../config/clienteAxios'
 import SwitchUsuarioRefugio from '../../components/SwitchUsuarioRefugio'
@@ -11,6 +11,9 @@ const OlvidePassword = () => {
   const handleButtonClick = (button) => {
     setUser(button)
   }
+   useEffect(() => {
+     document.title = 'Olvide Password'
+   }, [])
   const formik = useFormik({
     initialValues: {
       email: ''

@@ -58,12 +58,12 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/terms-and-conditions' element={<TyC />} />
             <Route path='/privacy-policy' element={<PoliticasDePrivacidad />} />
-            <Route path='*' element={<NotFound />} />
             <Route path='confirmar/:token' element={<Confirmar />} />
             <Route path='/olvide-password' element={<OlvidePassword />} />
             <Route path='perfil' element={<Perfil />} />
             {/* <Route path="editar/:id" element={<UserId />} /> */}
             <Route path='olvide-password/:token' element={<NuevoPassword />} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </RefugioProvider>
       </AuthProvider>

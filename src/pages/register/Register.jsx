@@ -4,8 +4,12 @@ import canUsuario from '../../assets/canUsuario.svg'
 import canRefugio from '../../assets/canRefugio.svg'
 import flecha from '../../assets/flechaNav.svg'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const Register = () => {
+  useEffect(() => {
+    document.title = 'Registro'
+  }, [])
   return (
     <main className='h-screen bg-[#ccc4bb] '>
       <NavBarLogin

@@ -5,7 +5,7 @@ import useAuth from '../hooks/useAuth'
 
 const CardUsuarioDashboard = () => {
   const { auth } = useAuth()
-  console.log(auth);
+  
   const {
     nombre,
     apellido,

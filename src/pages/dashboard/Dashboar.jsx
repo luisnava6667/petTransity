@@ -1,4 +1,5 @@
 // import CardGrandeDashboard from "../../components/CardGrandeDashboard";
+import { useEffect } from 'react'
 import CardInfoAnimales from '../../components/CardInfoAnimales'
 import CardUsuarioDashboard from '../../components/CardUsuarioDashboard'
 // import InformacionCasaDashboard from "../../components/InformacionCasaDashboard";
@@ -9,7 +10,9 @@ import useAuth from '../../hooks/useAuth'
 
 const Dashboard = () => {
   const { cargando } = useAuth()
-
+  useEffect(() => {
+    document.title = 'Dashboard'
+  }, [])
   return (
     <div className='h-screen bg-[#CCC4BB] flex'>
       <Sidebar />

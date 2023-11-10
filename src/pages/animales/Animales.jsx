@@ -12,8 +12,10 @@ const Animales = () => {
   const [cargando, setCargando] = useState(true)
   const [pet, setPet] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
-  const [petsMap, setPetsMap] = useState(pet)
+
   useEffect(() => {
+    document.title = 'Animales'
+
     const getPet = async () => {
       try {
         const config = {
@@ -37,7 +39,9 @@ const Animales = () => {
     }
     getPet()
   }, [role, token])
-
+   const filteredPets = pet.filter((animal) =>
+     animal.nombre.toLowerCase().startsWith(searchTerm.toLowerCase())
+   )
   // console.log(pet)
 
   // const filteredPets = pet.filter((animal) => {
@@ -88,7 +92,7 @@ const Animales = () => {
               </p>
             </div>
             <div className='grid sm:grid-cols-2 mx-10 sm:mx-5 mb-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 pr-8 pl-4'>
-              {pet?.map((pet) => (
+              {filteredPets?.map((pet) => (
                 <div
                   key={pet._id}
                   className='bg-white rounded-lg flex items-center justify-evenly w-56'>

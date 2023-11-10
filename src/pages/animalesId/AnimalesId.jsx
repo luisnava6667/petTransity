@@ -57,6 +57,8 @@ const AnimalesId = () => {
       }
     }
     getPet()
+
+    document.title = 'Animales'
   }, [id, token, role, pet])
 
   return (
@@ -78,7 +80,7 @@ const AnimalesId = () => {
                 <img
                   src={pet.avatar}
                   alt={pet.nombre}
-                  className='rounded-lg lg:h-full'
+                  className='rounded-lg lg:h-64'
                 />
               </div>
               <div className='bg-white rounded-lg mx-5 p-5 text-center lg:w-2/3 grid'>
@@ -179,7 +181,7 @@ const AnimalesId = () => {
                       <div className='grid justify-items-center mt-4'>
                         <Link
                           //redirige a una pestaña nueva:
-                                                                            
+                          target='_blank'
                           to={`https://wa.me/+5491131496472?text=Hola%20me%20gustaría%20saber%20más%20sobre%20${pet.nombre}`}
                           className='w-1/2 bg-[#FFB800] rounded-lg mx-5 text-white font-bold text-xl p-2 text-center '>
                           Contactar

@@ -4,7 +4,7 @@ import spinner from '../../assets/spinner.svg'
 
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import SwitchUsuarioRefugio from '../../components/SwitchUsuarioRefugio'
 import can from '../../assets/perro-usuario.svg'
 import { Link, useNavigate } from 'react-router-dom'
@@ -19,7 +19,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
 
   const token = localStorage.getItem('token')
-  console.log(token)
+  
   const navigate = useNavigate()
   if (token) {
     navigate('/dashboard')
@@ -27,6 +27,9 @@ const Login = () => {
   const handleButtonClick = (button) => {
     setUser(button)
   }
+   useEffect(() => {
+     document.title = 'Login'
+   }, [])
   const formik = useFormik({
     initialValues: {
       email: '',

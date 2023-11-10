@@ -1,4 +1,9 @@
+import { useEffect } from "react";
+
 const TyC = () => {
+   useEffect(() => {
+     document.title = 'Terminos y condiciones'
+   }, [])
   return (
     <div className="bg-[#E3DBD3] gap-24 h-screen flex flex-col items-center justify-center">
       <h1 className="text-3xl text-white font-bold">Términos y condiciones</h1>

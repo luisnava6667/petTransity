@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom'
 import can from '../../assets/perroTriste.png'
+import { useEffect } from 'react'
 const NotFound = () => {
   const token = localStorage.getItem('token')
+   useEffect(() => {
+     document.title = 'Pagina no encontrada'
+   }, [])
   return (
     <main className='bg-[#CCC4BB] h-screen p-10'>
       <div className='grid justify-center  justify-items-center gap-24'>

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import nosotros from '../../assets/nosotros.png'
 import refu from '../../assets/refu.jpg'
 import Carousel from '../../components/Carousel'
@@ -5,6 +6,9 @@ import Footer from '../../components/Footer'
 import NavLanding from '../../components/NavLanding'
 
 const Home = () => {
+   useEffect(() => {
+     document.title = 'PetTransity Home'
+   }, [])
   return (
     <main className='bg-[#CCC4BB] h-screen'>
       <NavLanding />

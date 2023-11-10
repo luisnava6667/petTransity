@@ -1,6 +1,4 @@
-// ! Todo: ver el filtrado de la busqueda de animales
 // ! Todo: mostrar ubicaciones en el mapa
-//  Todo: errores al cargar datos en el formulario refugios
 
 /*  <div className="flex">
       <Sidebar />

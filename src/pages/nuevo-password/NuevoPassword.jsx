@@ -12,6 +12,8 @@ const NuevoPassword = () => {
   const [alerta, setAlerta] = useState({})
   const [passwordModificado, setPasswordModificado] = useState(false)
   useEffect(() => {
+    document.title = 'Nuevo Password'
+
     const comprobarToken = async () => {
       try {
         const url = `/nuevo-password/${token}`

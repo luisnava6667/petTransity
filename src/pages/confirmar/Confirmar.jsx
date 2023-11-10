@@ -11,6 +11,8 @@ const Confirmar = () => {
   const { token } = useParams()
   console.log(token)
   useEffect(() => {
+    document.title = 'Confirmar Cuenta'
+
     const confirmarCuenta = async () => {
       try {
         const url = `confirm/${token}`

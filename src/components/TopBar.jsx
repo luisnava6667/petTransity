@@ -4,6 +4,7 @@ import huellaLogo from "../assets/huellaLogo.svg";
 import useAuth from "../hooks/useAuth";
 const TopBar = () => {
   const { auth } = useAuth();
+  console.log(auth);
 
   return (
     <div className="mx-auto w-full py-14 bg-[#503734] flex h-20  items-center  px-4 lg:px-8">
