@@ -1,7 +1,5 @@
 import nosotros from '../../assets/nosotros.png'
-import gatitos from '../../assets/gatitos.png'
 import refu from '../../assets/refu.jpg'
-import adoptando from '../../assets/adoptando.jpg'
 import Carousel from '../../components/Carousel'
 import Footer from '../../components/Footer'
 import NavLanding from '../../components/NavLanding'

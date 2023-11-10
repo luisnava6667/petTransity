@@ -88,7 +88,7 @@ const Animales = () => {
               </p>
             </div>
             <div className='grid sm:grid-cols-2 mx-10 sm:mx-5 mb-5 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-5 pr-8 pl-4'>
-              {petsMap?.map((pet) => (
+              {pet?.map((pet) => (
                 <div
                   key={pet._id}
                   className='bg-white rounded-lg flex items-center justify-evenly w-56'>

@@ -26,11 +26,12 @@ const FormAnimales = () => {
     peso: '',
     tamaño: '',
     estado: '',
-    avatar: '',
     personalidad: '',
     observaciones: '',
     salud: '',
-    fecha_ingreso: ''
+    fecha_ingreso: '',
+    avatar:
+      'https://images.vexels.com/media/users/3/201898/isolated/preview/55be9a1a39abff39bc3596e8ddd224cd-trazo-de-huella-de-perro-azul.png'
   })
   const params = useParams()
   const required = 'Este campo es requerido'
@@ -209,7 +210,7 @@ const FormAnimales = () => {
           handleChange={handleChange}
           handleBlur={handleBlur}
           value={formik.values.fecha_ingreso}
-          placeholder='Fecha de ingreso'
+          placeholder='Fecha de ingreso Ej: 12/12/2022'
           touched={touched}
           errors={errors}
           nameSrc={name}

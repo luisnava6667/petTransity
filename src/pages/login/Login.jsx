@@ -18,7 +18,12 @@ const Login = () => {
   const [textVisibility, setTextVisibility] = useState('flex')
   const [showPassword, setShowPassword] = useState(false)
 
+  const token = localStorage.getItem('token')
+  console.log(token)
   const navigate = useNavigate()
+  if (token) {
+    navigate('/dashboard')
+  }
   const handleButtonClick = (button) => {
     setUser(button)
   }
@@ -66,9 +71,9 @@ const Login = () => {
       handleSubmit()
     }
   }
-    const togglePasswordVisibility = () => {
-      setShowPassword(!showPassword)
-    }
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
+  }
   const { handleSubmit, handleChange, handleBlur, touched, errors } = formik
 
   return (
@@ -154,11 +159,11 @@ const Login = () => {
                         : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
                     } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`} // Añadido pr-12 (padding-right) para dejar espacio para el botón
                   />
-                  <button
+                  <p
                     onClick={togglePasswordVisibility}
-                    className='absolute right-3 top-1/4 transform -translate-y-2/4 pb-4'>
+                    className='absolute right-3 top-1/4 transform -translate-y-2/4 cursor-pointer'>
                     {showPassword ? '👁️' : '👁️‍🗨️'}
-                  </button>
+                  </p>
 
                   {touched.password && errors.password && (
                     <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm'>

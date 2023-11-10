@@ -172,7 +172,7 @@ const FormRegister = () => {
           value={formik.values.nombre}
           placeholder='Nombre'
           touched={touched}
-          errors={errors.nombre}
+          errors={errors}
           nameSrc={name}
           disabled={false}
         />
@@ -320,7 +320,7 @@ const FormRegister = () => {
             value={formik.values.piso}
             placeholder='Piso'
             touched={touched}
-            errors={errors.piso}
+            errors={errors}
             nameSrc={name}
             disabled={false}
           />

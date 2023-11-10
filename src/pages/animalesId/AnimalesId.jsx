@@ -11,7 +11,6 @@ const AnimalesId = () => {
   const { eliminarAnimal, changeState } = useRefugio()
   const [pet, setPet] = useState([])
   const navigate = useNavigate()
-  console.log(pet)
   const [refugio, setRefugio] = useState([])
   const [cargando, setCargando] = useState(true)
 
