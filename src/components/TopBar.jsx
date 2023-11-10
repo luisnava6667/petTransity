@@ -10,13 +10,13 @@ const TopBar = () => {
     <div className="mx-auto w-full py-14 bg-[#503734] flex h-20  items-center  px-4 lg:px-8">
       <img className="md:hidden" src={huellaLogo} alt="" />
       <div className="flex flex-1 items-center justify-end md:justify-between">
-        <div className="flex gap-4  md:gap-2 lg:gap-4 px-auto">
+        <div className="flex flex-col mr-3 md:gap-2  px-auto">
           <Link className="" to="/dashboard">
             <img
               className=""
               width={50}
               height={50}
-              alt="usuarioFake"
+              alt="imagen de usuario"
               src={auth?.avatar}
             />
           </Link>
@@ -52,24 +52,6 @@ const TopBar = () => {
               </Link>
             </div>
           )}
-
-          {/*    <button className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden">
-            <span className="sr-only">Toggle menu</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button> */}
         </div>
       </div>
     </div>

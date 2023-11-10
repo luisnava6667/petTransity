@@ -9,7 +9,7 @@ const NavLanding = () => {
     display === "hidden" ? setDisplay("block") : setDisplay("hidden");
   };
   return (
-    <div className="grid md:py-4 md:px-11 md:gap-16 bg-[#6F4C48]   justify-items-center md:flex md:justify-between">
+    <div className="grid absolute top-0 z-20 w-full md:py-4 md:px-11 md:gap-16 bg-[#6f4c48] bg-opacity-95   justify-items-center md:flex md:justify-between shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)] drop-shadow-xl ">
       <Link className="block  md:w-1/2" to="/">
         <img
           className="md:w-72 md:h-[5.6rem] lg:w-[26.7rem] lg:h-[5.6rem]"
@@ -20,21 +20,21 @@ const NavLanding = () => {
       <div className=" items-center gap-4 flex justify-end my-5 md:my-0 text-center md:w-1/2">
         <Link
           to="/login"
-          className="flex  justify-center text-center items-center rounded-md bg-[#E59D1C] px-5  text-xl font-bold text-white transition md:w-fit h-14  shadow-md"
+          className="flex  justify-center text-center items-center underline underline-offset-4 mx-3  text-xl font-bold text-white transition md:w-fit h-14  "
         >
-          Login
+          Ingresar
         </Link>
-        <Link
+        {/* <Link
           to="/donar"
           className="flex  justify-evenly text-center items-center rounded-md bg-[#E59D1C] px-5 py-2.5 text-xl font-bold text-white transition md:w-44 h-14  shadow-md"
         >
           <img className="" width={20} height={20} alt="logo" src={donar} />
           Donar
-        </Link>
+        </Link> */}
         <div className="relative inline-block  ">
           <button
             onClick={handleDisplay}
-            className="relative z-10 flex flex-1 justify-center items-center text-white text-xl font-bold  w-44 h-14  bg-[#E59D1C] border border-transparent rounded-md shadow-md dark:text-white dark:bg-gray-800 focus:outline-none  "
+            className="relative z-10 flex flex-1 justify-center items-center pl-2 text-white text-xl font-bold  w-36 h-14  bg-[#E59D1C] border border-transparent rounded-md shadow-md dark:text-white dark:bg-gray-800 focus:outline-none  "
           >
             <span className="mx-1">Registrarse</span>
             <svg
