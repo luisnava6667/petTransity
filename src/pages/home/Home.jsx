@@ -1,26 +1,30 @@
-import nosotros from "../../assets/nosotros.png";
-import gatitos from "../../assets/gatitos.png";
-import refu from "../../assets/refu.jpg";
-import adoptando from "../../assets/adoptando.jpg";
-import Carousel from "../../components/Carousel";
-import Footer from "../../components/Footer";
-import NavLanding from "../../components/NavLanding";
+import nosotros from '../../assets/nosotros.png'
+import gatitos from '../../assets/gatitos.png'
+import refu from '../../assets/refu.jpg'
+import adoptando from '../../assets/adoptando.jpg'
+import Carousel from '../../components/Carousel'
+import Footer from '../../components/Footer'
+import NavLanding from '../../components/NavLanding'
 
 const Home = () => {
   return (
-    <main className="bg-[#CCC4BB] h-screen">
+    <main className='bg-[#CCC4BB] h-screen'>
       <NavLanding />
       <Carousel />
-      <div id="nosotros" className="bg-[#CCC4BB]">
-        <div className="flex flex-col items-center justify-center h-full ">
-          <div className="grid gap-6 px-5 md:px-28">
-            <div className="flex gap-5 text-2xl">
-              <img src={nosotros} className="w-64 md:w-1/3 rounded-xl" alt="" />
+      <div id='nosotros' className='bg-[#CCC4BB] pb-5'>
+        <div className='flex flex-col items-center justify-center h-full '>
+          <div className='grid gap-6 px-5 md:px-28'>
+            <div className='flex gap-5 text-2xl items-center'>
+              <img
+                src={nosotros}
+                className='w-64 md:w-1/3  rounded-xl'
+                alt=''
+              />
               <section>
-                <h2 className="font-bold text-4xl text-gray-700 flex">
+                <h2 className='font-bold text-4xl text-gray-700 flex'>
                   Misión
                 </h2>
-                <p>
+                <p className='text-sm sm:text-lg md:text-xl xl:text-3xl'>
                   En Pet Transity estamos comprometidos con promover mediante
                   diferentes actividades la adopción responsable, la conciencia
                   de esterilizar y recuperar animales en condición de maltrato y
@@ -29,18 +33,18 @@ const Home = () => {
                 </p>
               </section>
             </div>
-            <div className="flex gap-5 text-2xl">
-              <section>
-                <h2 className="font-bold text-4xl text-gray-700 flex">
+            <div className='flex gap-5 text-2xl items-center'>
+              <section className=''>
+                <h2 className='font-bold text-2xl lg:text-4xl xl:text-5xl text-gray-700 flex'>
                   Visión
                 </h2>
-                <p>
+                <p className='text-sm sm:text-lg md:text-xl xl:text-3xl'>
                   En Pet Transity, aspiramos a construir un mundo en el que cada
                   mascota, independientemente de su especie, tenga la
                   oportunidad de experimentar la compasión, la seguridad y el
                   respeto que merece. Nuestra visión es ser un faro de esperanza
                   y refugio para animales desamparados, donde cada vida importa.
-                  Trabajamos incansablemente para brindar cuidado, amor y un
+                  {/* Trabajamos incansablemente para brindar cuidado, amor y un
                   hogar temporal a aquellos que han sido abandonados o
                   maltratados, con la creencia de que cada uno de ellos merece
                   una segunda oportunidad. Además, nos esforzamos por fomentar
@@ -49,11 +53,15 @@ const Home = () => {
                   y animales. Nuestra visión es un mundo en el que cada animal
                   pueda encontrar su lugar en un hogar lleno de amor y respeto,
                   y trabajamos todos los días para hacer de este sueño una
-                  realidad.
+                  realidad. */}
                 </p>
               </section>
 
-              <img src={refu} className="w-64 md:w-1/3 rounded-xl" alt="refu" />
+              <img
+                src={refu}
+                className='w-64 md:w-1/3  rounded-xl'
+                alt='refu'
+              />
             </div>
           </div>
         </div>
@@ -61,7 +69,7 @@ const Home = () => {
 
       {/* requisitos de adopcion */}
 
-      <div id="requisitos" className="bg-[#E3DBD3]">
+      {/* <div id="requisitos" className="bg-[#E3DBD3]">
         <div className="flex flex-col items-center justify-center h-full pb-4 scroll-smooth">
           <h1 className="text-4xl font-bold text-center text-gray-600 py-12">
             Requisitos para adoptar
@@ -126,10 +134,10 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <Footer />
     </main>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

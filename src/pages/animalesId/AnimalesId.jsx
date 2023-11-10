@@ -179,6 +179,8 @@ const AnimalesId = () => {
                       </p>
                       <div className='grid justify-items-center mt-4'>
                         <Link
+                          //redirige a una pestaña nueva:
+                                                                            
                           to={`https://wa.me/+5491131496472?text=Hola%20me%20gustaría%20saber%20más%20sobre%20${pet.nombre}`}
                           className='w-1/2 bg-[#FFB800] rounded-lg mx-5 text-white font-bold text-xl p-2 text-center '>
                           Contactar

@@ -84,14 +84,14 @@ const CardInfoAnimales = () => {
             <div className='grid text-center gap-10 mt-6'>
               <h3 className='text-center font-bold text-xl '>
                 {auth.pets === 0
-                  ? 'No Tienes Macosta agregadas'
-                  : `Mascotas agregadas: ${pets?.length}`}
+                  ? 'Transita una mascota!'
+                  : `Estas Transitando un total de: ${pets?.length}`}
               </h3>
-                <Link to='/register-animales'>
-                  <button className='bg-[#E59D1C] text-white uppercase rounded-lg px-4 py-2 font-bold text-xl mr-10 '>
-                    Agregar
-                  </button>
-                </Link>
+              <Link to='/animales'>
+                <button className='bg-[#E59D1C] text-white uppercase rounded-lg px-4 py-2 font-bold text-xl mr-10 '>
+                  Transita una mascota!
+                </button>
+              </Link>
               <div className='flex w-full'>
                 {/* <Link to='/register-animales'>
                   <button className='bg-[#E59D1C] text-white uppercase rounded-lg px-4 py-2 font-bold text-xl mr-10 '>

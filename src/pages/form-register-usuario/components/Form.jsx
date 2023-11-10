@@ -12,9 +12,9 @@ import InputForm from "../../../components/InputForm";
 
 const Form = () => {
   const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
-
+  
+  const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -131,10 +131,7 @@ const Form = () => {
     const data = await response.json();
     formik.setFieldValue("avatar", data.secure_url);
   };
-
-  console.log(formik.values.mascotas);
   const mascota = formik.values.mascotas;
-  console.log(mascota);
   const { handleSubmit, handleChange, handleBlur, touched, errors } = formik;
   return (
     <div className="flex flex-col items-center max-h-screen  overflow-y-auto bg-[#CCC4BB] pb-5">

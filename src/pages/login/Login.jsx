@@ -16,6 +16,8 @@ const Login = () => {
   const [error, setError] = useState(null)
   const [spinnerVisibility, setSpinnerVisibility] = useState('hidden')
   const [textVisibility, setTextVisibility] = useState('flex')
+  const [showPassword, setShowPassword] = useState(false)
+
   const navigate = useNavigate()
   const handleButtonClick = (button) => {
     setUser(button)
@@ -34,6 +36,7 @@ const Login = () => {
         .min(3, 'La contraseña debe tener al menos 3 caracteres')
     }),
     onSubmit: async (values) => {
+      console.log(values)
       try {
         setTextVisibility('hidden')
         setSpinnerVisibility('flex')
@@ -42,6 +45,8 @@ const Login = () => {
         localStorage.setItem('role', data.role)
         navigate('/dashboard')
       } catch (error) {
+        console.log(error.response.data.msg)
+
         setTextVisibility('flex')
         setSpinnerVisibility('hidden')
         Swal.fire({
@@ -55,13 +60,15 @@ const Login = () => {
       }
     }
   })
-
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault()
       handleSubmit()
     }
   }
+    const togglePasswordVisibility = () => {
+      setShowPassword(!showPassword)
+    }
   const { handleSubmit, handleChange, handleBlur, touched, errors } = formik
 
   return (
@@ -133,23 +140,29 @@ const Login = () => {
                     Contraseña
                   </label>
                 </div>
-                <div className='mt-2'>
+                <div className='mt-2 relative '>
                   <input
                     id='password'
                     name='password'
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    type='password'
+                    type={showPassword ? 'text' : 'password'}
                     placeholder='**********'
                     className={`block w-[25rem] h-12 p-2 rounded-md py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
                       touched.password && errors.password
                         ? 'ring-red-500  focus:ring-red-500'
                         : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
-                    } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}
+                    } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`} // Añadido pr-12 (padding-right) para dejar espacio para el botón
                   />
+                  <button
+                    onClick={togglePasswordVisibility}
+                    className='absolute right-3 top-1/4 transform -translate-y-2/4 pb-4'>
+                    {showPassword ? '👁️' : '👁️‍🗨️'}
+                  </button>
+
                   {touched.password && errors.password && (
                     <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm'>
-                      {errors.email}
+                      {errors.password}
                     </div>
                   )}
                   <div className='text-sm mt-2 flex justify-end'>
@@ -170,7 +183,7 @@ const Login = () => {
                   <p className={`${textVisibility}`}>Ingresar</p>
                 </button>
                 <Link
-                  to='/registro'
+                  to='/register'
                   className='flex mt-4 w-96 h-14 text-center items-center  border-2 border-[#4F3300] justify-center rounded-md bg-[#ccc4bb] px-3 py-1.5 text-sm lg:text-2xl font-semibold leading-6 text-[#4F3300]  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
                   Registrarse
                 </Link>

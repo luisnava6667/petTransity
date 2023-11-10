@@ -1,4 +1,4 @@
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import NotFound from "./pages/404/NotFound";
 import Home from "./pages/home/Home";
 import Donar from "./pages/donar/Donar";
@@ -20,12 +20,13 @@ import Perfil from "./pages/perfil/Perfil";
 import EditarAnimal from "./pages/editarAnimal/EditarAnimal";
 import TyC from "./pages/TyC/TyC";
 import PoliticasDePrivacidad from "./pages/PoliticasDePrivacidad/PoliticasDePrivacidad";
+import Register from "./pages/register/Register";
 
 function App() {
   const role = localStorage.getItem("role");
-  console.log(role);
+
   return (
-    <HashRouter>
+    <BrowserRouter>
       <AuthProvider>
         <RefugioProvider>
           <Routes>
@@ -33,6 +34,7 @@ function App() {
             <Route path="/register-refugio" element={<FormRegisterRefugio />} />
             <Route path="/register-usuario" element={<FormRegisterUser />} />
             <Route path="/register-animales" element={<RegisterAnimal />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/donar" element={<Donar />} />
             {/* registros */}
             {/* logeado */}
@@ -60,7 +62,7 @@ function App() {
           </Routes>
         </RefugioProvider>
       </AuthProvider>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

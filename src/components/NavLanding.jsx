@@ -17,20 +17,6 @@ const NavLanding = () => {
           src={logoWhite}
         />
       </Link>
-      <div className="flex justify-between w-72  gap-2 items-center">
-        <a
-          href="#nosotros"
-          className="flex  text-center items-center text-xl font-bold text-white   h-14 scroll-smooth"
-        >
-          Nosotros
-        </a>
-        <a
-          href="#requisitos"
-          className="flex  text-center items-center text-xl font-bold text-white   h-14  "
-        >
-          Adoptar
-        </a>
-      </div>
       <div className=" items-center gap-4 flex justify-end my-5 md:my-0 text-center md:w-1/2">
         <Link
           to="/login"

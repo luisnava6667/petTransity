@@ -1,3 +1,6 @@
+// ! Todo: ver el filtrado de la busqueda de animales
+
+
 /*  <div className="flex">
       <Sidebar />
       <div className="flex flex-col w-full bg-[#CCC4BB]">
