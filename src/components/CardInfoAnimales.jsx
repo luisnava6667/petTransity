@@ -10,6 +10,7 @@ import useAuth from '../hooks/useAuth'
 const CardInfoAnimales = () => {
   const { auth } = useAuth()
   const { pets } = auth
+  console.log(pets?.length)
   // console.log(auth)
   const token = localStorage.getItem('token')
   const role = localStorage.getItem('role')
@@ -24,11 +25,13 @@ const CardInfoAnimales = () => {
             'Authorization': `Bearer ${token}`
           }
         }
-        const { data } = await clienteAxios.get(
-          `/animales/view/${pets}`,
-          config
-        )
-        setPet(data)
+        if (role === 'usuarios') {
+          const { data } = await clienteAxios.get(
+            `/animales/view/${pets}`,
+            config
+          )
+          setPet(data)
+        }
       } catch (error) {
         console.log(error)
       }
@@ -53,7 +56,7 @@ const CardInfoAnimales = () => {
                 : `Tienes un total de ${pets?.length} Mascotas`}
             </h3>
             <Link to='/register-animales'>
-              <button className='bg-[#E59D1C] text-white uppercase rounded-lg px-4 py-2 font-bold text-xl mr-10'>
+              <button className='bg-[#E59D1C] text-white uppercase rounded-lg px-4 py-2 font-bold text-xl'>
                 Agregar
               </button>
             </Link>
@@ -67,15 +70,22 @@ const CardInfoAnimales = () => {
             </h2>
             <div className='grid text-center gap-10 mt-6'>
               <h3 className='text-center font-bold text-xl '>
-                {auth.pets === 0
-                  ? 'Transita una mascota!'
-                  : `Estas Transitando a ${pet.pet?.nombre}`}
+                {pets?.length === 0 ? (
+                  <div className='grid items-center gap-5 '>
+                    <p>Transita una mascota!</p>
+                    <Link to='/animales'>
+                      <button className='bg-[#E59D1C] text-white uppercase rounded-lg px-4 py-2 font-bold text-xl  '>
+                        Transita una mascota!
+                      </button>
+                    </Link>
+                  </div>
+                ) : (
+                  <p className='items-center'>
+                    Estas Transitando a {pet.pet?.nombre}
+                  </p>
+                )}
               </h3>
-              <Link to='/animales'>
-                <button className='bg-[#E59D1C] text-white uppercase rounded-lg px-4 py-2 font-bold text-xl mr-10 '>
-                  Transita una mascota!
-                </button>
-              </Link>
+
               <div className='flex w-full'>
                 {/* <Link to='/register-animales'>
                   <button className='bg-[#E59D1C] text-white uppercase rounded-lg px-4 py-2 font-bold text-xl mr-10 '>

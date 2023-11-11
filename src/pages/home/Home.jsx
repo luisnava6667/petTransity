@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   useEffect(() => {
     document.title = "PetTransity Home";
+    localStorage.clear()
   }, []);
   return (
     <main
