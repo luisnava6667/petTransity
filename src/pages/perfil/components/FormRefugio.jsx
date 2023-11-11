@@ -19,6 +19,7 @@ import Swal from "sweetalert2";
 
 const FormRefugio = () => {
   const { auth } = useAuth();
+  console.log(auth);
   const { id } = useParams();
   const [error, setError] = useState(null);
   const [cargando, setCargando] = useState(true);
@@ -147,7 +148,7 @@ const FormRefugio = () => {
           <div className="w-2/2 flex flex-col items-center mt-4">
             <img
               className="rounded-[45px] w-40 h-40"
-              src={auth.avatar}
+              src={auth.avatar }
               alt=""
             />
           </div>

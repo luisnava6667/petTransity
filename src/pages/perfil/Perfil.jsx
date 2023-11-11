@@ -21,10 +21,6 @@ const Perfil = () => {
 
         <div className="flex flex-col lg:flex-row gap-6 justify-center "></div>
       </div>
-      {/* <div
-              className={`${spinnerVisibility}  bg-[#CCC4BB] w-full flex justify-center min-h-screen`}>
-              <img src={spinner} />
-            </div> */}
     </main>
   );
 };

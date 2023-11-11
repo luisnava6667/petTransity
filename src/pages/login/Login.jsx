@@ -177,7 +177,7 @@ const Login = () => {
                     <Link
                       to='/olvide-password'
                       className='font-semibold underline text-[#6F4C48] hover:text-indigo-500'>
-                      Olvidaste su contraseña?
+                      Olvidaste tu contraseña?
                     </Link>
                   </div>
                 </div>
