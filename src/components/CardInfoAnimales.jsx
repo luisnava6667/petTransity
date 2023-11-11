@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import clienteAxios from '../config/clienteAxios'
@@ -9,7 +10,7 @@ import useAuth from '../hooks/useAuth'
 const CardInfoAnimales = () => {
   const { auth } = useAuth()
   const { pets } = auth
-  console.log(pets?.length)
+  console.log(auth)
   const token = localStorage.getItem('token')
   const role = localStorage.getItem('role')
   const [cargando, setCargando] = useState(false)
@@ -37,22 +38,6 @@ const CardInfoAnimales = () => {
     }
   }, [role, token])
 
-  // const eliminarAnimal = async () => {
-  //   try {
-  //     const config = {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Authorization': `Bearer ${token}`
-  //       }
-  //     }
-  //     await clienteAxios.post(`/eliminar-animal/${pet._id}`, config)
-  //     const { data } = await clienteAxios.get('/animales', config)
-  //     setPet(data)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
   return (
     <div className='flex w-full  sm:w-[46rem] h-80 mt-7  bg-[#E6E2DD] rounded-2xl items-center justify-center'>
       {cargando ? (
@@ -64,9 +49,9 @@ const CardInfoAnimales = () => {
           </h2>
           <div className='grid text-center gap-10 mt-6'>
             <h3 className='text-center font-bold text-xl '>
-              {pet?.length === 0
+              {pets?.length === 0
                 ? 'No Tienes Macosta en tu refugio'
-                : `Tienes un total de ${pets.length} Mascotas`}
+                : `Tienes un total de ${pets?.length} Mascotas`}
             </h3>
             <Link to='/register-animales'>
               <button className='bg-[#E59D1C] text-white uppercase rounded-lg px-4 py-2 font-bold text-xl mr-10'>

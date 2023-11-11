@@ -12,10 +12,9 @@ const InputForm = ({
   touched,
   errors,
   disabled = true,
-  width='full',
+  width = 'full',
   required = true
 }) => {
-  console.log(name);
   return (
     <div className={`w-${width}`}>
       <div className='flex gap-1 my-1'>
@@ -51,6 +50,6 @@ const InputForm = ({
       )}
     </div>
   )
-};
+}
 
-export default InputForm;
+export default InputForm

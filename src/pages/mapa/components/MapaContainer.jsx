@@ -1,21 +1,14 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import {
-  GoogleMap,
-  Marker,
-  MarkerF,
-  OverlayView,
-  OverlayViewF
-} from '@react-google-maps/api'
+import { GoogleMap, MarkerF } from '@react-google-maps/api'
 import useRefugio from '../../../hooks/useRefugio'
 
-export const MapaContainer = () => {
+export const MapaContainer = ({ refu }) => {
+  console.log(refu)
   const [locations, setLocations] = useState([])
-  // const [mapVisibility, setMapVisibility] = useState('hidden')
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
   const [mapHeight, setMapHeight] = useState('50rem')
-  const [selectedMarker, setSelectedMarker] = useState(null)
-  console.log(selectedMarker)
+
   const { refugios } = useRefugio()
   const apiKey = `${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}`
   const direccion = refugios.map(
@@ -29,8 +22,9 @@ export const MapaContainer = () => {
           const response = await axios.get(
             `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`
           )
+          const addresName = response.data.results[0].formatted_address
           const location = response.data.results[0].geometry.location
-          return location
+          return { location, addresName }
         })
         const resolvedLocations = await Promise.all(promises)
         setLocations([...locations, ...resolvedLocations])
@@ -61,9 +55,11 @@ export const MapaContainer = () => {
       {locations.map((location, index) => (
         <MarkerF
           key={index}
-          position={location}
-          title={'hola'}
-            
+          position={location.location} // Use location.location instead of location[0]
+          //
+          title={`Refugio ubicado en: \n ${location.addresName}` || 'Refugio'}
+          subtitle={'asdadasd'}
+          additionalInfo={'aksdnlakds'}
         />
       ))}
     </GoogleMap>

@@ -114,7 +114,7 @@ const OlvidePassword = () => {
 
             <Link
               className='block text-center my-5 text-slate-500 uppercase text-sm'
-              to='/registrar'>
+              to='/register'>
               ¿No tienes una cuenta? Regístrate
             </Link>
           </div>

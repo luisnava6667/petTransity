@@ -6,10 +6,15 @@ import TopBar from '../../components/TopBar'
 import useRefugio from '../../hooks/useRefugio'
 import Spinner from '../../components/Spinner'
 import Swal from 'sweetalert2'
+import InputForm from '../../components/InputForm'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import name from '../../assets/name.svg'
 
 const AnimalesId = () => {
-  const { eliminarAnimal, changeState } = useRefugio()
+  const { eliminarAnimal, changeState, asignedUser } = useRefugio()
   const [pet, setPet] = useState([])
+  
   const navigate = useNavigate()
   const [refugio, setRefugio] = useState([])
   const [cargando, setCargando] = useState(true)
@@ -60,6 +65,21 @@ const AnimalesId = () => {
 
     document.title = 'Animales'
   }, [id, token, role, pet])
+
+  const required = 'Este campo es requerido'
+  const formik = useFormik({
+    initialValues: {
+      email: ''
+    },
+    validationSchema: Yup.object({
+      email: Yup.string().email('Formato de email invalido').required(required)
+    }),
+
+    onSubmit: async (values) => {
+      asignedUser(values, id)
+    }
+  })
+  const { handleSubmit, handleChange, handleBlur, touched, errors } = formik
 
   return (
     <main className='h-screen bg-[#CCC4BB] flex'>
@@ -149,7 +169,7 @@ const AnimalesId = () => {
               </div>
             </div>
             <div className='gap-5 md:w-3/4 w-full xl:px-28 my-5'>
-              {role === 'usuarios' && (
+              {role === 'usuarios' ? (
                 <div className='bg-white rounded-lg p-5 mx-5 grid justify-items-center '>
                   <h3 className='text-center text-2xl md:text-5xl p-5 font-bold text-[#503734]'>
                     Refugio
@@ -189,6 +209,41 @@ const AnimalesId = () => {
                       </div>
                     </div>
                   </div>
+                </div>
+              ) : (
+                <div className='bg-white rounded-lg p-5 mx-5 grid justify-items-center '>
+                  {pet.estado ? (
+                    <form onSubmit={handleSubmit}>
+                      <h3 className='text-center text-2xl p-5 font-bold text-[#503734]'>
+                        Ingresa el email del usuario va a ser el transito
+                      </h3>
+                      <InputForm
+                        label='Correo'
+                        name='email'
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        value={formik.values.email}
+                        placeholder='Correo'
+                        touched={touched}
+                        errors={errors}
+                        nameSrc={name}
+                        disabled={false}
+                      />
+                      <div className=' flex justify-end items-center '>
+                        <button
+                          type='submit'
+                          className='flex mt-4 w-full h-14 text-center items-center  border-2 border-[#4F3300] justify-center rounded-2xl bg-[#E59D1C] px-3 py-1.5 text-sm lg:text-2xl font-semibold leading-6 text-[#4F3300]  shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
+                          Enviar
+                        </button>
+                      </div>
+                    </form>
+                  ) : (
+                    <div className='flex justify-center items-center'>
+                      <h3 className='text-center text-2xl p-5 font-bold text-[#503734]'>
+                        El animal esta desactivado o esta en transito
+                      </h3>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

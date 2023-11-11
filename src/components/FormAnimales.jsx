@@ -57,26 +57,27 @@ const FormAnimales = () => {
       )
     }),
     onSubmit: async (values) => {
-      console.log(values)
       submitAnimal(values)
     }
   })
   useEffect(() => {
-    const getAnimal = async () => {
-      try {
-        const { data } = await clienteAxios.get(
-          `/animales/myPet/${params.id}`,
-          config(token)
-        )
-        setId(params.id)
-        formik.setValues(data)
-        setCargando(false)
-      } catch (error) {
-        console.log(error)
+    if (params.id) {
+      const getAnimal = async () => {
+        try {
+          const { data } = await clienteAxios.get(
+            `/animales/myPet/${params.id}`,
+            config(token)
+          )
+          setId(params.id)
+          formik.setValues(data)
+          setCargando(false)
+        } catch (error) {
+          console.log(error)
+        }
       }
+      getAnimal()
     }
-    getAnimal()
-  }, [params, token])
+  }, [])
   const handleUpload = async (event) => {
     const file = event.target.files[0]
     const formData = new FormData()

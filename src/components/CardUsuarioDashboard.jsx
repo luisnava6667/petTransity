@@ -2,7 +2,7 @@ import ubicacionCard from '../assets/ubicacionCard.svg'
 import telCard from '../assets/telCard.svg'
 import huellaCard from '../assets/huellaCard.svg'
 import useAuth from '../hooks/useAuth'
-
+import huellaLogo from '../assets/huellaLogo.svg'
 const CardUsuarioDashboard = () => {
   const { auth } = useAuth()
   
@@ -24,13 +24,23 @@ const CardUsuarioDashboard = () => {
     <>
       <div className='relative flex flex-col mt-7 '>
         <div className='flex justify-center w-72 h-20 bg-[#6F4C48] rounded-tl-2xl rounded-tr-2xl '>
-          <img
-            className='absolute mt-6  rounded-full'
-            alt='1'
-            src={avatar}
-            width={91}
-            height={91}
-          />
+          {avatar ? (
+            <img
+              className=''
+              width={50}
+              height={50}
+              alt='imagen de usuario'
+              src={avatar}
+            />
+          ) : (
+            <img
+              className=''
+              width={50}
+              height={50}
+              alt='imagen de usuario'
+              src={huellaLogo}
+            />
+          )}
         </div>
 
         <div className='flex flex-col w-72 h-60 bg-[#E6E2DD] rounded-bl-2xl rounded-br-2xl items-center justify-center'>
@@ -68,7 +78,6 @@ const CardUsuarioDashboard = () => {
               <p className='text-base font-medium'>
                 {pets?.length === 0 ? 'No posee mascotas' : 'Posee mascotas'}
               </p>
-                
             </div>
           )}
         </div>

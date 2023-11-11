@@ -150,6 +150,29 @@ const RefugioProvider = ({ children }) => {
       console.log(error)
     }
   }
+  const asignedUser = async (user, id) => {
+    console.log(id);
+    if (!token) return
+    try {
+      await clienteAxios.post(`animales/asigned/${id}`, user, config)
+      Swal.fire({
+        icon: 'success',
+        title: 'Usuario Asignado Correctamente',
+        showConfirmButton: false,
+        onBeforeOpen: () => {
+          Swal.showLoading()
+        }
+      })
+      setTimeout(() => {
+        navigate('/animales')
+      }, 3000)
+      setTimeout(() => {
+        Swal.close()
+      }, 4000)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <RefugioContext.Provider
       value={{
@@ -158,7 +181,8 @@ const RefugioProvider = ({ children }) => {
         eliminarAnimal,
         editarAnimal,
         nuevoAnimal,
-        changeState
+        changeState,
+        asignedUser
       }}>
       {children}
     </RefugioContext.Provider>

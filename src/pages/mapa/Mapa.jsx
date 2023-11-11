@@ -76,7 +76,7 @@ const Mapa = () => {
             </div>
           </div>
           <div className="w-full h-[50rem] md:w-full md:h-full">
-            <MapaContainer />
+            <MapaContainer refu={refugios}/>
           </div>
           <div className="lg:hidden mx-3 overflow-auto gap-5">
             {refugios.map((refugio) => (
