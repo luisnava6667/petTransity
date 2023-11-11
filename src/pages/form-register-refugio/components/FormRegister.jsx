@@ -78,7 +78,7 @@ const FormRegister = () => {
     }),
 
     onSubmit: async (values) => {
-      console.log(values)
+      // console.log(values)
       try {
         const { data } = await clienteAxios.post('refugio', values)
         Swal.fire({

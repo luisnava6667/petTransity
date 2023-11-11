@@ -19,7 +19,7 @@ import Swal from "sweetalert2";
 
 const FormRefugio = () => {
   const { auth } = useAuth();
-  console.log(auth);
+  // console.log(auth);
   const { id } = useParams();
   const [error, setError] = useState(null);
   const [cargando, setCargando] = useState(true);
@@ -81,7 +81,7 @@ const FormRefugio = () => {
     }),
 
     onSubmit: async (values) => {
-      console.log(values);
+      // console.log(values);
       try {
         setTextVisibility("hidden");
         setSpinnerVisibility("flex");

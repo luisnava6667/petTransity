@@ -79,7 +79,7 @@ const Form = () => {
     }),
 
     onSubmit: async (values) => {
-      console.log(values)
+      // console.log(values)
       try {
         const { data } = await clienteAxios.post('usuarios', values)
         Swal.fire({

@@ -10,7 +10,7 @@ import useAuth from '../hooks/useAuth'
 const CardInfoAnimales = () => {
   const { auth } = useAuth()
   const { pets } = auth
-  console.log(auth)
+  // console.log(auth)
   const token = localStorage.getItem('token')
   const role = localStorage.getItem('role')
   const [cargando, setCargando] = useState(false)

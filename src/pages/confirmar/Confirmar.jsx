@@ -9,7 +9,7 @@ const Confirmar = () => {
   const [alerta, setAlerta] = useState({})
   const [cuentaConfirmada, setCuentaConfirmada] = useState(false)
   const { token } = useParams()
-  console.log(token)
+  // console.log(token)
   useEffect(() => {
     document.title = 'Confirmar Cuenta'
 

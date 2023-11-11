@@ -4,7 +4,7 @@ import { GoogleMap, MarkerF } from '@react-google-maps/api'
 import useRefugio from '../../../hooks/useRefugio'
 
 export const MapaContainer = ({ refu }) => {
-  console.log(refu)
+  // console.log(refu)
   const [locations, setLocations] = useState([])
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
   const [mapHeight, setMapHeight] = useState('50rem')

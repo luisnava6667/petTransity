@@ -44,7 +44,7 @@ const Login = () => {
         .min(3, 'La contraseña debe tener al menos 3 caracteres')
     }),
     onSubmit: async (values) => {
-      console.log(values)
+      // console.log(values)
       try {
         setTextVisibility('hidden')
         setSpinnerVisibility('flex')

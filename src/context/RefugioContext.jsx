@@ -151,7 +151,7 @@ const RefugioProvider = ({ children }) => {
     }
   }
   const asignedUser = async (user, id) => {
-    console.log(id);
+    // console.log(id);
     if (!token) return
     try {
       await clienteAxios.post(`animales/asigned/${id}`, user, config)
