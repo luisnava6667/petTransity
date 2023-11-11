@@ -14,9 +14,9 @@ const AuthProvider = ({ children }) => {
   const token = localStorage.getItem('token')
   useEffect(() => {
     const autenticarUsuario = async () => {
+      setCargando(true)
       if (!token) {
         setCargando(false)
-        // navigate('/login')
         return
       }
       const config = {
@@ -42,7 +42,7 @@ const AuthProvider = ({ children }) => {
     setAuth({})
     navigate('/login')
   }
-  
+
   const actualizarPerfil = async (values) => {}
   return (
     <AuthContext.Provider

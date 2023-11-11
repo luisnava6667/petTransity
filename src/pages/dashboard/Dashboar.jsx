@@ -10,26 +10,28 @@ import useAuth from '../../hooks/useAuth'
 
 const Dashboard = () => {
   const { cargando } = useAuth()
+  
   useEffect(() => {
     document.title = 'Dashboard'
   }, [])
-  return (
+  return cargando ? (
+    <div className='h-screen bg-[#CCC4BB] flex items-center justify-center'>
+      <Spinner />
+    </div>
+  ) : (
     <div className='h-screen bg-[#CCC4BB] flex'>
       <Sidebar />
       <div className='grid w-full gap-4 '>
         <TopBar />
-        {cargando ? (
-          <Spinner />
-        ) : (
-          <div className='overflow-auto mx-5'>
-            <div className='flex flex-col sm:flex-row items-center sm:items-end sm:gap-5 justify-center '>
-              <CardUsuarioDashboard />
-              {/* <InformacionCasaDashboard /> */}
-              <CardInfoAnimales />
-            </div>
-            {/* <CardGrandeDashboard /> */}
+        <div className='overflow-auto mx-5'>
+          <div className='flex flex-col sm:flex-row items-center sm:items-end sm:gap-5 justify-center '>
+            <CardUsuarioDashboard />
+            {/* <InformacionCasaDashboard /> */}
+            <CardInfoAnimales />
           </div>
-        )}
+          {/* <CardGrandeDashboard /> */}
+        </div>
+        )
       </div>
     </div>
   )

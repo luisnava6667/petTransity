@@ -14,7 +14,7 @@ import name from '../../assets/name.svg'
 const AnimalesId = () => {
   const { eliminarAnimal, changeState, asignedUser } = useRefugio()
   const [pet, setPet] = useState([])
-  
+
   const navigate = useNavigate()
   const [refugio, setRefugio] = useState([])
   const [cargando, setCargando] = useState(true)
@@ -127,13 +127,7 @@ const AnimalesId = () => {
                 </p>
                 <div className='grid justify-items-center mt-4 w-full'>
                   {role === 'usuarios' ? (
-                    pet.estado ? (
-                      <Link
-                        to={`https://wa.me/+5491131496472?text=Hola%20me%20gustaría%20saber%20más%20sobre%20${pet.nombre}`}
-                        className='w-1/2 bg-[#FFB800] rounded-lg mx-5 text-white font-bold text-xl p-2 text-center '>
-                        Transitar
-                      </Link>
-                    ) : (
+                    !pet.estado && (
                       <Link
                         className='w-1/2  bg-[#af8f3e] rounded-lg mx-5 text-white font-bold text-xl p-2 text-center cursor-not-allowed'
                         style={{ pointerEvents: 'none' }}>

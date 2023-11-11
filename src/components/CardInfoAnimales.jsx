@@ -13,30 +13,29 @@ const CardInfoAnimales = () => {
   // console.log(auth)
   const token = localStorage.getItem('token')
   const role = localStorage.getItem('role')
-  const [cargando, setCargando] = useState(false)
+  const [cargando, setCargando] = useState(true)
   const [pet, setPet] = useState([])
   useEffect(() => {
-    if (role === 'usuario') {
-      setCargando(true)
-
-      const getPet = async () => {
-        try {
-          const config = {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`
-            }
+    const getPet = async () => {
+      try {
+        const config = {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
           }
-          const { data } = await clienteAxios.get('/animales', config)
-          setPet(data)
-          setCargando(false)
-        } catch (error) {
-          console.log(error)
         }
+        const { data } = await clienteAxios.get(
+          `/animales/view/${pets}`,
+          config
+        )
+        setPet(data)
+      } catch (error) {
+        console.log(error)
       }
-      getPet()
+      setCargando(false)
     }
-  }, [role, token])
+    getPet()
+  }, [role, token, pets])
 
   return (
     <div className='flex w-full  sm:w-[46rem] h-80 mt-7  bg-[#E6E2DD] rounded-2xl items-center justify-center'>
@@ -70,7 +69,7 @@ const CardInfoAnimales = () => {
               <h3 className='text-center font-bold text-xl '>
                 {auth.pets === 0
                   ? 'Transita una mascota!'
-                  : `Estas Transitando un total de: ${pets?.length}`}
+                  : `Estas Transitando a ${pet.pet?.nombre}`}
               </h3>
               <Link to='/animales'>
                 <button className='bg-[#E59D1C] text-white uppercase rounded-lg px-4 py-2 font-bold text-xl mr-10 '>
