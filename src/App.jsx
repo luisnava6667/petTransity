@@ -45,8 +45,11 @@ function App() {
             {/* logeado */}
             <Route path='/login' element={<Login />} />
             <Route path='/dashboard' element={<Dashboard />} />
-
-            <Route path='/mapa' element={<Mapa />} />
+            {role === 'usuarios' ? (
+              <Route path='/mapa' element={<Mapa />} />
+            ) : (
+              <Route path='*' element={<NotFound />} />
+            )}
             <Route path='/animales' element={<Animales />} />
             <Route path='/animales/:id' element={<AnimalesId />} />
             <Route path='/editar-animales/:id' element={<EditarAnimal />} />
