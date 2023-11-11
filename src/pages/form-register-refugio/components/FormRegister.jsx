@@ -23,7 +23,8 @@ const FormRegister = () => {
       nombre: '',
       apellido: '',
       razon_social: '',
-      avatar: '',
+      avatar:
+        'https://images.vexels.com/media/users/3/201898/isolated/preview/55be9a1a39abff39bc3596e8ddd224cd-trazo-de-huella-de-perro-azul.png',
       cuit: '',
       email: '',
       password: '',
