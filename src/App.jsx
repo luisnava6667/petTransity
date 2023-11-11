@@ -29,7 +29,7 @@ import Register from './pages/register/Register'
 
 function App() {
   const role = localStorage.getItem('role')
-
+  console.log(role)
   return (
     <BrowserRouter>
       <AuthProvider>
