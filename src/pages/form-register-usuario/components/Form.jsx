@@ -339,13 +339,14 @@ const Form = () => {
                 name='provincia'
                 onChange={handleChange}
                 onBlur={handleBlur}
+                
                 className={`block w-full h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
                   touched.provincia && errors.provincia
                     ? 'ring-red-500  focus:ring-red-500'
                     : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
                 } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}>
-                <option value=''>Seleccione una provincia</option>
-                <option value='Buenos Aires'>Buenos Aires</option>
+                <option value='CABA'>Seleccione una provincia</option>
+                <option value='CABA'>Buenos Aires</option>
                 {/* Agrega más opciones según tus necesidades */}
               </select>
               {touched.provincia && errors.provincia && (

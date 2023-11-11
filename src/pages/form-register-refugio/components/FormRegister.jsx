@@ -32,7 +32,7 @@ const FormRegister = () => {
       direccion: '',
       piso: '',
       unidad: '',
-      provincia: '',
+      provincia: 'CABA',
       localidad: '',
       comuna: '',
       barrio: '',
@@ -353,14 +353,14 @@ const FormRegister = () => {
               name='provincia'
               onChange={handleChange}
               onBlur={handleBlur}
-              value='Buenos Aires'
+              value='CABA'
               className={`block w-[31.5rem] h-12 p-2 rounded-2xl py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ${
                 touched.provincia && errors.provincia
                   ? 'ring-red-500  focus:ring-red-500'
                   : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
               } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}>
-              <option value='Buenos Aires'>Buenos Aires</option>
-              <option value='Otra Provincia'>Otra Provincia</option>
+              <option value='CABA'>Buenos Aires</option>
+              <option value='CABA'>Otra Provincia</option>
             </select>
             {touched.provincia && errors.provincia && (
               <div className='flex flex-row-reverse w-[11.5rem] sm:w-[13.5rem] mt-5 text-red-500 text-xs sm:text-sm justify-end'>
@@ -403,9 +403,7 @@ const FormRegister = () => {
                   ? 'ring-red-500  focus:ring-red-500'
                   : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
               } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}>
-              <option value='' disabled>
-                Selecciona una comuna
-              </option>
+              <option value=''>Selecciona una comuna</option>
               <option value='Comuna 1'>Comuna 1</option>
               <option value='Comuna 2'>Comuna 2</option>
               <option value='Comuna 3'>Comuna 3</option>
@@ -449,9 +447,7 @@ const FormRegister = () => {
                   ? 'ring-red-500  focus:ring-red-500'
                   : 'ring-gray-300 placeholder-text-gray-400 focus:ring-indigo-600'
               } focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6`}>
-              <option value='' disabled>
-                Selecciona un barrio
-              </option>
+              <option value=''>Selecciona un barrio</option>
               <option value='Agronomía'>Agronomía</option>
               <option value='Almagro'>Almagro</option>
               <option value='Balvanera'>Balvanera</option>
