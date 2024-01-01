@@ -107,6 +107,7 @@ const FormRefugio = () => {
         });
         setTimeout(() => {
           Swal.close();
+           window.location.reload()
         }, 4000);
         console.log(res.data);
       } catch (error) {

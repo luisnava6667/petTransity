@@ -19,6 +19,7 @@ import Swal from 'sweetalert2'
 
 const Form = () => {
   const { auth } = useAuth()
+  const {params} = useParams()
   // console.log(auth)
   const { id } = useParams()
   const [error, setError] = useState(null)
@@ -96,7 +97,7 @@ const Form = () => {
         )
         Swal.fire({
           icon: 'success',
-          title: `${res.msg}`,
+          title: `${res.data.msg}`,
           showConfirmButton: false,
           onBeforeOpen: () => {
             Swal.showLoading()
@@ -104,8 +105,8 @@ const Form = () => {
         })
         setTimeout(() => {
           Swal.close()
+          window.location.reload()
         }, 4000)
-        console.log(res.data)
       } catch (error) {
         setTextVisibility('flex')
         setSpinnerVisibility('hidden')
