@@ -44,7 +44,6 @@ const Login = () => {
         .min(3, 'La contraseña debe tener al menos 3 caracteres')
     }),
     onSubmit: async (values) => {
-      // console.log(values)
       try {
         setTextVisibility('hidden')
         setSpinnerVisibility('flex')
@@ -53,8 +52,6 @@ const Login = () => {
         localStorage.setItem('role', data.role)
         navigate('/dashboard')
       } catch (error) {
-        console.log(error.response.data.msg)
-
         setTextVisibility('flex')
         setSpinnerVisibility('hidden')
         Swal.fire({

@@ -28,7 +28,6 @@ import PoliticasDePrivacidad from './pages/PoliticasDePrivacidad/PoliticasDePriv
 import Register from './pages/register/Register'
 
 function App() {
-  const role = localStorage.getItem('role')
   // console.log(role)
   return (
     <BrowserRouter>
@@ -57,9 +56,9 @@ function App() {
             <Route path='/privacy-policy' element={<PoliticasDePrivacidad />} />
             <Route path='confirmar/:token' element={<Confirmar />} />
             <Route path='/olvide-password' element={<OlvidePassword />} />
-            <Route path='perfil' element={<Perfil />} />
+            <Route path='/perfil' element={<Perfil />} />
             {/* <Route path="editar/:id" element={<UserId />} /> */}
-            <Route path='olvide-password/:token' element={<NuevoPassword />} />
+            <Route path='/olvide-password/:token' element={<NuevoPassword />} />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </RefugioProvider>
